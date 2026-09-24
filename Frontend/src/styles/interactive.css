@@ -1,36 +1,15 @@
-/* Small interactive accents shared by the card and footer systems. */
-.expertise-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.expertise-card::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  content: '';
-  background: #38bdf8;
-  transition: width 220ms cubic-bezier(0.2, 0.75, 0.25, 1);
-}
-
-.expertise-card:hover::before,
-.expertise-card:focus-within::before {
-  width: 100%;
-}
-
+/* Small interactive accents shared by the card systems.
+   The card spotlight/border glow lives in fx.css (.spotlight-card). */
 .expertise-icon {
-  transition: transform 200ms ease, background-color 200ms ease;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms ease, box-shadow 300ms ease;
 }
 
 .expertise-card:hover .expertise-icon,
 .expertise-card:focus-within .expertise-icon {
-  transform: scale(1.08);
+  transform: translateZ(28px) scale(1.08) rotate(-4deg);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .expertise-card::before,
   .expertise-icon {
     transition: none !important;
   }

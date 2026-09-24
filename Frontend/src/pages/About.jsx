@@ -2,6 +2,9 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
 import { FadeSide, FadeUp, StaggerGroup, StaggerItem } from '../components/motion/MotionPrimitives.jsx'
+import HeroBackdrop from '../components/fx/HeroBackdrop.jsx'
+import RevealWords from '../components/fx/RevealWords.jsx'
+import { useIntroDone } from '../components/fx/intro.js'
 
 const expertise = [
   {
@@ -151,23 +154,32 @@ function CompanyVisual() {
 }
 
 export default function About() {
+  const introDone = useIntroDone()
   return (
     <>
       <AboutMetadata />
 
-      <section aria-labelledby="about-hero-title" className="ambient-bg ambient-bg--duo overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white">
+      <section aria-labelledby="about-hero-title" className="ambient-bg ambient-bg--duo relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white">
+        <HeroBackdrop density={0.6} />
         <div className="mx-auto grid min-h-[420px] max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-16">
           <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
             <StaggerItem as="p" className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">About PeopleLabs</StaggerItem>
-            <StaggerItem as="h1" id="about-hero-title" className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              Oracle Expertise.{' '}
-              <span className="block text-sky-600">Built Around Your Business.</span>
-            </StaggerItem>
+            <RevealWords
+              as="h1"
+              id="about-hero-title"
+              start={introDone}
+              delay={0.15}
+              className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+              segments={[
+                { text: 'Oracle Expertise. ' },
+                { text: 'Built Around Your Business.', className: 'block', wordClassName: 'text-shimmer' },
+              ]}
+            />
             <StaggerItem as="p" className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Founded in 2016, PeopleLabs Consulting provides Oracle and PeopleSoft consulting services designed around the unique technology requirements of each organization.
             </StaggerItem>
             <StaggerItem as="div" className="mt-7 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
-              <Link to="/services" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+              <Link to="/services" className="btn-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
                 Explore Our Expertise
                 <Icon name="arrow-right" size={18} className="cta-arrow" />
               </Link>
@@ -276,7 +288,7 @@ export default function About() {
             Connect with PeopleLabs Consulting to discuss your Oracle, PeopleSoft, managed services, or training requirements.
           </StaggerItem>
           <StaggerItem as="div" className="mt-7">
-            <Link to="/#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-800 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
+            <Link to="/#contact" className="btn-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-800 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
               Contact PeopleLabs
               <Icon name="arrow-right" size={18} className="cta-arrow" />
             </Link>

@@ -5,12 +5,12 @@ import CareerApplicationForm from '../components/CareerApplicationForm.jsx'
 import CareersVisual from '../components/CareersVisual.jsx'
 import Icon from '../components/Icon.jsx'
 import { careers } from '../data/careers.js'
+import { scrollToElement } from '../components/fx/scroll.js'
+import HeroBackdrop from '../components/fx/HeroBackdrop.jsx'
+import RevealWords from '../components/fx/RevealWords.jsx'
+import { useIntroDone } from '../components/fx/intro.js'
 
 const pageDescription = 'Explore PeopleSoft career opportunities with PeopleLabs Consulting in Edmonton, Alberta, including business analyst and technical support roles.'
-
-function prefersReducedMotion() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
-}
 
 function JobOpening({ job, expanded, onToggle, onApply }) {
   const reduceMotion = useReducedMotion()
@@ -89,6 +89,7 @@ function JobOpening({ job, expanded, onToggle, onApply }) {
 }
 
 export default function Careers() {
+  const introDone = useIntroDone()
   const [expandedJob, setExpandedJob] = useState(null)
   const [selectedPosition, setSelectedPosition] = useState('')
   const [highlightPosition, setHighlightPosition] = useState(false)
@@ -119,7 +120,7 @@ export default function Careers() {
 
     window.requestAnimationFrame(() => {
       if (window.matchMedia('(max-width: 1279px)').matches) {
-        formRef.current?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
+        scrollToElement(formRef.current)
       }
       positionRef.current?.focus({ preventScroll: true })
     })
@@ -132,23 +133,31 @@ export default function Careers() {
 
   return (
     <>
-      <section className="ambient-bg ambient-bg--duo overflow-hidden border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white">
+      <section className="ambient-bg ambient-bg--duo relative overflow-hidden border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white">
+        <HeroBackdrop density={0.6} />
         <div className="mx-auto grid max-w-7xl items-center gap-7 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:py-16">
           <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
             <StaggerItem as="p" className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-100 px-3.5 py-2 text-xs font-bold tracking-[0.1em] text-sky-800">
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-sky-500" />
+              <span aria-hidden="true" className="pulse-dot h-2 w-2 rounded-full bg-sky-500" />
               WE ARE HIRING
             </StaggerItem>
-            <StaggerItem as="h1" className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              Build Your Career
-              <br className="hidden sm:block" /> with{' '}
-              <span className="text-sky-600">PeopleSoft Expertise.</span>
-            </StaggerItem>
+            <RevealWords
+              as="h1"
+              start={introDone}
+              delay={0.15}
+              className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+              segments={[
+                { text: 'Build Your Career' },
+                { br: true, className: 'hidden sm:block' },
+                { text: ' with ' },
+                { text: 'PeopleSoft Expertise.', wordClassName: 'text-shimmer' },
+              ]}
+            />
             <StaggerItem as="p" className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Join PeopleLabs Consulting and bring your PeopleSoft expertise to client-focused technology projects. Explore our Edmonton-based remote full-time opportunities.
             </StaggerItem>
             <StaggerItem as="div" className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-              <a href="#openings" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+              <a href="#openings" className="btn-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
                 View Openings
                 <Icon name="chevron-down" size={17} />
               </a>

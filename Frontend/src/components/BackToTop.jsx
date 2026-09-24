@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
+import { scrollToTop } from './fx/scroll.js'
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(() => typeof window !== 'undefined' && window.scrollY > 400)
@@ -19,7 +20,7 @@ export default function BackToTop() {
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
       disabled={!visible}
-      onClick={() => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })}
+      onClick={() => scrollToTop()}
       initial={false}
       animate={visible ? 'visible' : 'hidden'}
       variants={{

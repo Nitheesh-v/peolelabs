@@ -1,10 +1,12 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
 import Logo from './Logo.jsx'
 import ContactForm from './ContactForm.jsx'
 import { FadeUp, StaggerGroup, StaggerItem } from './motion/MotionPrimitives.jsx'
 import { company } from '../data/content.js'
+import { scrollToTop } from './fx/scroll.js'
+import RevealWords from './fx/RevealWords.jsx'
+import ParticleField from './fx/ParticleField.jsx'
 
 const quickLinks = [
   { to: '/', label: 'Home' },
@@ -38,13 +40,12 @@ function FooterColumnTitle({ children, className = '' }) {
 export default function Footer() {
   const year = new Date().getFullYear()
   const { pathname } = useLocation()
-  const reduceMotion = useReducedMotion()
   const onHome = pathname === '/'
 
   function scrollHomeToTop(event) {
     if (pathname !== '/') return
     event.preventDefault()
-    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
+    scrollToTop()
   }
 
   return (
@@ -57,12 +58,10 @@ export default function Footer() {
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <StaggerGroup className="mx-auto mb-8 max-w-3xl text-center sm:mb-10" stagger={0.1}>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">
+              <p className="eyebrow-line mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">
                 Contact
               </p>
-              <StaggerItem as="h2" id="contact-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
-                Let&apos;s Discuss Your IT Requirements
-              </StaggerItem>
+              <RevealWords as="h2" id="contact-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl" text="Let’s Discuss Your IT Requirements" />
               <StaggerItem as="p" className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
                 Connect with PeopleLabs Consulting to discuss your Oracle and PeopleSoft requirements.
               </StaggerItem>
@@ -74,7 +73,9 @@ export default function Footer() {
         </section>
       )}
 
-      <footer className="ambient-bg ambient-bg--duo ambient-bg--footer border-t border-sky-700 bg-sky-600 text-white">
+      <footer className="ambient-bg ambient-bg--duo ambient-bg--footer relative overflow-hidden border-t border-sky-700 bg-gradient-to-br from-sky-600 via-sky-600 to-sky-700 text-white">
+        <div className="fx-shimmer-line absolute inset-x-0 top-0" aria-hidden="true" />
+        <ParticleField className="opacity-40" density={0.5} color="224, 242, 254" accent="190, 242, 100" />
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-[4.5rem]">
           <StaggerGroup className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.7fr_1.15fr_1.15fr] lg:gap-8 xl:gap-12" stagger={0.07}>
             <StaggerItem as="div">

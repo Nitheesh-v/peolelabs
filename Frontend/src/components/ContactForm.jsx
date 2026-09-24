@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
 import { company } from '../data/content.js'
+import { celebrate } from './fx/celebrate.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const initialValues = { name: '', email: '', message: '' }
@@ -74,6 +75,7 @@ export default function ContactForm() {
         return
       }
       setStatus('success')
+      celebrate()
       setSubmissionMessage('')
       setValues(initialValues)
       setErrors({})
@@ -84,7 +86,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" onSubmit={handleSubmit} noValidate>
+    <form className="border-beam rounded-xl border border-slate-200 bg-white p-5 shadow-xl shadow-sky-900/5 [--beam-radius:0.75rem] sm:p-7" onSubmit={handleSubmit} noValidate>
       <h3 className="mb-6 text-xl font-semibold tracking-tight text-slate-900">Drop us a line!</h3>
       <div className="grid gap-x-5 gap-y-5 sm:grid-cols-2">
         <div className="form-field group">

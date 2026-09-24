@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
 import { FadeUp, StaggerGroup, StaggerItem } from '../components/motion/MotionPrimitives.jsx'
 import ServicesExplorer from '../components/ServicesExplorer.jsx'
+import HeroBackdrop from '../components/fx/HeroBackdrop.jsx'
+import RevealWords from '../components/fx/RevealWords.jsx'
+import { useIntroDone } from '../components/fx/intro.js'
 
 const processSteps = [
   { title: 'Assess', description: 'Understand the current environment and requirements.', icon: 'search' },
@@ -11,9 +14,11 @@ const processSteps = [
 ]
 
 export default function Services() {
+  const introDone = useIntroDone()
   return (
     <>
-      <section className="ambient-bg ambient-bg--duo border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white py-10 sm:py-12 lg:py-14">
+      <section className="ambient-bg ambient-bg--duo relative overflow-hidden border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white py-10 sm:py-12 lg:py-14">
+        <HeroBackdrop density={0.55} />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <StaggerGroup animateOnMount stagger={0.08} delayChildren={0.02}>
             <StaggerItem as="nav" aria-label="Breadcrumb" className="mb-7">
@@ -28,9 +33,7 @@ export default function Services() {
               </ol>
             </StaggerItem>
             <StaggerItem as="p" className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Our Services</StaggerItem>
-            <StaggerItem as="h1" className="max-w-3xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              PeopleSoft Services
-            </StaggerItem>
+            <RevealWords as="h1" start={introDone} delay={0.15} className="max-w-3xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl" segments={[{ text: 'PeopleSoft', wordClassName: 'text-shimmer' }, { text: ' Services' }]} />
             <StaggerItem as="p" className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               PeopleLabs Consulting provides specialized PeopleSoft services designed to help organizations manage, enhance, upgrade, and support their enterprise applications.
             </StaggerItem>
@@ -80,7 +83,7 @@ export default function Services() {
             </StaggerItem>
           </StaggerGroup>
           <FadeUp className="shrink-0" delay={0.16}>
-            <Link to="/#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+            <Link to="/#contact" className="btn-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
               Discuss Your Requirements
               <Icon name="arrow-right" size={18} className="cta-arrow" />
             </Link>

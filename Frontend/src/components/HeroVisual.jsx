@@ -41,7 +41,7 @@ const nodeDots = [[152, 118], [408, 118], [152, 240], [408, 240], [152, 362], [4
 const signalDurations = ['3.5s', '4.2s', '5s', '5.8s', '4.7s', '5.3s']
 const moduleDurations = ['5.6s', '6.1s', '5.2s', '6.4s', '5.8s', '6.2s']
 
-export default function HeroVisual() {
+export default function HeroVisual({ start = true }) {
   const reduceMotion = useReducedMotion()
   const pointerX = useMotionValue(0)
   const pointerY = useMotionValue(0)
@@ -100,9 +100,26 @@ export default function HeroVisual() {
         </g>
       </motion.g>
       <circle className="hero-visual__halo" cx="280" cy="240" r="96" fill="none" stroke="#38BDF8" strokeWidth="2" />
+      <g className="hero-visual__orbit" aria-hidden="true">
+        <circle cx="280" cy="240" r="150" fill="none" stroke="#7DD3FC" strokeWidth="1.2" strokeDasharray="2 10" opacity="0.7" />
+        <circle cx="430" cy="240" r="11" fill="#38BDF8" opacity="0.22" />
+        <circle cx="430" cy="240" r="4.5" fill="#0EA5E9" />
+      </g>
+      <g className="hero-visual__orbit hero-visual__orbit--slow" aria-hidden="true">
+        <circle cx="280" cy="16" r="10" fill="#8FBF45" opacity="0.25" />
+        <circle cx="280" cy="16" r="4.5" fill="#3F8F2C" />
+      </g>
 
       <g fill="none" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" className="hero-visual__connections">
-        {connectors.map((path) => <path key={path} d={path} />)}
+        {connectors.map((path, index) => (
+          <motion.path
+            key={path}
+            d={path}
+            initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
+            animate={start ? { pathLength: 1, opacity: 1 } : undefined}
+            transition={{ duration: 0.9, ease: 'easeInOut', delay: 0.75 + index * 0.08 }}
+          />
+        ))}
       </g>
       <g fill="none" stroke="#38BDF8" strokeWidth="2.4" strokeLinecap="round" className="hero-visual__signals">
         {connectors.map((path, index) => (
@@ -133,7 +150,14 @@ export default function HeroVisual() {
       <text x="280" y="281" textAnchor="middle" fontSize="11" fontWeight="500" fill="#64748B">Connected ecosystem</text>
 
       {modules.map((module, index) => (
-        <g key={module.label} className="hero-visual__module" style={{ animationDuration: moduleDurations[index], animationDelay: `${index * 0.28}s` }} filter="url(#pl-card)">
+        <motion.g
+          key={module.label}
+          style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.6, y: 16 }}
+          animate={start ? { opacity: 1, scale: 1, y: 0 } : undefined}
+          transition={{ type: 'spring', stiffness: 170, damping: 16, delay: 0.55 + index * 0.09 }}
+        >
+        <g className="hero-visual__module" style={{ animationDuration: moduleDurations[index], animationDelay: `${index * 0.28}s` }} filter="url(#pl-card)">
           <rect x={module.x} y={module.y} width="140" height="64" rx="12" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
           <rect x={module.x + 12} y={module.y + 16} width="32" height="32" rx="9" fill="#E0F2FE" />
           <g transform={`translate(${module.x + 18} ${module.y + 22}) scale(0.833)`} fill="none" stroke="#0284C7" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
@@ -145,6 +169,7 @@ export default function HeroVisual() {
               : module.label}
           </text>
         </g>
+        </motion.g>
       ))}
 
       <path d="M252 94c-9 0-16-7-16-16 0-8 6-15 14-16 2-11 12-19 24-19 10 0 19 6 22 15 9 1 16 8 16 17 0 10-8 18-18 18H252Z" fill="#E0F2FE" stroke="#38BDF8" strokeWidth="2" />

@@ -3,6 +3,8 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Logo from './Logo.jsx'
 import Icon from './Icon.jsx'
+import { scrollToTop } from './fx/scroll.js'
+import Magnetic from './fx/Magnetic.jsx'
 
 const links = [
   { to: '/', label: 'Home', end: true },
@@ -34,12 +36,14 @@ function LoginControl({ mobile = false }) {
 }
 
 function desktopLinkClass(isActive) {
-  return `relative inline-flex whitespace-nowrap py-2 text-base font-semibold transition-colors duration-200 after:absolute after:bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-[width] after:duration-[250ms] after:content-[''] hover:text-sky-50 hover:after:w-full focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${isActive ? 'text-white after:w-full' : 'text-white/90'}`
+  return `relative inline-flex whitespace-nowrap rounded-full px-3.5 py-2 text-base font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${isActive ? 'text-white' : 'text-white/90 hover:text-white'}`
 }
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [hovered, setHovered] = useState(null)
+  const reduceMotion = useReducedMotion()
   const toggleRef = useRef(null)
   const location = useLocation()
   const contactHref = location.pathname === '/' ? '#contact' : '/#contact'
@@ -67,7 +71,7 @@ export default function Navbar() {
     setOpen(false)
     if (location.pathname === '/') {
       event.preventDefault()
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      scrollToTop()
     }
   }
 
@@ -82,25 +86,50 @@ export default function Navbar() {
           <Logo decorative />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary">
+        <nav className="hidden items-center gap-1 lg:flex xl:gap-2" aria-label="Primary" onPointerLeave={() => setHovered(null)}>
           {links.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.end}
               onClick={link.to === '/' ? handleHomeClick : undefined}
+              onPointerEnter={() => setHovered(link.to)}
+              onFocus={() => setHovered(link.to)}
+              onBlur={() => setHovered(null)}
               className={({ isActive }) => desktopLinkClass(isActive)}
             >
-              {link.label}
+              {({ isActive }) => (
+                <>
+                  {hovered === link.to && (
+                    <motion.span
+                      layoutId="nav-hover-pill"
+                      className="absolute inset-0 -z-0 rounded-full bg-white/15 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]"
+                      transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 420, damping: 34 }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active-bar"
+                      className="absolute inset-x-3.5 -bottom-0.5 z-10 h-[3px] rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.9)]"
+                      transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 380, damping: 30 }}
+                      aria-hidden="true"
+                    />
+                  )}
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
 
         <div className="hidden shrink-0 items-center gap-4 lg:flex">
           <LoginControl />
-          <a href={contactHref} className={`inline-flex items-center justify-center rounded-lg bg-white font-semibold text-sky-700 transition-[background-color,transform,box-shadow,padding] duration-[250ms] hover:-translate-y-px motion-reduce:transform-none hover:bg-sky-50 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${scrolled ? 'min-h-10 px-4 py-2 text-sm' : 'min-h-11 px-5 py-2.5 text-base'}`}>
-            Contact Us
-          </a>
+          <Magnetic strength={0.3}>
+            <a href={contactHref} className={`btn-shine btn-shine--light inline-flex items-center justify-center rounded-lg bg-white font-semibold text-sky-700 shadow-lg shadow-sky-900/10 transition-[background-color,box-shadow,padding] duration-[250ms] hover:bg-sky-50 hover:shadow-xl active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${scrolled ? 'min-h-10 px-4 py-2 text-sm' : 'min-h-11 px-5 py-2.5 text-base'}`}>
+              Contact Us
+            </a>
+          </Magnetic>
         </div>
 
         <button

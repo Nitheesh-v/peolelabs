@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
 import { applicationPositions } from '../data/careers.js'
 import { company } from '../data/content.js'
+import { celebrate } from './fx/celebrate.js'
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -150,6 +151,7 @@ export default function CareerApplicationForm({
         return
       }
       setStatus('success')
+      celebrate()
       setSubmissionMessage('')
       setValues(initialValues)
       setResume(null)
@@ -175,7 +177,7 @@ export default function CareerApplicationForm({
 
   return (
     <div ref={formRef} id="application-form" className="scroll-mt-28">
-      <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-900/5 sm:p-7 lg:p-8">
+      <form onSubmit={handleSubmit} noValidate className="border-beam rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-900/5 [--beam-radius:1rem] sm:p-7 lg:p-8">
         <div className="mb-6 text-center">
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-sky-700">Careers</p>
           <h2 className="text-2xl font-bold tracking-tight text-slate-900">Apply Now</h2>
