@@ -17,7 +17,7 @@ function LoginControl({ mobile = false }) {
       disabled
       aria-label="Login"
       title="Login is not available yet"
-      className={`inline-flex cursor-default items-center gap-2 rounded-md text-white transition-[background-color,transform] duration-200 hover:scale-105 hover:bg-white/10 active:scale-95 ${mobile ? 'w-full px-3 py-3 text-base font-semibold' : 'px-1 py-2 text-sm font-semibold'}`}
+      className={`inline-flex cursor-default items-center gap-2 rounded-md text-white transition-[background-color,transform] duration-200 hover:scale-105 hover:bg-white/10 active:scale-95 ${mobile ? 'w-full px-3 py-3 text-base font-semibold sm:w-auto' : 'px-1 py-2 text-sm font-semibold'}`}
     >
       <Icon name="user" size={20} strokeWidth={1.8} />
       <span>Login</span>
@@ -121,9 +121,9 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
-          <div className="mt-2 flex items-center justify-between border-t border-white/20 pt-3">
+          <div className="mt-2 flex flex-col gap-2 border-t border-white/20 pt-3 sm:flex-row sm:items-center sm:justify-between">
             <LoginControl mobile />
-            <a href={contactHref} onClick={() => setOpen(false)} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-4 text-sm font-semibold text-sky-700 transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-px hover:bg-sky-50 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+            <a href={contactHref} onClick={() => setOpen(false)} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-white px-4 text-sm font-semibold text-sky-700 transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-px hover:bg-sky-50 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto">
               Contact Us
             </a>
           </div>

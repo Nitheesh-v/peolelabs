@@ -29,7 +29,7 @@ export default function BackToTop() {
       transition={{ duration: reduceMotion ? 0 : 0.2, ease: 'easeOut' }}
       whileHover={reduceMotion || !visible ? undefined : { scale: 1.05 }}
       whileTap={reduceMotion || !visible ? undefined : { scale: 0.95 }}
-      className={`fixed bottom-6 right-6 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full bg-sky-500 text-white shadow-lg shadow-slate-900/20 transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 ${visible ? 'pointer-events-auto' : 'pointer-events-none'}`}
+      className={`fixed bottom-4 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full bg-sky-500 text-white shadow-lg shadow-slate-900/20 transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:bottom-6 sm:right-6 sm:h-12 sm:w-12 ${visible ? 'pointer-events-auto' : 'pointer-events-none'}`}
     >
       <Icon name="arrow-up" size={21} strokeWidth={2} />
     </motion.button>

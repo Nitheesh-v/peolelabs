@@ -113,7 +113,7 @@ export default function Careers() {
 
     window.requestAnimationFrame(() => {
       if (window.matchMedia('(max-width: 1279px)').matches) {
-        formRef.current?.scrollIntoView({ behavior: prefersReducedMotion() ? 'instant' : 'smooth', block: 'start' })
+        formRef.current?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
       }
       positionRef.current?.focus({ preventScroll: true })
     })
