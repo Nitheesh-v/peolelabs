@@ -1,0 +1,122 @@
+import { useState } from 'react'
+import Icon from './Icon.jsx'
+import { serviceOfferings } from '../data/servicesPage.js'
+
+function ServiceTabs({ activeId, onSelect, layout }) {
+  const horizontal = layout === 'mobile'
+
+  function handleKeyDown(event, index) {
+    const previousKey = horizontal ? 'ArrowLeft' : 'ArrowUp'
+    const nextKey = horizontal ? 'ArrowRight' : 'ArrowDown'
+    let nextIndex
+
+    if (event.key === previousKey) nextIndex = (index - 1 + serviceOfferings.length) % serviceOfferings.length
+    else if (event.key === nextKey) nextIndex = (index + 1) % serviceOfferings.length
+    else if (event.key === 'Home') nextIndex = 0
+    else if (event.key === 'End') nextIndex = serviceOfferings.length - 1
+    else return
+
+    event.preventDefault()
+    onSelect(serviceOfferings[nextIndex].id)
+    event.currentTarget.parentElement
+      ?.querySelectorAll('[role="tab"]')
+      ?.[nextIndex]
+      ?.focus()
+  }
+
+  return (
+    <div
+      role="tablist"
+      aria-label="PeopleSoft services"
+      aria-orientation={horizontal ? 'horizontal' : 'vertical'}
+      className={horizontal ? 'flex gap-2 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:thin]' : 'grid gap-2'}
+    >
+      {serviceOfferings.map((service, index) => {
+        const selected = activeId === service.id
+        return (
+          <button
+            key={service.id}
+            id={`${layout}-service-tab-${service.id}`}
+            type="button"
+            role="tab"
+            aria-selected={selected}
+            aria-controls="service-details"
+            tabIndex={selected ? 0 : -1}
+            onClick={() => onSelect(service.id)}
+            onKeyDown={(event) => handleKeyDown(event, index)}
+            className={horizontal
+              ? `inline-flex min-h-12 min-w-[220px] items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors sm:min-w-[235px] ${selected ? 'border-sky-300 bg-sky-100 text-slate-900 shadow-sm' : 'border-slate-200 bg-white text-slate-600 hover:border-sky-200 hover:bg-sky-50 hover:text-sky-800'}`
+              : `group flex min-h-12 w-full items-center gap-3 rounded-lg border-l-[3px] px-3 py-3 text-left text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 ${selected ? 'border-sky-500 bg-sky-100 font-semibold text-slate-900 shadow-sm' : 'border-transparent bg-transparent font-medium text-slate-600 hover:bg-sky-50 hover:text-sky-700'}`}
+          >
+            <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${selected ? 'bg-white text-sky-700' : horizontal ? 'bg-sky-50 text-sky-700' : 'bg-white text-sky-600 group-hover:bg-sky-50'}`} aria-hidden="true">
+              <Icon name={service.icon} size={19} strokeWidth={1.8} />
+            </span>
+            <span className="min-w-0 flex-1 leading-5">{service.title}</span>
+            {selected && <Icon name="arrow-right" size={17} className="shrink-0 text-sky-700" />}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+export default function ServicesExplorer() {
+  const [activeId, setActiveId] = useState(serviceOfferings[0].id)
+  const activeService = serviceOfferings.find((service) => service.id === activeId) ?? serviceOfferings[0]
+
+  return (
+    <section className="bg-slate-50/70 py-12 sm:py-16 lg:py-20" aria-label="Explore PeopleSoft services">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:grid-cols-[280px_minmax(0,1fr)]">
+          <aside className="hidden border-r border-slate-200 bg-slate-50 p-5 lg:block xl:p-6">
+            <h2 className="mb-5 px-1 text-lg font-semibold tracking-tight text-slate-900">PeopleSoft Services</h2>
+            <ServiceTabs activeId={activeId} onSelect={setActiveId} layout="desktop" />
+          </aside>
+
+          <div className="border-b border-slate-200 bg-slate-50 p-4 sm:p-5 lg:hidden">
+            <h2 className="mb-4 text-base font-semibold tracking-tight text-slate-900">PeopleSoft Services</h2>
+            <ServiceTabs activeId={activeId} onSelect={setActiveId} layout="mobile" />
+          </div>
+
+          <div className="min-w-0 p-4 sm:p-6 lg:p-8 xl:p-9">
+            <div
+              id="service-details"
+              role="tabpanel"
+              aria-label={`${activeService.title} details`}
+              aria-live="polite"
+              tabIndex={0}
+              className="outline-none focus-visible:rounded-xl focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-4"
+            >
+              <header className="rounded-xl bg-sky-600 p-5 text-white sm:p-7 lg:p-8">
+                <div className="flex items-start gap-4 sm:gap-5">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white/15 text-white sm:h-14 sm:w-14">
+                    <Icon name={activeService.icon} size={27} strokeWidth={1.8} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-sky-100">PeopleSoft services</p>
+                    <h2 className="text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl">{activeService.title}</h2>
+                    <p className="mt-3 max-w-3xl text-sm leading-6 text-white/90 sm:text-base sm:leading-7">{activeService.description}</p>
+                  </div>
+                </div>
+              </header>
+
+              <div className="mt-6 grid gap-4 sm:mt-7 sm:grid-cols-2 sm:gap-5">
+                {activeService.details.map((detail) => (
+                  <article key={detail.title} className="flex min-h-36 items-start gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-colors hover:border-sky-200 sm:p-5">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-700" aria-hidden="true">
+                      <Icon name={detail.icon} size={21} strokeWidth={1.8} />
+                    </span>
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900">{detail.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">{detail.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
