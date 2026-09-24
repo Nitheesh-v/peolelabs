@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import Icon from './Icon.jsx'
+import Logo from './Logo.jsx'
 import ContactForm from './ContactForm.jsx'
 import { company } from '../data/content.js'
 
@@ -74,9 +75,9 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-[4.5rem]">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.7fr_1.15fr_1.15fr] lg:gap-8 xl:gap-12">
             <div>
-              <p className="text-2xl font-bold tracking-tight text-white sm:text-[1.7rem]">
-                PeopleLabs <span className="text-sky-50">Consulting</span>
-              </p>
+              <div>
+                <Logo size="footer" />
+              </div>
               <p className="mt-5 max-w-sm text-sm leading-7 text-sky-50">
                 Founded in 2016, PeopleLabs Consulting provides high-quality IT consulting services specializing in Oracle and PeopleSoft technologies for organizations across a range of industries.
               </p>

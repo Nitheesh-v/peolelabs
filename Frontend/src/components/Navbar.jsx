@@ -71,7 +71,7 @@ export default function Navbar() {
     <header className={`sticky top-0 z-50 border-b transition-[background-color,box-shadow,border-color] duration-300 ${barColor}`}>
       <div className="mx-auto flex h-[78px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-24 lg:px-8">
         <Link to="/" onClick={handleHomeClick} aria-label="PeopleLabs Consulting home" className="shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
-          <Logo />
+          <Logo decorative />
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary">
