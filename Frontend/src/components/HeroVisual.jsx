@@ -66,7 +66,6 @@ export default function HeroVisual() {
       viewBox="0 0 560 480"
       role="img"
       aria-label="Illustration of connected Oracle and PeopleSoft systems forming a unified platform"
-      style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
       <defs>
         <pattern id="pl-dots" width="18" height="18" patternUnits="userSpaceOnUse">

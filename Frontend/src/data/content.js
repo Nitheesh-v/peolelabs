@@ -41,6 +41,58 @@ export const sectors = [
   },
 ]
 
+export const expertiseGroups = [
+  {
+    id: 'fscm',
+    icon: 'dollar-sign',
+    title: 'PeopleSoft FSCM',
+    description: 'Financials and supply chain capabilities that support essential business operations.',
+    items: [
+      'Accounts Payable',
+      'Accounts Receivable',
+      'Billing',
+      'Expenses',
+      'General Ledger',
+      'Treasury / Cash Management',
+      'Asset Management',
+      'Supply Chain Management',
+      'Grants Management',
+    ],
+  },
+  {
+    id: 'hcm',
+    icon: 'users',
+    title: 'PeopleSoft HCM',
+    description: 'Human capital management across the employee lifecycle and global payroll.',
+    items: [
+      'Core HR / Workforce Development',
+      'Benefits & Compensation Management',
+      'Absence Management',
+      'Time & Labor',
+      'Global Payroll',
+    ],
+  },
+  {
+    id: 'campus',
+    icon: 'graduation-cap',
+    title: 'PeopleSoft Campus Solutions',
+    description: 'Student-focused administration and financial capabilities for higher education.',
+    items: [
+      'Academic Advisement',
+      'Student Administration',
+      'Student Financials',
+      'Financial Aid',
+    ],
+  },
+  {
+    id: 'reporting',
+    icon: 'bar-chart',
+    title: 'PeopleSoft Reporting',
+    description: 'Reporting tools that help teams work with information across PeopleSoft.',
+    items: ['Kibana', 'nVision'],
+  },
+]
+
 export const services = [
   {
     id: 'fscm',

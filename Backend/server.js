@@ -35,6 +35,7 @@ app.post('/api/contact', (req, res) => {
   const entry = {
     name,
     email,
+    phone: (body.phone || '').trim(),
     company: (body.company || '').trim(),
     service: (body.service || '').trim(),
     message,

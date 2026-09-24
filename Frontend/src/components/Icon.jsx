@@ -47,6 +47,12 @@ const icons = {
       <path d="m13 6 6 6-6 6" />
     </>
   ),
+  'arrow-up': (
+    <>
+      <path d="M12 19V5" />
+      <path d="m5 12 7-7 7 7" />
+    </>
+  ),
   menu: (
     <>
       <path d="M3 6h18M3 12h18M3 18h18" />
@@ -55,6 +61,12 @@ const icons = {
   close: (
     <>
       <path d="M18 6 6 18M6 6l12 12" />
+    </>
+  ),
+  user: (
+    <>
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
     </>
   ),
   users: (
