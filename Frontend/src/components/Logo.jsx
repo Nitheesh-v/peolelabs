@@ -1,4 +1,4 @@
-const logoUrl = 'https://img1.wsimg.com/isteam/ip/281a6117-1d6b-448b-9c27-d6e0e84c5262/blob-59b6b97.png/:/rs=h:200,cg:true,m/qt=q:95'
+const logoUrl = '/peoplelabs-logo.svg'
 
 export default function Logo({ size = 'navigation', decorative = false }) {
   const dimensions = size === 'footer'

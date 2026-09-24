@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1390 285" role="img" aria-labelledby="title desc">
+  <title id="title">PeopleLabs Consulting Inc.</title>
+  <desc id="desc">PeopleLabs Consulting Inc. logo with blue and green mark and a Canadian maple leaf.</desc>
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#122b50"/>
+      <stop offset="1" stop-color="#174b92"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#45a521"/>
+      <stop offset="1" stop-color="#68bf25"/>
+    </linearGradient>
+    <filter id="mark-shadow" x="-12%" y="-12%" width="124%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0f172a" flood-opacity=".16"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#mark-shadow)">
+    <path fill="url(#blue)" fill-rule="evenodd" d="M26 12h121c54 0 95 41 95 96v20c0 49-36 79-86 79H63c-8 0-14-3-19-9L7 165c-5-6-4-12 2-17l28-24h108c23 0 36-12 36-31s-14-32-37-32H53c-8 0-14-3-19-9L8 31C2 23 8 12 26 12Zm37 59 22 23h60c11 0 17 6 17 16 0 9-7 15-18 15H48l-7 7 22 25h91c34 0 56-20 56-52v-4c0-39-27-66-66-66H53Z"/>
+    <path fill="url(#green)" d="m7 70 64 57v68h70c29 0 50 18 82 44H8c-5 0-8-4-8-9V78c0-10 1-12 7-8Z"/>
+    <path fill="#55ad24" d="M8 230h215v9H8z" opacity=".75"/>
+  </g>
+
+  <text x="283" y="177" fill="#102d55" font-family="Arial, Helvetica, sans-serif" font-size="147" font-weight="700" letter-spacing="9">PEOPLE</text>
+  <text x="923" y="177" fill="#38962b" font-family="Arial, Helvetica, sans-serif" font-size="147" font-weight="700" letter-spacing="7">LAB</text>
+
+  <g transform="translate(1343 127)" fill="#d52332">
+    <path d="m0-43 9 20 17-12-5 20 20 1-14 16 14 13-21 3 3 20-17-12-6 19-7-19-16 12 3-20-21-3 14-13-14-16 20-1-5-20 17 12z"/>
+    <path d="M-2 36h5v22h-5z"/>
+  </g>
+
+  <path d="M326 221h930" fill="none" stroke="#4ca52c" stroke-width="2"/>
+  <text x="560" y="278" fill="#102d55" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="600" letter-spacing="17">CONSULTING INC.</text>
+</svg>
