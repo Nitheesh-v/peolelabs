@@ -1,0 +1,11 @@
+/* PeopleLabs Consulting — global stylesheet entry.
+   Import order matters: tokens define the variables every other
+   partial relies on. */
+@import './styles/tokens.css';
+@import './styles/base.css';
+@import './styles/layout.css';
+@import './styles/components.css';
+@import './styles/navbar.css';
+@import './styles/hero.css';
+@import './styles/footer.css';
+@import './styles/pages.css';

@@ -1,0 +1,226 @@
+/* ============================================================
+   PAGES — CTA band, contact, about, careers, services, 404
+   ============================================================ */
+
+/* CTA band (sky blue) -------------------------------------------------- */
+.cta {
+  background-color: var(--color-primary);
+}
+.cta__inner {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+  padding-block: var(--space-20);
+}
+.cta h2 {
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+}
+.cta p {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-8);
+}
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+}
+
+/* Text link with arrow ------------------------------------------------- */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+.link-arrow .icon {
+  transition: transform var(--transition);
+}
+.link-arrow:hover .icon {
+  transform: translateX(3px);
+}
+
+/* Two-column split ----------------------------------------------------- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+@media (max-width: 992px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
+
+/* Value / pillar card -------------------------------------------------- */
+.value-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-soft);
+}
+.value-card .icon-tile {
+  margin-bottom: var(--space-5);
+}
+.value-card h3 {
+  margin-bottom: var(--space-3);
+}
+.value-card p {
+  color: var(--color-text);
+}
+
+/* Service detail block (services page) --------------------------------- */
+.service-block {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-xs);
+  height: 100%;
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+.service-block:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-soft);
+}
+.service-block__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.service-block__head h3 {
+  margin: 0;
+}
+.service-block > p {
+  color: var(--color-text);
+  margin-bottom: var(--space-5);
+}
+.module-list {
+  display: grid;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--color-border);
+}
+.module-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: var(--color-text);
+  font-size: var(--fs-base);
+}
+.module-list .icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+/* Contact page --------------------------------------------------------- */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
+.contact-info {
+  display: grid;
+  gap: var(--space-6);
+}
+.info-item {
+  display: flex;
+  gap: var(--space-4);
+}
+.info-item h3 {
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: 0.2rem;
+}
+.info-item p,
+.info-item a {
+  color: var(--color-text);
+  font-size: var(--fs-base);
+}
+.info-item a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Careers -------------------------------------------------------------- */
+.job-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.job-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-soft);
+}
+.job-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.job-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+.job-card__quals {
+  margin-top: var(--space-4);
+}
+.job-card__quals h4 {
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-bottom: var(--space-3);
+}
+.job-card__footer {
+  margin-top: var(--space-6);
+}
+
+/* 404 ------------------------------------------------------------------ */
+.notfound {
+  text-align: center;
+  padding-block: var(--space-20);
+}
+.notfound__code {
+  font-size: var(--fs-4xl);
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+.notfound p {
+  max-width: 460px;
+  margin-inline: auto;
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+}

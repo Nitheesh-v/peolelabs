@@ -1,0 +1,118 @@
+/* ============================================================
+   HERO — homepage + inner page headers
+   ============================================================ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    var(--color-primary-bg) 0%,
+    var(--color-white) 58%
+  );
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: var(--space-16);
+  padding-block: var(--space-20);
+}
+
+.hero__content {
+  max-width: 620px;
+}
+
+.hero__title {
+  margin-bottom: var(--space-6);
+}
+
+.hero__lead {
+  font-size: var(--fs-lg);
+  color: var(--color-text);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+  max-width: 540px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.hero__cred {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hero__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__visual svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+}
+
+@media (max-width: 992px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    padding-block: var(--space-16);
+    text-align: center;
+  }
+  .hero__content {
+    max-width: 640px;
+    margin-inline: auto;
+  }
+  .hero__lead {
+    margin-inline: auto;
+  }
+  .hero__actions,
+  .hero__cred {
+    justify-content: center;
+  }
+  .hero__visual {
+    order: -1;
+  }
+  .hero__visual svg {
+    max-width: 460px;
+  }
+}
+
+/* Inner page header ---------------------------------------------------- */
+.page-hero {
+  background: linear-gradient(
+    160deg,
+    var(--color-primary-bg) 0%,
+    var(--color-white) 70%
+  );
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-16) var(--space-16);
+}
+.page-hero__inner {
+  max-width: 720px;
+}
+.page-hero h1 {
+  font-size: var(--fs-3xl);
+  margin-bottom: var(--space-4);
+}
+.page-hero p {
+  font-size: var(--fs-lg);
+  color: var(--color-text);
+}
+@media (max-width: 768px) {
+  .page-hero h1 {
+    font-size: var(--fs-2xl);
+  }
+  .page-hero p {
+    font-size: var(--fs-md);
+  }
+}
