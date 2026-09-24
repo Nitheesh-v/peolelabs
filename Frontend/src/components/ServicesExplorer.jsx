@@ -57,7 +57,7 @@ function ServiceTabs({ activeId, onSelect, layout }) {
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={horizontal
               ? `relative inline-flex min-h-12 min-w-[220px] items-center gap-3 overflow-hidden rounded-lg border px-4 py-3 text-left text-sm font-semibold transition-colors sm:min-w-[235px] ${selected ? 'border-sky-300 bg-sky-100 text-slate-900 shadow-sm' : 'border-slate-200 bg-white text-slate-600 hover:border-sky-200 hover:bg-sky-50 hover:text-sky-800'}`
-              : `group relative flex min-h-12 w-full items-center gap-3 rounded-lg border-l-[3px] px-3 py-3 text-left text-sm transition-[background-color,color,border-color,transform] duration-200 hover:translate-x-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 ${selected ? 'border-sky-500 bg-sky-100 font-semibold text-slate-900 shadow-sm' : 'border-transparent bg-transparent font-semibold text-slate-600 hover:bg-sky-50 hover:text-sky-700'}`}
+              : `group relative flex min-h-12 w-full items-center gap-3 rounded-lg border-l-[3px] px-3 py-3 text-left text-sm transition-[background-color,color,border-color,transform] duration-200 hover:translate-x-0.5 motion-reduce:transform-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 ${selected ? 'border-sky-500 bg-sky-100 font-semibold text-slate-900 shadow-sm' : 'border-transparent bg-transparent font-semibold text-slate-600 hover:bg-sky-50 hover:text-sky-700'}`}
             whileTap={reduceMotion ? undefined : { scale: 0.99 }}
           >
             {selected && (
@@ -111,16 +111,21 @@ export default function ServicesExplorer() {
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={activeService.id}
-                  initial={reduceMotion ? false : { opacity: 0, x: 10 }}
+                  initial={reduceMotion ? false : { opacity: 0, x: 15 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -6 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.28, ease: 'easeOut' }}
+                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -10, transition: { duration: 0.15, ease: 'easeIn' } }}
+                  transition={{ duration: reduceMotion ? 0 : 0.25, ease: 'easeOut' }}
                 >
                   <header className="rounded-xl bg-sky-600 p-5 text-white sm:p-7 lg:p-8">
                     <div className="flex items-start gap-4 sm:gap-5">
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white/15 text-white sm:h-14 sm:w-14">
+                      <motion.span
+                        initial={reduceMotion ? false : { scale: 0.8, opacity: 0, rotate: -4 }}
+                        animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                        transition={{ duration: reduceMotion ? 0 : 0.24, ease: 'easeOut' }}
+                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white/15 text-white sm:h-14 sm:w-14"
+                      >
                         <Icon name={activeService.icon} size={27} strokeWidth={1.8} />
-                      </span>
+                      </motion.span>
                       <div className="min-w-0">
                         <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-sky-100">PeopleSoft services</p>
                         <h2 className="text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl">{activeService.title}</h2>

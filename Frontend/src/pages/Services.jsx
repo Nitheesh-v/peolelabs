@@ -50,7 +50,7 @@ export default function Services() {
           </FadeUp>
           <StaggerGroup as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
             {processSteps.map((step, index) => (
-              <StaggerItem as="li" key={step.title} className="relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-md">
+              <StaggerItem as="li" key={step.title} className="relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:border-sky-200 hover:shadow-md">
                 <div className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true">
                     <Icon name={step.icon} size={21} strokeWidth={1.8} />
@@ -80,9 +80,9 @@ export default function Services() {
             </StaggerItem>
           </StaggerGroup>
           <FadeUp className="shrink-0" delay={0.16}>
-            <Link to="/#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+            <Link to="/#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
               Discuss Your Requirements
-              <Icon name="arrow-right" size={18} />
+              <Icon name="arrow-right" size={18} className="cta-arrow" />
             </Link>
           </FadeUp>
         </div>

@@ -18,8 +18,8 @@ const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapAddress)}
 
 function ContactItem({ icon, children }) {
   return (
-    <li className="flex items-start gap-3 text-sm leading-6 text-sky-50">
-      <span aria-hidden="true" className="mt-0.5 shrink-0 text-white">
+    <li className="group flex items-start gap-3 text-sm leading-6 text-sky-50">
+      <span aria-hidden="true" className="mt-0.5 shrink-0 text-white transition-transform duration-200 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none">
         <Icon name={icon} size={19} strokeWidth={1.8} />
       </span>
       <span>{children}</span>
@@ -94,9 +94,10 @@ export default function Footer() {
                     <Link
                       to={link.to}
                       onClick={link.to === '/' ? scrollHomeToTop : undefined}
-                      className="inline-flex text-sm text-sky-50 transition-[color,transform] duration-200 hover:translate-x-0.5 hover:text-white focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                      className="group inline-flex items-center gap-2 text-sm text-sky-50 transition-[color,transform] duration-200 hover:translate-x-1 motion-reduce:transform-none hover:text-white focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                     >
-                      {link.label}
+                      <span>{link.label}</span>
+                      <Icon name="arrow-right" size={14} className="-translate-x-1 opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0 group-hover:opacity-100 motion-reduce:transform-none motion-reduce:transition-none" />
                     </Link>
                   </li>
                 ))}
@@ -142,7 +143,7 @@ export default function Footer() {
 
             <StaggerItem as="div">
               <FooterColumnTitle className="text-center">Location</FooterColumnTitle>
-              <div className="h-[190px] w-full overflow-hidden rounded-lg border border-white/30 bg-sky-700 sm:h-[200px]">
+              <div className="h-[190px] w-full overflow-hidden rounded-lg border border-white/30 bg-sky-700 transition-[border-color,box-shadow] duration-200 hover:border-white/70 hover:shadow-lg sm:h-[200px]">
                 <iframe
                   src={mapSrc}
                   title="PeopleLabs Consulting location in Edmonton, Alberta"

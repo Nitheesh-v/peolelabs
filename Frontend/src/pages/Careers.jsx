@@ -18,7 +18,11 @@ function JobOpening({ job, expanded, onToggle, onApply }) {
   const headingId = `job-heading-${job.id}`
 
   return (
-    <article className={`overflow-hidden rounded-xl border bg-white shadow-sm transition-[border-color,box-shadow] duration-200 ${expanded ? 'border-sky-300 shadow-md' : 'border-slate-200 hover:border-sky-200 hover:shadow-md'}`}>
+    <motion.article
+      layout={!reduceMotion}
+      transition={{ layout: { type: 'spring', stiffness: 360, damping: 32 } }}
+      className={`overflow-hidden rounded-xl border bg-white shadow-sm transition-[border-color,box-shadow] duration-200 ${expanded ? 'border-sky-300 shadow-md' : 'border-slate-200 hover:border-sky-200 hover:shadow-md'}`}
+    >
       <button
         id={headingId}
         type="button"
@@ -69,16 +73,18 @@ function JobOpening({ job, expanded, onToggle, onApply }) {
             </li>
           ))}
         </ul>
-        <button
+        <motion.button
           type="button"
           onClick={() => onApply(job.title)}
-          className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sky-500 px-4 py-2.5 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+          whileTap={reduceMotion ? undefined : { scale: 0.97 }}
+          transition={{ type: 'spring', stiffness: 420, damping: 22 }}
+          className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sky-500 px-4 py-2.5 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
         >
           Apply for this position
-          <Icon name="arrow-right" size={17} />
-        </button>
+          <Icon name="arrow-right" size={17} className="cta-arrow" />
+        </motion.button>
       </motion.div>
-    </article>
+    </motion.article>
   )
 }
 
@@ -142,7 +148,7 @@ export default function Careers() {
               Join PeopleLabs Consulting and bring your PeopleSoft expertise to client-focused technology projects. Explore our Edmonton-based remote full-time opportunities.
             </StaggerItem>
             <StaggerItem as="div" className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-              <a href="#openings" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+              <a href="#openings" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
                 View Openings
                 <Icon name="chevron-down" size={17} />
               </a>

@@ -76,11 +76,11 @@ function EnterpriseVisual() {
       aria-label="Abstract illustration of connected PeopleSoft applications and Oracle Cloud"
       className="relative mx-auto aspect-[5/4] min-h-[320px] w-full max-w-[540px] overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-50 via-white to-sky-100/80 sm:min-h-0"
     >
-      <div aria-hidden="true" className="absolute inset-[9%] rounded-full border border-sky-100" />
-      <div aria-hidden="true" className="absolute inset-[16%] rounded-full border border-dashed border-sky-200" />
+      <div aria-hidden="true" className="about-visual__ring--outer absolute inset-[9%] rounded-full border border-sky-100" />
+      <div aria-hidden="true" className="about-visual__ring--inner absolute inset-[16%] rounded-full border border-dashed border-sky-200" />
       <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-[72%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70" />
       <svg aria-hidden="true" viewBox="0 0 500 400" className="absolute inset-0 h-full w-full">
-        <g fill="none" stroke="#7DD3FC" strokeWidth="2" strokeDasharray="5 7">
+        <g className="about-visual__connector" fill="none" stroke="#7DD3FC" strokeWidth="2" strokeDasharray="5 7">
           <path d="M125 93 198 157M375 93l-73 64M125 307l73-64M375 307l-73-64" />
         </g>
         <g fill="#0EA5E9">
@@ -89,10 +89,11 @@ function EnterpriseVisual() {
         </g>
       </svg>
 
-      {modules.map((item) => (
+      {modules.map((item, index) => (
         <div
           key={item.label}
-          className={`absolute ${item.position} z-10 flex w-[39%] max-w-[170px] items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3 py-3 shadow-sm sm:gap-3 sm:px-4 sm:py-3.5`}
+          className={`about-visual__module absolute ${item.position} z-10 flex w-[39%] max-w-[170px] items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3 py-3 shadow-sm sm:gap-3 sm:px-4 sm:py-3.5`}
+          style={{ animationDelay: `${index * 0.6}s` }}
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-700 sm:h-10 sm:w-10">
             <Icon name={item.icon} size={20} />
@@ -101,7 +102,7 @@ function EnterpriseVisual() {
         </div>
       ))}
 
-      <div className="absolute left-1/2 top-1/2 z-20 flex w-[48%] max-w-[220px] -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-2xl border border-sky-100 bg-white px-4 py-5 text-center shadow-lg shadow-sky-900/5 sm:px-6 sm:py-6">
+      <div className="about-visual__hub absolute left-1/2 top-1/2 z-20 flex w-[48%] max-w-[220px] -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-2xl border border-sky-100 bg-white px-4 py-5 text-center shadow-lg shadow-sky-900/5 sm:px-6 sm:py-6">
         <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-500 text-white shadow-sm shadow-sky-500/20">
           <Icon name="layers" size={25} strokeWidth={1.7} />
         </span>
@@ -122,8 +123,8 @@ function CompanyVisual() {
 
   return (
     <div aria-hidden="true" className="relative flex min-h-[320px] items-center justify-center overflow-hidden rounded-3xl border border-sky-100 bg-sky-50 p-6 sm:min-h-[390px] sm:p-8">
-      <div className="absolute -left-12 -top-12 h-48 w-48 rounded-full bg-sky-100/80" />
-      <div className="absolute -bottom-16 -right-8 h-56 w-56 rounded-full border-[24px] border-white/80" />
+      <div className="about-visual__orb absolute -left-12 -top-12 h-48 w-48 rounded-full bg-sky-100/80" />
+      <div className="about-visual__orb absolute -bottom-16 -right-8 h-56 w-56 rounded-full border-[24px] border-white/80" style={{ animationDelay: '-8s' }} />
       <div className="relative w-full max-w-md">
         <div className="mb-4 rounded-2xl border border-sky-100 bg-white p-5 shadow-sm sm:p-6">
           <div className="flex items-center gap-3">
@@ -166,9 +167,9 @@ export default function About() {
               Founded in 2016, PeopleLabs Consulting provides Oracle and PeopleSoft consulting services designed around the unique technology requirements of each organization.
             </StaggerItem>
             <StaggerItem as="div" className="mt-7 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
-              <Link to="/services" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+              <Link to="/services" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
                 Explore Our Expertise
-                <Icon name="arrow-right" size={18} />
+                <Icon name="arrow-right" size={18} className="cta-arrow" />
               </Link>
               <p className="flex items-center gap-2 text-sm font-medium text-slate-600">
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-sky-500" />
@@ -236,7 +237,7 @@ export default function About() {
           <div className="mt-7 text-center">
             <Link to="/services" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-3 text-sm font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 transition-colors hover:text-sky-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600">
               View All Services
-              <Icon name="arrow-right" size={17} />
+              <Icon name="arrow-right" size={17} className="cta-arrow" />
             </Link>
           </div>
         </div>
@@ -255,7 +256,7 @@ export default function About() {
           </FadeUp>
           <StaggerGroup as="ul" className="grid grid-cols-2 gap-3 max-[359px]:grid-cols-1 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5" stagger={0.07}>
             {industries.map((industry) => (
-              <StaggerItem as="li" key={industry.name} className="flex min-h-[88px] items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-sm sm:flex-col sm:justify-center sm:gap-2 sm:text-center">
+              <StaggerItem as="li" key={industry.name} className="flex min-h-[88px] items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:border-sky-200 hover:shadow-sm sm:flex-col sm:justify-center sm:gap-2 sm:text-center">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-700" aria-hidden="true">
                   <Icon name={industry.icon} size={21} strokeWidth={1.8} />
                 </span>
@@ -275,9 +276,9 @@ export default function About() {
             Connect with PeopleLabs Consulting to discuss your Oracle, PeopleSoft, managed services, or training requirements.
           </StaggerItem>
           <StaggerItem as="div" className="mt-7">
-            <Link to="/#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-800 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
+            <Link to="/#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-800 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
               Contact PeopleLabs
-              <Icon name="arrow-right" size={18} />
+              <Icon name="arrow-right" size={18} className="cta-arrow" />
             </Link>
           </StaggerItem>
         </StaggerGroup>

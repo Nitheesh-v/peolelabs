@@ -25,11 +25,11 @@ export default function Hero() {
             Delivering Oracle expertise since 2016
           </StaggerItem>
           <StaggerItem as="div" className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#expertise" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-base font-semibold text-white shadow-sm transition-[color,background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-md active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+            <a href="#expertise" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-base font-semibold text-white shadow-sm transition-[color,background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-600 hover:shadow-md active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
               Explore Our Expertise
-              <Icon name="arrow-right" size={19} />
+              <Icon name="arrow-right" size={19} className="cta-arrow" />
             </a>
-            <a href="#contact" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-sky-500 bg-white px-5 py-3 text-base font-semibold text-sky-700 transition-[color,background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-50 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+            <a href="#contact" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-sky-500 bg-white px-5 py-3 text-base font-semibold text-sky-700 transition-[color,background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:bg-sky-50 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
               Contact Us
             </a>
           </StaggerItem>

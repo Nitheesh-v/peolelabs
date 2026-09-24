@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react'
-import { useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
 import { applicationPositions } from '../data/careers.js'
+import { company } from '../data/content.js'
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -46,6 +47,7 @@ export default function CareerApplicationForm({
   const [resume, setResume] = useState(null)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
+  const [submissionMessage, setSubmissionMessage] = useState('')
   const [dragging, setDragging] = useState(false)
   const reduceMotion = useReducedMotion()
   const fileInputRef = useRef(null)
@@ -128,6 +130,7 @@ export default function CareerApplicationForm({
     }
 
     setStatus('submitting')
+    setSubmissionMessage('')
     const payload = new FormData()
     payload.append('fullName', values.fullName.trim())
     payload.append('email', values.email.trim())
@@ -141,14 +144,20 @@ export default function CareerApplicationForm({
     try {
       const response = await fetch('/api/careers/apply', { method: 'POST', body: payload })
       const result = await response.json().catch(() => null)
-      if (!response.ok || !result?.ok) throw new Error('Application was not accepted')
+      if (!response.ok || !result?.ok) {
+        setSubmissionMessage(result?.error || 'Your application could not be sent right now.')
+        setStatus('error')
+        return
+      }
       setStatus('success')
+      setSubmissionMessage('')
       setValues(initialValues)
       setResume(null)
       setErrors({})
       if (fileInputRef.current) fileInputRef.current.value = ''
       onApplicationSubmitted()
     } catch {
+      setSubmissionMessage('We could not reach the application service. Please try again shortly.')
       setStatus('error')
     }
   }
@@ -176,28 +185,28 @@ export default function CareerApplicationForm({
         </div>
 
         <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="application-fullName" className="block text-xs font-bold uppercase tracking-wide text-slate-700">Full Name <span className="text-red-600">*</span></label>
+          <div className="form-field group">
+            <label htmlFor="application-fullName" className="block text-xs font-bold uppercase tracking-wide text-slate-700 transition-colors group-focus-within:text-sky-700">Full Name <span className="text-red-600">*</span></label>
             <input id="application-fullName" name="fullName" autoComplete="name" maxLength={120} value={values.fullName} onChange={handleChange} className={fieldClass(Boolean(errors.fullName))} aria-invalid={errors.fullName ? 'true' : undefined} aria-describedby={errors.fullName ? 'application-error-fullName' : undefined} required />
             {fieldError('fullName')}
           </div>
-          <div>
-            <label htmlFor="application-email" className="block text-xs font-bold uppercase tracking-wide text-slate-700">Email Address <span className="text-red-600">*</span></label>
+          <div className="form-field group">
+            <label htmlFor="application-email" className="block text-xs font-bold uppercase tracking-wide text-slate-700 transition-colors group-focus-within:text-sky-700">Email Address <span className="text-red-600">*</span></label>
             <input id="application-email" name="email" type="email" autoComplete="email" maxLength={254} value={values.email} onChange={handleChange} className={fieldClass(Boolean(errors.email))} aria-invalid={errors.email ? 'true' : undefined} aria-describedby={errors.email ? 'application-error-email' : undefined} required />
             {fieldError('email')}
           </div>
-          <div>
-            <label htmlFor="application-phone" className="block text-xs font-bold uppercase tracking-wide text-slate-700">Phone Number <span className="text-red-600">*</span></label>
+          <div className="form-field group">
+            <label htmlFor="application-phone" className="block text-xs font-bold uppercase tracking-wide text-slate-700 transition-colors group-focus-within:text-sky-700">Phone Number <span className="text-red-600">*</span></label>
             <input id="application-phone" name="phone" type="tel" autoComplete="tel" maxLength={50} value={values.phone} onChange={handleChange} className={fieldClass(Boolean(errors.phone))} aria-invalid={errors.phone ? 'true' : undefined} aria-describedby={errors.phone ? 'application-error-phone' : undefined} required />
             {fieldError('phone')}
           </div>
-          <div>
-            <label htmlFor="application-currentLocation" className="block text-xs font-bold uppercase tracking-wide text-slate-700">Current Location <span className="text-red-600">*</span></label>
+          <div className="form-field group">
+            <label htmlFor="application-currentLocation" className="block text-xs font-bold uppercase tracking-wide text-slate-700 transition-colors group-focus-within:text-sky-700">Current Location <span className="text-red-600">*</span></label>
             <input id="application-currentLocation" name="currentLocation" autoComplete="address-level2" maxLength={120} value={values.currentLocation} onChange={handleChange} className={fieldClass(Boolean(errors.currentLocation))} aria-invalid={errors.currentLocation ? 'true' : undefined} aria-describedby={errors.currentLocation ? 'application-error-currentLocation' : undefined} required />
             {fieldError('currentLocation')}
           </div>
-          <div>
-            <label htmlFor="application-experienceLevel" className="block text-xs font-bold uppercase tracking-wide text-slate-700">Experience Level <span className="text-red-600">*</span></label>
+          <div className="form-field group">
+            <label htmlFor="application-experienceLevel" className="block text-xs font-bold uppercase tracking-wide text-slate-700 transition-colors group-focus-within:text-sky-700">Experience Level <span className="text-red-600">*</span></label>
             <select id="application-experienceLevel" name="experienceLevel" value={values.experienceLevel} onChange={handleChange} className={fieldClass(Boolean(errors.experienceLevel))} aria-invalid={errors.experienceLevel ? 'true' : undefined} aria-describedby={errors.experienceLevel ? 'application-error-experienceLevel' : undefined} required>
               <option value="">Select experience</option>
               <option value="0–2 years">0–2 years</option>
@@ -206,31 +215,39 @@ export default function CareerApplicationForm({
             </select>
             {fieldError('experienceLevel')}
           </div>
-          <div>
-            <label htmlFor="application-position" className="block text-xs font-bold uppercase tracking-wide text-slate-700">Position Applied For <span className="text-red-600">*</span></label>
-            <select
+          <div className="form-field group">
+            <label htmlFor="application-position" className="block text-xs font-bold uppercase tracking-wide text-slate-700 transition-colors group-focus-within:text-sky-700">Position Applied For <span className="text-red-600">*</span></label>
+            <motion.select
               ref={positionRef}
               id="application-position"
               name="position"
               value={selectedPosition}
               onChange={handlePositionChange}
-              className={`${fieldClass(Boolean(positionError))} ${highlightPosition && !reduceMotion ? 'ring-2 ring-sky-200 border-sky-500' : ''}`}
+              animate={highlightPosition && !reduceMotion ? {
+                boxShadow: [
+                  '0 0 0 0 rgba(14, 165, 233, 0)',
+                  '0 0 0 5px rgba(14, 165, 233, 0.2)',
+                  '0 0 0 0 rgba(14, 165, 233, 0)',
+                ],
+              } : undefined}
+              transition={{ duration: 1, ease: 'easeInOut' }}
+              className={fieldClass(Boolean(positionError))}
               aria-invalid={positionError ? 'true' : undefined}
               aria-describedby={positionError ? 'application-error-position' : undefined}
               required
             >
               <option value="">Select a position</option>
               {applicationPositions.map((position) => <option key={position} value={position}>{position}</option>)}
-            </select>
+            </motion.select>
             {positionError && <p id="application-error-position" className="mt-1.5 text-sm font-medium text-red-600" role="alert">{positionError}</p>}
           </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="application-introduction" className="block text-xs font-bold uppercase tracking-wide text-slate-700">Brief Introduction</label>
+          <div className="form-field group sm:col-span-2">
+            <label htmlFor="application-introduction" className="block text-xs font-bold uppercase tracking-wide text-slate-700 transition-colors group-focus-within:text-sky-700">Brief Introduction</label>
             <textarea id="application-introduction" name="introduction" rows="3" maxLength="2000" value={values.introduction} onChange={handleChange} className={`${fieldClass()} resize-y`} placeholder="Tell us briefly about your PeopleSoft experience..." />
           </div>
 
-          <div className="sm:col-span-2">
-            <label htmlFor="application-resume" className="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-700">Resume Upload (PDF) <span className="text-red-600">*</span></label>
+          <div className="form-field group sm:col-span-2">
+            <label htmlFor="application-resume" className="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-700 transition-colors group-focus-within:text-sky-700">Resume Upload (PDF) <span className="text-red-600">*</span></label>
             <div
               onDragEnter={(event) => { event.preventDefault(); setDragging(true) }}
               onDragOver={(event) => { event.preventDefault(); setDragging(true) }}
@@ -250,25 +267,42 @@ export default function CareerApplicationForm({
                 onChange={(event) => chooseResume(event.target.files?.[0] ?? null)}
                 required
               />
-              {!resume ? (
-                <label htmlFor="application-resume" className="flex min-h-24 cursor-pointer flex-col items-center justify-center rounded-lg px-3 py-4 outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 peer-focus-visible:ring-offset-2">
-                  <span className="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-sky-100 text-sky-700" aria-hidden="true"><Icon name="upload-cloud" size={21} /></span>
-                  <span className="text-sm font-semibold text-slate-800">Click or drag your resume here</span>
-                  <span className="mt-1 text-xs text-slate-500">PDF only • Maximum 5 MB</span>
-                </label>
-              ) : (
-                <div className="flex min-h-24 items-center gap-3 rounded-lg bg-white px-3 py-3 text-left">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true"><Icon name="file" size={20} /></span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-semibold text-slate-900">{resume.name}</span>
-                    <span className="mt-1 block text-xs text-slate-500">{formatFileSize(resume.size)} · PDF</span>
-                  </span>
-                  <button type="button" onClick={removeResume} aria-label={`Remove ${resume.name}`} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-sky-50 hover:text-sky-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
-                    <Icon name="close" size={18} />
-                  </button>
-                  <label htmlFor="application-resume" className="cursor-pointer rounded-md px-2 py-1 text-xs font-semibold text-sky-700 hover:bg-sky-50 focus-within:outline-2 focus-within:outline-sky-600">Replace</label>
-                </div>
-              )}
+              <AnimatePresence mode="wait" initial={false}>
+                {!resume ? (
+                  <motion.label
+                    key="resume-empty"
+                    htmlFor="application-resume"
+                    initial={reduceMotion ? false : { opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -5 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.18, ease: 'easeOut' }}
+                    className="flex min-h-24 cursor-pointer flex-col items-center justify-center rounded-lg px-3 py-4 outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 peer-focus-visible:ring-offset-2"
+                  >
+                    <span className={`mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-sky-100 text-sky-700 transition-transform duration-200 ${dragging && !reduceMotion ? '-translate-y-0.5 scale-105' : ''}`} aria-hidden="true"><Icon name="upload-cloud" size={21} /></span>
+                    <span className="text-sm font-semibold text-slate-800">Click or drag your resume here</span>
+                    <span className="mt-1 text-xs text-slate-500">PDF only • Maximum 5 MB</span>
+                  </motion.label>
+                ) : (
+                  <motion.div
+                    key="resume-selected"
+                    initial={reduceMotion ? false : { opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -5 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.18, ease: 'easeOut' }}
+                    className="flex min-h-24 items-center gap-3 rounded-lg bg-white px-3 py-3 text-left"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true"><Icon name="file" size={20} /></span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-semibold text-slate-900">{resume.name}</span>
+                      <span className="mt-1 block text-xs text-slate-500">{formatFileSize(resume.size)} · PDF</span>
+                    </span>
+                    <button type="button" onClick={removeResume} aria-label={`Remove ${resume.name}`} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-sky-50 hover:text-sky-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+                      <Icon name="close" size={18} />
+                    </button>
+                    <label htmlFor="application-resume" className="cursor-pointer rounded-md px-2 py-1 text-xs font-semibold text-sky-700 hover:bg-sky-50 focus-within:outline-2 focus-within:outline-sky-600">Replace</label>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
             <p id="application-resume-hint" className="mt-2 text-xs text-slate-500">PDF only • Maximum 5 MB</p>
             {fieldError('resume')}
@@ -282,18 +316,31 @@ export default function CareerApplicationForm({
           </div>
         )}
         {status === 'error' && (
-          <p className="mt-5 rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700" role="alert">
-            We couldn&apos;t submit your application. Please try again.
+          <p className="mt-5 rounded-lg border border-red-200 bg-red-50 p-3 text-sm leading-6 text-red-700" role="alert">
+            <span className="font-medium">{submissionMessage || 'We could not submit your application.'}</span>{' '}
+            Please contact us by email at{' '}
+            <a className="font-semibold underline underline-offset-2" href={company.emailHref}>{company.email}</a>{' '}
+            and include your resume.
           </p>
         )}
 
         <p className="mt-5 text-xs leading-5 text-slate-500">
           By submitting this form, you are providing your information to PeopleLabs Consulting for recruitment purposes.
         </p>
-        <button type="submit" disabled={status === 'submitting'} className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:cursor-wait disabled:opacity-70">
-          {status === 'submitting' ? 'Submitting…' : 'Submit Application'}
-          {status !== 'submitting' && <Icon name="arrow-right" size={18} />}
-        </button>
+        <motion.button
+          type="submit"
+          disabled={status === 'submitting'}
+          whileHover={reduceMotion || status === 'submitting' ? undefined : { y: -2, boxShadow: '0 8px 18px rgba(2, 132, 199, .2)' }}
+          whileTap={reduceMotion || status === 'submitting' ? undefined : { scale: 0.98 }}
+          transition={{ type: 'spring', stiffness: 420, damping: 24 }}
+          className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:cursor-wait disabled:opacity-70"
+        >
+          {status === 'submitting' ? (
+            <><span aria-hidden="true" className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />Submitting…</>
+          ) : (
+            <>Submit Application<Icon name="arrow-right" size={18} className="cta-arrow" /></>
+          )}
+        </motion.button>
       </form>
     </div>
   )

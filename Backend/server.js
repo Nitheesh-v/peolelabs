@@ -137,7 +137,10 @@ app.post('/api/careers/apply', resumeUpload.single('resume'), async (req, res) =
 
   const delivery = getCareersTransport()
   if (!delivery) {
-    return res.status(503).json({ ok: false, error: 'Application submission is temporarily unavailable.' })
+    return res.status(503).json({
+      ok: false,
+      error: 'Career application email delivery is not configured on this server.',
+    })
   }
 
   const safeFilename = `${path.basename(req.file.originalname).replace(/[^a-zA-Z0-9._-]/g, '_').replace(/\.pdf$/i, '').slice(0, 110) || 'resume'}.pdf`

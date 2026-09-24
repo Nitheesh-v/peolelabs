@@ -10,6 +10,7 @@
 @import './styles/hero.css';
 @import './styles/footer.css';
 @import './styles/pages.css';
+@import './styles/interactive.css';
 
 :root {
   font-family: var(--font-sans);

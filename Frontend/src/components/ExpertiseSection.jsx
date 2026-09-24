@@ -15,9 +15,9 @@ export default function ExpertiseSection() {
         </FadeUp>
         <StaggerGroup className="grid gap-5 lg:grid-cols-2 lg:gap-6" stagger={0.1}>
           {expertiseGroups.map((group) => (
-            <StaggerItem as="article" key={group.id} className="group flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-[3px] hover:border-sky-300 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none sm:p-7">
+            <StaggerItem as="article" key={group.id} className="expertise-card group flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-[5px] hover:border-sky-300 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none sm:p-7">
               <div className="flex items-start gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600 transition-transform duration-200 group-hover:scale-105 motion-reduce:transform-none" aria-hidden="true">
+                <span className="expertise-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600 transition-transform duration-200 group-hover:bg-sky-100 motion-reduce:transform-none" aria-hidden="true">
                   <Icon name={group.icon} size={24} strokeWidth={1.8} />
                 </span>
                 <div>
@@ -28,7 +28,7 @@ export default function ExpertiseSection() {
               <ul className={`mt-6 grid gap-x-5 gap-y-3 border-t border-slate-100 pt-5 ${group.items.length > 5 ? 'sm:grid-cols-2' : 'sm:grid-cols-2'}`}>
                 {group.items.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm leading-5 text-slate-700">
-                    <span className="mt-0.5 shrink-0 text-sky-600" aria-hidden="true">
+                    <span className="mt-0.5 shrink-0 text-slate-400 transition-colors duration-200 group-hover:text-sky-600" aria-hidden="true">
                       <Icon name="check" size={16} strokeWidth={2.2} />
                     </span>
                     <span>{item}</span>

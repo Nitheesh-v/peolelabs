@@ -15,8 +15,8 @@ export default function SectorsSection() {
         </FadeUp>
         <StaggerGroup className="grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-5" stagger={0.085}>
           {sectors.map((sector) => (
-            <StaggerItem as="article" key={sector.title} className="group flex min-h-36 flex-col items-center justify-center gap-4 rounded-xl border border-slate-200 bg-white px-4 py-6 text-center shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-1 hover:border-sky-300 hover:shadow-md focus-within:border-sky-300 motion-reduce:transform-none motion-reduce:transition-none">
-              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-sky-50 text-sky-600 transition-transform duration-200 group-hover:scale-105 motion-reduce:transform-none" aria-hidden="true">
+            <StaggerItem as="article" key={sector.title} className="group flex min-h-36 flex-col items-center justify-center gap-4 rounded-xl border border-slate-200 bg-white px-4 py-6 text-center shadow-sm transition-[border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-1.5 hover:border-sky-300 hover:shadow-md focus-within:border-sky-300 motion-reduce:transform-none motion-reduce:transition-none">
+              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-sky-50 text-sky-600 transition-[background-color,transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:bg-sky-100 group-hover:shadow-[0_0_16px_rgba(14,165,233,0.18)] motion-reduce:transform-none motion-reduce:transition-none" aria-hidden="true">
                 <Icon name={sector.icon} size={25} strokeWidth={1.8} />
               </span>
               <h3 className="text-base font-semibold text-slate-900 sm:text-lg">{sector.title}</h3>

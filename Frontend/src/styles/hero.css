@@ -117,45 +117,134 @@
   }
 }
 
-/* Quiet connected-system motion for the PeopleLabs hero illustration. */
+/* Continuous, lightweight data motion in the PeopleSoft ecosystem illustration. */
+.hero-visual__connections {
+  animation: hero-line-breathe 4.8s ease-in-out infinite alternate;
+}
 .hero-visual__signals path {
-  animation: hero-signal-flow 5.5s linear infinite;
+  animation-name: hero-signal-flow;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 .hero-visual__node {
   transform-box: fill-box;
   transform-origin: center;
-  animation: hero-node-pulse 3.8s ease-in-out infinite;
+  animation: hero-node-float 4.6s ease-in-out infinite;
 }
 .hero-visual__module {
   transform-box: fill-box;
   transform-origin: center;
-  animation: hero-module-drift 8s ease-in-out infinite;
+  animation: hero-module-drift 5.2s ease-in-out infinite;
 }
 .hero-visual__hub {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: hero-hub-glow 5s ease-in-out infinite;
+}
+.hero-visual__halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-halo-pulse 4.6s ease-in-out infinite;
+}
+.hero-visual__tech-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-dot-drift 7s ease-in-out infinite;
 }
 
 @keyframes hero-signal-flow {
   to { stroke-dashoffset: -60; }
 }
-@keyframes hero-node-pulse {
-  0%, 100% { opacity: 0.68; transform: scale(0.94); }
-  50% { opacity: 1; transform: scale(1.06); }
+@keyframes hero-line-breathe {
+  from { opacity: 0.46; }
+  to { opacity: 0.82; }
+}
+@keyframes hero-node-float {
+  0%, 100% { opacity: 0.76; transform: translateY(0) scale(0.96); }
+  50% { opacity: 1; transform: translateY(-3px) scale(1.03); }
 }
 @keyframes hero-module-drift {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2px); }
+  50% { transform: translateY(-4px); }
 }
 @keyframes hero-hub-glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.88; }
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+@keyframes hero-halo-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.99); }
+  50% { opacity: 0.64; transform: scale(1.02); }
+}
+@keyframes hero-dot-drift {
+  0%, 100% { opacity: 0.32; transform: translateY(0); }
+  50% { opacity: 0.76; transform: translateY(-5px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-visual__connections,
   .hero-visual__signals path,
   .hero-visual__node,
   .hero-visual__module,
-  .hero-visual__hub {
+  .hero-visual__hub,
+  .hero-visual__halo,
+  .hero-visual__tech-dot {
+    animation: none !important;
+    filter: none !important;
+  }
+}
+
+/* Arrow movement is reserved for meaningful call-to-action controls. */
+.cta-arrow {
+  transition: transform 180ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+a:hover .cta-arrow,
+button:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Continuous, restrained movement in About page enterprise illustrations. */
+.about-visual__ring--outer::after {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid transparent;
+  border-top-color: #7dd3fc;
+  border-right-color: #bae6fd;
+  border-radius: inherit;
+  content: '';
+  animation: about-ring-rotate 28s linear infinite;
+}
+.about-visual__ring--inner {
+  animation: about-ring-rotate 38s linear infinite reverse;
+}
+.about-visual__connector path {
+  animation: hero-signal-flow 5.2s linear infinite;
+}
+.about-visual__module {
+  animation: hero-module-drift 6.5s ease-in-out infinite;
+}
+.about-visual__hub {
+  animation: hero-hub-glow 5.5s ease-in-out infinite;
+}
+.about-visual__orb {
+  animation: ambient-drift 16s ease-in-out infinite alternate;
+}
+@keyframes about-ring-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-arrow,
+  a:hover .cta-arrow,
+  button:hover .cta-arrow {
+    transform: none !important;
+    transition: none !important;
+  }
+  .about-visual__ring--outer::after,
+  .about-visual__ring--inner,
+  .about-visual__connector path,
+  .about-visual__module,
+  .about-visual__hub,
+  .about-visual__orb {
     animation: none !important;
   }
 }
