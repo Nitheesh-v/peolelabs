@@ -34,7 +34,7 @@
 
   <!-- PEOPLE -->
   <g fill="none" stroke="#0e2656" stroke-width="16" stroke-linejoin="round">
-    <path id="letter-p" d="M436 423V333Q436 321 448 321H505Q517 321 517 333V358Q517 370 505 370H444"/>
+    <path id="letter-p" d="M436 423V321H505Q517 321 517 333V358Q517 370 505 370H444"/>
     <path id="letter-e" d="M637 321H563Q551 321 551 333V403Q551 415 563 415H637M551 368H629"/>
     <rect x="660" y="321" width="84" height="94" rx="12"/>
     <use href="#letter-p" transform="translate(339 0)"/>
