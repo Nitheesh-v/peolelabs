@@ -2,9 +2,9 @@
    PAGES — CTA band, contact, about, careers, services, 404
    ============================================================ */
 
-/* CTA band (sky blue) -------------------------------------------------- */
+/* CTA band — match the PeopleLabs footer blue -------------------------- */
 .cta {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-dark);
 }
 .cta__inner {
   max-width: 760px;

@@ -73,7 +73,7 @@ function JobOpening({ job, expanded, onToggle, onApply }) {
 }
 
 export default function Careers() {
-  const [expandedJob, setExpandedJob] = useState(careers[0].id)
+  const [expandedJob, setExpandedJob] = useState(null)
   const [selectedPosition, setSelectedPosition] = useState('')
   const [highlightPosition, setHighlightPosition] = useState(false)
   const formRef = useRef(null)
@@ -146,14 +146,30 @@ export default function Careers() {
       </section>
 
       <section className="bg-white py-12 sm:py-14 lg:py-16" aria-labelledby="careers-intro-heading">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Careers at PeopleLabs</p>
-          <h2 id="careers-intro-heading" className="mx-auto max-w-3xl text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            Bring Your PeopleSoft Experience to PeopleLabs
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-slate-600">
-            PeopleLabs Consulting is growing its PeopleSoft team and is looking for professionals who can contribute to client-focused enterprise technology engagements.
-          </p>
+        <div className="mx-auto grid max-w-7xl items-center gap-7 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-8">
+          <div>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Careers at PeopleLabs</p>
+            <h2 id="careers-intro-heading" className="max-w-3xl text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+              Bring Your PeopleSoft Experience to PeopleLabs
+            </h2>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+              PeopleLabs Consulting is growing its PeopleSoft team and is looking for professionals who can contribute to client-focused enterprise technology engagements.
+            </p>
+          </div>
+          <aside className="rounded-2xl border border-sky-100 bg-sky-50 p-5 sm:p-6" aria-label="Current role areas">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-sky-700">Current role areas</p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <li className="flex items-center gap-3 rounded-lg border border-sky-100 bg-white px-3.5 py-3 text-sm font-medium text-slate-800">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true"><Icon name="briefcase" size={18} /></span>
+                FSCM Business Analysis
+              </li>
+              <li className="flex items-center gap-3 rounded-lg border border-sky-100 bg-white px-3.5 py-3 text-sm font-medium text-slate-800">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true"><Icon name="server" size={18} /></span>
+                PeopleSoft Technical Support
+              </li>
+            </ul>
+            <p className="mt-4 text-xs leading-5 text-slate-600">Remote, full-time opportunities are available for the analyst roles.</p>
+          </aside>
         </div>
       </section>
 
@@ -162,7 +178,10 @@ export default function Careers() {
           <div className="grid items-start gap-8 xl:grid-cols-[1.05fr_0.95fr] xl:gap-10">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Join our team</p>
-              <h2 id="openings-heading" className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Current Openings</h2>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 id="openings-heading" className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Current Openings</h2>
+                <span className="rounded-full border border-sky-100 bg-white px-3 py-1.5 text-xs font-semibold text-sky-800">{careers.length} current roles</span>
+              </div>
               <p className="mt-3 mb-6 text-sm leading-6 text-slate-600 sm:text-base">
                 Explore current opportunities with PeopleLabs Consulting.
               </p>
