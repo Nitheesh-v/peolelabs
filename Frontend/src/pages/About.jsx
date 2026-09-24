@@ -261,15 +261,15 @@ export default function About() {
         </div>
       </section>
 
-      <section aria-labelledby="about-cta-title" className="bg-sky-600 px-4 py-12 text-white sm:px-6 sm:py-14 lg:py-16">
+      <section aria-labelledby="about-cta-title" className="border-y border-slate-200 bg-white px-4 py-12 text-slate-900 sm:px-6 sm:py-14 lg:py-16">
         <div className="mx-auto max-w-7xl text-center">
-          <h2 id="about-cta-title" className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+          <h2 id="about-cta-title" className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
             Let&apos;s Talk About Your Technology Needs
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
             Connect with PeopleLabs Consulting to discuss your Oracle, PeopleSoft, managed services, or training requirements.
           </p>
-          <Link to="/#contact" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-sky-700 transition-colors hover:bg-sky-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+          <Link to="/#contact" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
             Contact PeopleLabs
             <Icon name="arrow-right" size={18} />
           </Link>
