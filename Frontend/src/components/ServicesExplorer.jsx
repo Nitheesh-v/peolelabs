@@ -86,7 +86,7 @@ export default function ServicesExplorer() {
   const reduceMotion = useReducedMotion()
 
   return (
-    <section className="bg-slate-50/70 py-12 sm:py-16 lg:py-20" aria-label="Explore PeopleSoft services">
+    <section className="ambient-bg bg-slate-50/70 py-12 sm:py-16 lg:py-20" aria-label="Explore PeopleSoft services">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:grid-cols-[280px_minmax(0,1fr)]">
           <aside className="hidden border-r border-slate-200 bg-slate-50 p-5 lg:block xl:p-6">

@@ -126,7 +126,7 @@ export default function Careers() {
 
   return (
     <>
-      <section className="overflow-hidden border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white">
+      <section className="ambient-bg ambient-bg--duo overflow-hidden border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white">
         <div className="mx-auto grid max-w-7xl items-center gap-7 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:py-16">
           <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
             <StaggerItem as="p" className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-100 px-3.5 py-2 text-xs font-bold tracking-[0.1em] text-sky-800">
@@ -157,7 +157,7 @@ export default function Careers() {
 
       <section className="bg-white py-12 sm:py-14 lg:py-16" aria-labelledby="careers-intro-heading">
         <div className="mx-auto grid max-w-7xl items-center gap-7 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-8">
-          <div>
+          <FadeUp as="div">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Careers at PeopleLabs</p>
             <h2 id="careers-intro-heading" className="max-w-3xl text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Bring Your PeopleSoft Experience to PeopleLabs
@@ -165,8 +165,8 @@ export default function Careers() {
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
               PeopleLabs Consulting is growing its PeopleSoft team and is looking for professionals who can contribute to client-focused enterprise technology engagements.
             </p>
-          </div>
-          <aside className="rounded-2xl border border-sky-100 bg-sky-50 p-5 sm:p-6" aria-label="Current role areas">
+          </FadeUp>
+          <FadeUp as="aside" delay={0.12} className="rounded-2xl border border-sky-100 bg-sky-50 p-5 sm:p-6" aria-label="Current role areas">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-sky-700">Current role areas</p>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               <li className="flex items-center gap-3 rounded-lg border border-sky-100 bg-white px-3.5 py-3 text-sm font-medium text-slate-800">
@@ -179,22 +179,24 @@ export default function Careers() {
               </li>
             </ul>
             <p className="mt-4 text-xs leading-5 text-slate-600">Remote, full-time opportunities are available for the analyst roles.</p>
-          </aside>
+          </FadeUp>
         </div>
       </section>
 
-      <section id="openings" className="scroll-mt-28 bg-slate-50/70 py-12 sm:py-16 lg:py-20" aria-labelledby="openings-heading">
+      <section id="openings" className="ambient-bg scroll-mt-28 bg-slate-50/70 py-12 sm:py-16 lg:py-20" aria-labelledby="openings-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-8 xl:grid-cols-[1.05fr_0.95fr] xl:gap-10">
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Join our team</p>
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 id="openings-heading" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">Current Openings</h2>
-                <span className="rounded-full border border-sky-100 bg-white px-3 py-1.5 text-xs font-semibold text-sky-800">{careers.length} current roles</span>
-              </div>
-              <p className="mt-3 mb-6 text-sm leading-6 text-slate-600 sm:text-base">
-                Explore current opportunities with PeopleLabs Consulting.
-              </p>
+              <FadeUp className="mb-6">
+                <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Join our team</p>
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h2 id="openings-heading" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">Current Openings</h2>
+                  <span className="rounded-full border border-sky-100 bg-white px-3 py-1.5 text-xs font-semibold text-sky-800">{careers.length} current roles</span>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">
+                  Explore current opportunities with PeopleLabs Consulting.
+                </p>
+              </FadeUp>
               <StaggerGroup className="grid gap-4" stagger={0.08}>
                 {careers.map((job) => (
                   <StaggerItem as="div" key={job.id}>

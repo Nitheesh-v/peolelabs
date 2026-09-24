@@ -154,7 +154,7 @@ export default function About() {
     <>
       <AboutMetadata />
 
-      <section aria-labelledby="about-hero-title" className="overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white">
+      <section aria-labelledby="about-hero-title" className="ambient-bg ambient-bg--duo overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white">
         <div className="mx-auto grid min-h-[420px] max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-16">
           <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
             <StaggerItem as="p" className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">About PeopleLabs</StaggerItem>
@@ -211,7 +211,7 @@ export default function About() {
         </div>
       </section>
 
-      <section aria-labelledby="expertise-title" className="border-y border-sky-100 bg-sky-50 py-14 sm:py-16 lg:py-20">
+      <section aria-labelledby="expertise-title" className="ambient-bg border-y border-sky-100 bg-sky-50 py-14 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeUp className="mx-auto mb-9 max-w-3xl text-center sm:mb-11">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Our Expertise</p>
@@ -266,7 +266,7 @@ export default function About() {
         </div>
       </section>
 
-      <section aria-labelledby="about-cta-title" className="border-y border-slate-200 bg-white px-4 py-12 text-slate-900 sm:px-6 sm:py-14 lg:py-16">
+      <section aria-labelledby="about-cta-title" className="ambient-bg border-y border-slate-200 bg-white px-4 py-12 text-slate-900 sm:px-6 sm:py-14 lg:py-16">
         <StaggerGroup className="mx-auto max-w-7xl text-center" stagger={0.1}>
           <StaggerItem as="h2" id="about-cta-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
             Let&apos;s Talk About Your Technology Needs

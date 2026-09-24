@@ -4,8 +4,7 @@ import { FadeUp, StaggerGroup, StaggerItem } from './motion/MotionPrimitives.jsx
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white" aria-labelledby="home-title">
-      <div aria-hidden="true" className="pointer-events-none absolute -right-32 -top-24 h-96 w-96 rounded-full bg-sky-50/80 blur-3xl" />
+    <section className="ambient-bg ambient-bg--duo relative overflow-hidden bg-white" aria-labelledby="home-title">
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:py-24">
         <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
           <StaggerItem as="p" className="mb-6 inline-flex items-center gap-2 rounded-md border border-sky-100 bg-sky-50 px-3.5 py-2 text-sm font-semibold tracking-wide text-sky-700">

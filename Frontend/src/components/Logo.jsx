@@ -2,17 +2,17 @@ const logoUrl = 'https://img1.wsimg.com/isteam/ip/281a6117-1d6b-448b-9c27-d6e0e8
 
 export default function Logo({ size = 'navigation', decorative = false }) {
   const dimensions = size === 'footer'
-    ? 'w-[220px] sm:w-[240px]'
-    : 'w-[190px] sm:w-[210px]'
+    ? 'h-12 w-[220px] sm:w-[240px]'
+    : 'h-10 w-[190px] sm:h-11 sm:w-[210px]'
 
   return (
-    <span className={`inline-flex aspect-[5/1] max-w-full shrink-0 overflow-hidden rounded bg-white ${dimensions}`}>
+    <span className={`inline-flex max-w-full shrink-0 overflow-hidden rounded bg-white ${dimensions}`}>
       <img
         src={logoUrl}
         alt={decorative ? '' : 'PeopleLabs Consulting Inc.'}
         loading={size === 'footer' ? 'lazy' : 'eager'}
         decoding="async"
-        className="h-full w-full object-cover object-center"
+        className="h-full w-full object-contain p-0.5"
       />
     </span>
   )

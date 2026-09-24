@@ -52,7 +52,7 @@ export default function Footer() {
       {onHome && (
         <section
           id="contact"
-          className="scroll-mt-24 border-t border-sky-100 bg-sky-50 py-16 sm:py-20 lg:py-24"
+          className="ambient-bg scroll-mt-24 border-t border-sky-100 bg-sky-50 py-16 sm:py-20 lg:py-24"
           aria-labelledby="contact-title"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -74,7 +74,7 @@ export default function Footer() {
         </section>
       )}
 
-      <footer className="border-t border-sky-700 bg-sky-600 text-white">
+      <footer className="ambient-bg ambient-bg--duo ambient-bg--footer border-t border-sky-700 bg-sky-600 text-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-[4.5rem]">
           <StaggerGroup className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.7fr_1.15fr_1.15fr] lg:gap-8 xl:gap-12" stagger={0.07}>
             <StaggerItem as="div">

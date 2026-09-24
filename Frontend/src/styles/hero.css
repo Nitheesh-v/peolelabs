@@ -159,3 +159,57 @@
     animation: none !important;
   }
 }
+
+/* Quiet ambient movement gives key page bands a little depth without shifting content. */
+.ambient-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.ambient-bg::before,
+.ambient-bg--duo::after {
+  position: absolute;
+  z-index: 0;
+  width: clamp(12rem, 32vw, 25rem);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  content: '';
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(125 211 252 / 0.17) 0%, rgb(125 211 252 / 0.07) 36%, transparent 72%);
+  animation: ambient-drift 19s ease-in-out infinite alternate;
+}
+
+.ambient-bg::before {
+  top: 0.75rem;
+  right: clamp(0.5rem, 4vw, 2.5rem);
+}
+
+.ambient-bg--duo::after {
+  bottom: 0.25rem;
+  left: clamp(0.5rem, 5vw, 3rem);
+  width: clamp(10rem, 25vw, 20rem);
+  animation-delay: -9s;
+  animation-direction: alternate-reverse;
+}
+
+.ambient-bg--footer::before,
+.ambient-bg--footer::after {
+  background: radial-gradient(circle, rgb(224 242 254 / 0.19) 0%, rgb(125 211 252 / 0.08) 38%, transparent 72%);
+}
+
+.ambient-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes ambient-drift {
+  from { transform: translate3d(-4px, -3px, 0) scale(0.985); }
+  to { transform: translate3d(7px, 6px, 0) scale(1.015); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-bg::before,
+  .ambient-bg--duo::after {
+    animation: none !important;
+  }
+}

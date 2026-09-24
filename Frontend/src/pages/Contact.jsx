@@ -2,6 +2,7 @@ import Icon from '../components/Icon.jsx'
 import PageHero from '../components/PageHero.jsx'
 import ContactForm from '../components/ContactForm.jsx'
 import { company } from '../data/content.js'
+import { FadeUp } from '../components/motion/MotionPrimitives.jsx'
 
 export default function Contact() {
   return (
@@ -11,13 +12,13 @@ export default function Contact() {
         line and we&apos;ll get back to you.
       </PageHero>
 
-      <section className="section section--white">
+      <section className="section section--white ambient-bg">
         <div className="container contact-layout">
-          <div>
+          <FadeUp as="div">
             <span className="eyebrow">Get in touch</span>
             <h2 className="mb-6">We&apos;d love to hear from you</h2>
 
-            <div className="contact-info">
+            <FadeUp as="div" className="contact-info" delay={0.08}>
               <div className="info-item">
                 <span className="icon-tile icon-tile--sm">
                   <Icon name="map-pin" size={20} />
@@ -69,13 +70,13 @@ export default function Contact() {
                   <p>{company.hours}</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </FadeUp>
+          </FadeUp>
 
-          <div>
+          <FadeUp as="div" delay={0.12}>
             <h2 className="mb-6">Send us a message</h2>
             <ContactForm />
-          </div>
+          </FadeUp>
         </div>
       </section>
     </>

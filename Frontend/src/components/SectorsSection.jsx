@@ -4,7 +4,7 @@ import { FadeUp, StaggerGroup, StaggerItem } from './motion/MotionPrimitives.jsx
 
 export default function SectorsSection() {
   return (
-    <section id="sectors" className="scroll-mt-28 bg-sky-50 py-16 sm:py-20 lg:py-24" aria-labelledby="sectors-title">
+    <section id="sectors" className="ambient-bg scroll-mt-28 bg-sky-50 py-16 sm:py-20 lg:py-24" aria-labelledby="sectors-title">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeUp className="mx-auto mb-10 max-w-2xl text-center sm:mb-12">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Industries</p>
