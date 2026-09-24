@@ -123,7 +123,7 @@ export default function Careers() {
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-sky-500" />
               WE ARE HIRING
             </p>
-            <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Build Your Career
               <br className="hidden sm:block" /> with{' '}
               <span className="text-sky-600">PeopleSoft Expertise.</span>
@@ -149,7 +149,7 @@ export default function Careers() {
         <div className="mx-auto grid max-w-7xl items-center gap-7 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-8">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Careers at PeopleLabs</p>
-            <h2 id="careers-intro-heading" className="max-w-3xl text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            <h2 id="careers-intro-heading" className="max-w-3xl text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Bring Your PeopleSoft Experience to PeopleLabs
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
@@ -179,7 +179,7 @@ export default function Careers() {
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Join our team</p>
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 id="openings-heading" className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Current Openings</h2>
+                <h2 id="openings-heading" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">Current Openings</h2>
                 <span className="rounded-full border border-sky-100 bg-white px-3 py-1.5 text-xs font-semibold text-sky-800">{careers.length} current roles</span>
               </div>
               <p className="mt-3 mb-6 text-sm leading-6 text-slate-600 sm:text-base">

@@ -7,7 +7,7 @@ export default function SectorsSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-12">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Industries</p>
-          <h2 id="sectors-title" className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">Our Client Sectors</h2>
+          <h2 id="sectors-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">Our Client Sectors</h2>
           <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
             PeopleLabs Consulting&apos;s team has proven experience across multiple sectors and industries.
           </p>

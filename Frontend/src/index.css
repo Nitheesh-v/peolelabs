@@ -12,7 +12,7 @@
 @import './styles/pages.css';
 
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   color: #475569;
   background: #fff;
   font-synthesis: none;

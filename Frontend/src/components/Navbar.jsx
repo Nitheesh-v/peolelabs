@@ -17,7 +17,7 @@ function LoginControl({ mobile = false }) {
       disabled
       aria-label="Login"
       title="Login is not available yet"
-      className={`inline-flex cursor-default items-center gap-2 text-white ${mobile ? 'w-full px-3 py-3 text-base' : 'px-1 py-2 text-sm font-medium'}`}
+      className={`inline-flex cursor-default items-center gap-2 text-white ${mobile ? 'w-full px-3 py-3 text-base font-semibold' : 'px-1 py-2 text-sm font-semibold'}`}
     >
       <Icon name="user" size={20} strokeWidth={1.8} />
       <span>Login</span>
@@ -26,7 +26,7 @@ function LoginControl({ mobile = false }) {
 }
 
 function desktopLinkClass(isActive) {
-  return `relative inline-flex whitespace-nowrap py-2 text-base font-medium transition-colors duration-200 after:absolute after:bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-[width] after:duration-300 after:content-[''] hover:text-sky-50 hover:after:w-full focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${isActive ? 'text-white after:w-full' : 'text-white/90'}`
+  return `relative inline-flex whitespace-nowrap py-2 text-base font-semibold transition-colors duration-200 after:absolute after:bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-[width] after:duration-300 after:content-[''] hover:text-sky-50 hover:after:w-full focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${isActive ? 'text-white after:w-full' : 'text-white/90'}`
 }
 
 export default function Navbar() {
@@ -116,7 +116,7 @@ export default function Navbar() {
               to={link.to}
               end={link.end}
               onClick={link.to === '/' ? handleHomeClick : () => setOpen(false)}
-              className={({ isActive }) => `rounded-md border-l-2 px-3 py-3 text-base font-medium focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white ${isActive ? 'border-white text-white' : 'border-transparent text-white/90 hover:border-white/60 hover:text-white'}`}
+              className={({ isActive }) => `rounded-md border-l-2 px-3 py-3 text-base font-semibold focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white ${isActive ? 'border-white text-white' : 'border-transparent text-white/90 hover:border-white/60 hover:text-white'}`}
             >
               {link.label}
             </NavLink>

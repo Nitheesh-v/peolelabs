@@ -56,7 +56,7 @@ export default function Footer() {
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">
                 Contact
               </p>
-              <h2 id="contact-title" className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              <h2 id="contact-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
                 Let&apos;s Discuss Your IT Requirements
               </h2>
               <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">

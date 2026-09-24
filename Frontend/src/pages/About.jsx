@@ -157,7 +157,7 @@ export default function About() {
         <div className="mx-auto grid min-h-[420px] max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-16">
           <div className="max-w-2xl">
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">About PeopleLabs</p>
-            <h1 id="about-hero-title" className="text-4xl font-semibold leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.35rem]">
+            <h1 id="about-hero-title" className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Oracle Expertise.{' '}
               <span className="block text-sky-600">Built Around Your Business.</span>
             </h1>
@@ -184,7 +184,7 @@ export default function About() {
           <CompanyVisual />
           <div className="max-w-2xl lg:py-4">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Get to Know Us</p>
-            <h2 id="get-to-know-title" className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 id="get-to-know-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Get to Know PeopleLabs Consulting
             </h2>
             <div className="mt-6 space-y-4 border-l-2 border-sky-400 pl-5 text-base leading-7 text-slate-600 sm:pl-6">
@@ -210,7 +210,7 @@ export default function About() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto mb-9 max-w-3xl text-center sm:mb-11">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Our Expertise</p>
-            <h2 id="expertise-title" className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 id="expertise-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Technology Expertise That Supports Your Business
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
@@ -241,7 +241,7 @@ export default function About() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Industry Experience</p>
-            <h2 id="industries-title" className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 id="industries-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Experience Across Diverse Sectors
             </h2>
             <p className="mt-4 text-base leading-7 text-slate-600">
@@ -263,7 +263,7 @@ export default function About() {
 
       <section aria-labelledby="about-cta-title" className="border-y border-slate-200 bg-white px-4 py-12 text-slate-900 sm:px-6 sm:py-14 lg:py-16">
         <div className="mx-auto max-w-7xl text-center">
-          <h2 id="about-cta-title" className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 id="about-cta-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
             Let&apos;s Talk About Your Technology Needs
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">

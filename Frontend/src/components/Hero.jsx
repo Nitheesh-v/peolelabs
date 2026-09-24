@@ -11,7 +11,7 @@ export default function Hero() {
             <span aria-hidden="true" className="h-2 w-2 rounded-full bg-sky-500" />
             Oracle &amp; PeopleSoft Consulting
           </p>
-          <h1 id="home-title" className="text-4xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-[3.5rem]">
+          <h1 id="home-title" className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             <span className="text-sky-500">Oracle &amp; PeopleSoft</span>{' '}
             Expertise That Moves Your Business Forward
           </h1>

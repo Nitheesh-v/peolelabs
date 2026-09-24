@@ -26,7 +26,7 @@ export default function Services() {
             </ol>
           </nav>
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Our Services</p>
-          <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             PeopleSoft Services
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
@@ -41,7 +41,7 @@ export default function Services() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto mb-9 max-w-2xl text-center sm:mb-11">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">How we work</p>
-            <h2 id="service-approach-heading" className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            <h2 id="service-approach-heading" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               A Practical Approach to PeopleSoft Services
             </h2>
           </div>
@@ -69,7 +69,7 @@ export default function Services() {
       <section className="border-y border-sky-100 bg-sky-50 py-12 sm:py-14" aria-labelledby="services-cta-heading">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
           <div>
-            <h2 id="services-cta-heading" className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            <h2 id="services-cta-heading" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Need support for your PeopleSoft environment?
             </h2>
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">

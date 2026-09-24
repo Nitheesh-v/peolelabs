@@ -167,7 +167,7 @@ export default function CareerApplicationForm({
       <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-900/5 sm:p-7 lg:p-8">
         <div className="mb-6 text-center">
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-sky-700">Careers</p>
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Apply Now</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Apply Now</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">
             Interested in joining PeopleLabs Consulting? Submit your application for one of our current opportunities.
           </p>
