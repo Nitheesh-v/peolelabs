@@ -15,8 +15,8 @@ const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapAddress)}
 
 function ContactItem({ icon, children }) {
   return (
-    <li className="flex items-start gap-3 text-sm leading-6 text-slate-600">
-      <span aria-hidden="true" className="mt-0.5 shrink-0 text-sky-600">
+    <li className="flex items-start gap-3 text-sm leading-6 text-sky-50">
+      <span aria-hidden="true" className="mt-0.5 shrink-0 text-white">
         <Icon name={icon} size={19} strokeWidth={1.8} />
       </span>
       <span>{children}</span>
@@ -26,7 +26,7 @@ function ContactItem({ icon, children }) {
 
 function FooterColumnTitle({ children, className = '' }) {
   return (
-    <h3 className={`mb-5 text-base font-semibold tracking-wide text-slate-900 ${className}`.trim()}>
+    <h3 className={`mb-5 text-base font-semibold tracking-wide text-white ${className}`.trim()}>
       {children}
     </h3>
   )
@@ -70,14 +70,14 @@ export default function Footer() {
         </section>
       )}
 
-      <footer className="border-t border-sky-100 bg-white text-slate-600">
+      <footer className="border-t border-sky-700 bg-sky-600 text-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-[4.5rem]">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.7fr_1.15fr_1.15fr] lg:gap-8 xl:gap-12">
             <div>
-              <p className="text-2xl font-bold tracking-tight text-slate-900 sm:text-[1.7rem]">
-                PeopleLabs <span className="text-sky-600">Consulting</span>
+              <p className="text-2xl font-bold tracking-tight text-white sm:text-[1.7rem]">
+                PeopleLabs <span className="text-sky-50">Consulting</span>
               </p>
-              <p className="mt-5 max-w-sm text-sm leading-7 text-slate-600">
+              <p className="mt-5 max-w-sm text-sm leading-7 text-sky-50">
                 Founded in 2016, PeopleLabs Consulting provides high-quality IT consulting services specializing in Oracle and PeopleSoft technologies for organizations across a range of industries.
               </p>
             </div>
@@ -90,7 +90,7 @@ export default function Footer() {
                     <Link
                       to={link.to}
                       onClick={link.to === '/' ? scrollHomeToTop : undefined}
-                      className="inline-flex text-sm text-slate-600 transition-[color,transform] duration-200 hover:translate-x-0.5 hover:text-sky-700 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600"
+                      className="inline-flex text-sm text-sky-50 transition-[color,transform] duration-200 hover:translate-x-0.5 hover:text-white focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                     >
                       {link.label}
                     </Link>
@@ -101,7 +101,7 @@ export default function Footer() {
 
             <div>
               <FooterColumnTitle>Contact Us</FooterColumnTitle>
-              <p className="mb-3 text-sm font-semibold text-slate-900">{company.name}</p>
+              <p className="mb-3 text-sm font-semibold text-white">{company.name}</p>
               <ul className="grid gap-3.5">
                 <ContactItem icon="map-pin">
                   {company.address.map((line) => (
@@ -110,9 +110,9 @@ export default function Footer() {
                 </ContactItem>
                 <ContactItem icon="phone">
                   <span>
-                    <span className="text-slate-500">Phone: </span>
+                    <span className="text-sky-100">Phone: </span>
                     <a
-                      className="text-slate-600 transition-colors hover:text-sky-700 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+                      className="text-white transition-colors hover:text-sky-100 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                       href={company.phoneHref}
                     >
                       {company.phone}
@@ -121,9 +121,9 @@ export default function Footer() {
                 </ContactItem>
                 <ContactItem icon="mail">
                   <span>
-                    <span className="text-slate-500">Email: </span>
+                    <span className="text-sky-100">Email: </span>
                     <a
-                      className="break-all text-slate-600 transition-colors hover:text-sky-700 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+                      className="break-all text-white transition-colors hover:text-sky-100 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                       href={company.emailHref}
                     >
                       {company.email}
@@ -131,14 +131,14 @@ export default function Footer() {
                   </span>
                 </ContactItem>
                 <ContactItem icon="clock">
-                  <span><span className="font-medium text-slate-800">Hours:</span> {company.hours}</span>
+                  <span><span className="font-medium text-white">Hours:</span> {company.hours}</span>
                 </ContactItem>
               </ul>
             </div>
 
             <div>
               <FooterColumnTitle className="text-center">Location</FooterColumnTitle>
-              <div className="h-[190px] w-full overflow-hidden rounded-lg border border-slate-200 bg-sky-50 sm:h-[200px]">
+              <div className="h-[190px] w-full overflow-hidden rounded-lg border border-white/30 bg-sky-700 sm:h-[200px]">
                 <iframe
                   src={mapSrc}
                   title="PeopleLabs Consulting location in Edmonton, Alberta"
@@ -151,7 +151,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-slate-200 pt-6 text-center text-sm text-slate-500">
+          <div className="mt-12 border-t border-white/25 pt-6 text-center text-sm text-sky-50">
             <p>© {year} PeopleLabs Consulting. All rights reserved.</p>
           </div>
         </div>
