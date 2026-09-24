@@ -261,9 +261,9 @@ export default function About() {
         </div>
       </section>
 
-      <section aria-labelledby="about-cta-title" className="bg-sky-500 px-4 py-12 text-white sm:px-6 sm:py-14 lg:py-16">
+      <section aria-labelledby="about-cta-title" className="bg-sky-600 px-4 py-12 text-white sm:px-6 sm:py-14 lg:py-16">
         <div className="mx-auto max-w-7xl text-center">
-          <h2 id="about-cta-title" className="text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 id="about-cta-title" className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             Let&apos;s Talk About Your Technology Needs
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white sm:text-lg">
