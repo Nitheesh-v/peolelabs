@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
+import { FadeUp, StaggerGroup, StaggerItem } from '../components/motion/MotionPrimitives.jsx'
 import ServicesExplorer from '../components/ServicesExplorer.jsx'
 
 const processSteps = [
@@ -39,15 +40,15 @@ export default function Services() {
 
       <section className="bg-white py-14 sm:py-16 lg:py-20" aria-labelledby="service-approach-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-9 max-w-2xl text-center sm:mb-11">
+          <FadeUp className="mx-auto mb-9 max-w-2xl text-center sm:mb-11">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">How we work</p>
             <h2 id="service-approach-heading" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               A Practical Approach to PeopleSoft Services
             </h2>
-          </div>
-          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          </FadeUp>
+          <StaggerGroup as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
             {processSteps.map((step, index) => (
-              <li key={step.title} className="relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <StaggerItem as="li" key={step.title} className="relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-md">
                 <div className="flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true">
                     <Icon name={step.icon} size={21} strokeWidth={1.8} />
@@ -60,26 +61,28 @@ export default function Services() {
                     <Icon name="arrow-right" size={16} />
                   </span>
                 )}
-              </li>
+              </StaggerItem>
             ))}
-          </ol>
+          </StaggerGroup>
         </div>
       </section>
 
       <section className="border-y border-sky-100 bg-sky-50 py-12 sm:py-14" aria-labelledby="services-cta-heading">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
-          <div>
-            <h2 id="services-cta-heading" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
+          <StaggerGroup className="min-w-0" stagger={0.1}>
+            <StaggerItem as="h2" id="services-cta-heading" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Need support for your PeopleSoft environment?
-            </h2>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">
+            </StaggerItem>
+            <StaggerItem as="p" className="mt-3 max-w-3xl text-base leading-7 text-slate-600">
               Talk with PeopleLabs Consulting about your application, upgrade, cloud, project, training, or support requirements.
-            </p>
-          </div>
-          <Link to="/#contact" className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
-            Discuss Your Requirements
-            <Icon name="arrow-right" size={18} />
-          </Link>
+            </StaggerItem>
+          </StaggerGroup>
+          <FadeUp className="shrink-0" delay={0.16}>
+            <Link to="/#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+              Discuss Your Requirements
+              <Icon name="arrow-right" size={18} />
+            </Link>
+          </FadeUp>
         </div>
       </section>
     </>

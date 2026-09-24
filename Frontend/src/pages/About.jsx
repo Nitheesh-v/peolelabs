@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon.jsx'
+import { FadeSide, FadeUp, StaggerGroup, StaggerItem } from '../components/motion/MotionPrimitives.jsx'
 
 const expertise = [
   {
@@ -155,17 +156,17 @@ export default function About() {
 
       <section aria-labelledby="about-hero-title" className="overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white">
         <div className="mx-auto grid min-h-[420px] max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-16">
-          <div className="max-w-2xl">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">About PeopleLabs</p>
-            <h1 id="about-hero-title" className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
+            <StaggerItem as="p" className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">About PeopleLabs</StaggerItem>
+            <StaggerItem as="h1" id="about-hero-title" className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Oracle Expertise.{' '}
               <span className="block text-sky-600">Built Around Your Business.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+            </StaggerItem>
+            <StaggerItem as="p" className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Founded in 2016, PeopleLabs Consulting provides Oracle and PeopleSoft consulting services designed around the unique technology requirements of each organization.
-            </p>
-            <div className="mt-7 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
-              <Link to="/services" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+            </StaggerItem>
+            <StaggerItem as="div" className="mt-7 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
+              <Link to="/services" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
                 Explore Our Expertise
                 <Icon name="arrow-right" size={18} />
               </Link>
@@ -173,16 +174,20 @@ export default function About() {
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-sky-500" />
                 Serving organizations across multiple industries
               </p>
-            </div>
-          </div>
-          <EnterpriseVisual />
+            </StaggerItem>
+          </StaggerGroup>
+          <FadeUp className="w-full" delay={0.45} animateOnMount>
+            <EnterpriseVisual />
+          </FadeUp>
         </div>
       </section>
 
       <section aria-labelledby="get-to-know-title" className="bg-white py-14 sm:py-16 lg:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-9 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:px-8">
-          <CompanyVisual />
-          <div className="max-w-2xl lg:py-4">
+          <FadeSide as="div" direction="left">
+            <CompanyVisual />
+          </FadeSide>
+          <FadeSide as="div" direction="right" className="max-w-2xl lg:py-4" delay={0.08}>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Get to Know Us</p>
             <h2 id="get-to-know-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Get to Know PeopleLabs Consulting
@@ -202,13 +207,13 @@ export default function About() {
               <Icon name="map-pin" size={19} className="text-sky-600" />
               Edmonton, Alberta, Canada
             </p>
-          </div>
+          </FadeSide>
         </div>
       </section>
 
       <section aria-labelledby="expertise-title" className="border-y border-sky-100 bg-sky-50 py-14 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-9 max-w-3xl text-center sm:mb-11">
+          <FadeUp className="mx-auto mb-9 max-w-3xl text-center sm:mb-11">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Our Expertise</p>
             <h2 id="expertise-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Technology Expertise That Supports Your Business
@@ -216,18 +221,18 @@ export default function About() {
             <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
               Our experience spans key Oracle and PeopleSoft technologies, managed services, and training.
             </p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          </FadeUp>
+          <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.09}>
             {expertise.map((item) => (
-              <article key={item.title} className="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none sm:p-6">
+              <StaggerItem as="article" key={item.title} className="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none sm:p-6">
                 <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700 transition-colors group-hover:bg-sky-500 group-hover:text-white motion-reduce:transition-none" aria-hidden="true">
                   <Icon name={item.icon} size={22} strokeWidth={1.8} />
                 </span>
                 <h3 className="text-lg font-semibold tracking-tight text-slate-900">{item.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
           <div className="mt-7 text-center">
             <Link to="/services" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-3 text-sm font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 transition-colors hover:text-sky-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600">
               View All Services
@@ -239,7 +244,7 @@ export default function About() {
 
       <section aria-labelledby="industries-title" className="bg-white py-14 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
+          <FadeUp className="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Industry Experience</p>
             <h2 id="industries-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
               Experience Across Diverse Sectors
@@ -247,33 +252,35 @@ export default function About() {
             <p className="mt-4 text-base leading-7 text-slate-600">
               PeopleLabs Consulting&apos;s team has experience working across multiple sectors and industries.
             </p>
-          </div>
-          <ul className="grid grid-cols-2 gap-3 max-[359px]:grid-cols-1 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+          </FadeUp>
+          <StaggerGroup as="ul" className="grid grid-cols-2 gap-3 max-[359px]:grid-cols-1 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5" stagger={0.07}>
             {industries.map((industry) => (
-              <li key={industry.name} className="flex min-h-[88px] items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 transition-colors hover:border-sky-200 sm:flex-col sm:justify-center sm:gap-2 sm:text-center">
+              <StaggerItem as="li" key={industry.name} className="flex min-h-[88px] items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-sm sm:flex-col sm:justify-center sm:gap-2 sm:text-center">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-700" aria-hidden="true">
                   <Icon name={industry.icon} size={21} strokeWidth={1.8} />
                 </span>
                 <span className="text-sm font-semibold leading-5 text-slate-800">{industry.name}</span>
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </StaggerGroup>
         </div>
       </section>
 
       <section aria-labelledby="about-cta-title" className="border-y border-slate-200 bg-white px-4 py-12 text-slate-900 sm:px-6 sm:py-14 lg:py-16">
-        <div className="mx-auto max-w-7xl text-center">
-          <h2 id="about-cta-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
+        <StaggerGroup className="mx-auto max-w-7xl text-center" stagger={0.1}>
+          <StaggerItem as="h2" id="about-cta-title" className="text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
             Let&apos;s Talk About Your Technology Needs
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+          </StaggerItem>
+          <StaggerItem as="p" className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
             Connect with PeopleLabs Consulting to discuss your Oracle, PeopleSoft, managed services, or training requirements.
-          </p>
-          <Link to="/#contact" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
-            Contact PeopleLabs
-            <Icon name="arrow-right" size={18} />
-          </Link>
-        </div>
+          </StaggerItem>
+          <StaggerItem as="div" className="mt-7">
+            <Link to="/#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-700 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-800 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
+              Contact PeopleLabs
+              <Icon name="arrow-right" size={18} />
+            </Link>
+          </StaggerItem>
+        </StaggerGroup>
       </section>
     </>
   )

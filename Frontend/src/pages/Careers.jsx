@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { motion, useReducedMotion } from 'motion/react'
+import { FadeUp, StaggerGroup, StaggerItem } from '../components/motion/MotionPrimitives.jsx'
 import CareerApplicationForm from '../components/CareerApplicationForm.jsx'
 import CareersVisual from '../components/CareersVisual.jsx'
 import Icon from '../components/Icon.jsx'
@@ -11,6 +13,7 @@ function prefersReducedMotion() {
 }
 
 function JobOpening({ job, expanded, onToggle, onApply }) {
+  const reduceMotion = useReducedMotion()
   const detailsId = `job-details-${job.id}`
   const headingId = `job-heading-${job.id}`
 
@@ -38,16 +41,23 @@ function JobOpening({ job, expanded, onToggle, onApply }) {
             ))}
           </span>
         </span>
-        <span className={`mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors ${expanded ? 'border-sky-200 bg-sky-50 text-sky-700' : 'border-slate-200 text-slate-500'}`} aria-hidden="true">
-          <Icon name="chevron-down" size={18} className={`transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`} />
-        </span>
+        <motion.span className={`mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors ${expanded ? 'border-sky-200 bg-sky-50 text-sky-700' : 'border-slate-200 text-slate-500'}`} aria-hidden="true" animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: reduceMotion ? 0 : 0.24, ease: 'easeOut' }}>
+          <Icon name="chevron-down" size={18} />
+        </motion.span>
       </button>
 
-      <div
+      <motion.div
         id={detailsId}
         role="region"
         aria-labelledby={headingId}
-        className={`${expanded ? 'block' : 'hidden'} border-t border-slate-100 px-4 pb-5 pt-4 sm:px-5 sm:pb-6`}
+        aria-hidden={!expanded}
+        inert={!expanded}
+        initial={false}
+        animate={expanded
+          ? { height: 'auto', opacity: 1, y: 0 }
+          : { height: 0, opacity: 0, y: reduceMotion ? 0 : -5 }}
+        transition={{ duration: reduceMotion ? 0 : 0.25, ease: 'easeOut' }}
+        className="overflow-hidden border-t border-slate-100 px-4 pb-5 pt-4 sm:px-5 sm:pb-6"
       >
         <p className="text-sm leading-6 text-slate-600">{job.summary}</p>
         <h4 className="mb-3 mt-5 text-sm font-semibold text-slate-900">About the Qualifications</h4>
@@ -62,12 +72,12 @@ function JobOpening({ job, expanded, onToggle, onApply }) {
         <button
           type="button"
           onClick={() => onApply(job.title)}
-          className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sky-500 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+          className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sky-500 px-4 py-2.5 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
         >
           Apply for this position
           <Icon name="arrow-right" size={17} />
         </button>
-      </div>
+      </motion.div>
     </article>
   )
 }
@@ -99,7 +109,7 @@ export default function Careers() {
     setSelectedPosition(title)
     setHighlightPosition(true)
     window.clearTimeout(highlightTimer.current)
-    highlightTimer.current = window.setTimeout(() => setHighlightPosition(false), 1400)
+    highlightTimer.current = window.setTimeout(() => setHighlightPosition(false), 1100)
 
     window.requestAnimationFrame(() => {
       if (window.matchMedia('(max-width: 1279px)').matches) {
@@ -118,30 +128,30 @@ export default function Careers() {
     <>
       <section className="overflow-hidden border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white">
         <div className="mx-auto grid max-w-7xl items-center gap-7 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:py-16">
-          <div className="max-w-2xl">
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-100 px-3.5 py-2 text-xs font-bold tracking-[0.1em] text-sky-800">
+          <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
+            <StaggerItem as="p" className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-100 px-3.5 py-2 text-xs font-bold tracking-[0.1em] text-sky-800">
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-sky-500" />
               WE ARE HIRING
-            </p>
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            </StaggerItem>
+            <StaggerItem as="h1" className="text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Build Your Career
               <br className="hidden sm:block" /> with{' '}
               <span className="text-sky-600">PeopleSoft Expertise.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+            </StaggerItem>
+            <StaggerItem as="p" className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Join PeopleLabs Consulting and bring your PeopleSoft expertise to client-focused technology projects. Explore our Edmonton-based remote full-time opportunities.
-            </p>
-            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-              <a href="#openings" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+            </StaggerItem>
+            <StaggerItem as="div" className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+              <a href="#openings" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-sky-600 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
                 View Openings
                 <Icon name="chevron-down" size={17} />
               </a>
               <span className="text-sm text-slate-500">Edmonton-based remote opportunities</span>
-            </div>
-          </div>
-          <div className="mx-auto w-full max-w-[560px] lg:justify-self-end">
+            </StaggerItem>
+          </StaggerGroup>
+          <FadeUp className="mx-auto w-full max-w-[560px] lg:justify-self-end" delay={0.42} animateOnMount>
             <CareersVisual />
-          </div>
+          </FadeUp>
         </div>
       </section>
 
@@ -185,20 +195,21 @@ export default function Careers() {
               <p className="mt-3 mb-6 text-sm leading-6 text-slate-600 sm:text-base">
                 Explore current opportunities with PeopleLabs Consulting.
               </p>
-              <div className="grid gap-4">
+              <StaggerGroup className="grid gap-4" stagger={0.08}>
                 {careers.map((job) => (
-                  <JobOpening
-                    key={job.id}
-                    job={job}
-                    expanded={expandedJob === job.id}
-                    onToggle={() => setExpandedJob((current) => current === job.id ? null : job.id)}
-                    onApply={handleApply}
-                  />
+                  <StaggerItem as="div" key={job.id}>
+                    <JobOpening
+                      job={job}
+                      expanded={expandedJob === job.id}
+                      onToggle={() => setExpandedJob((current) => current === job.id ? null : job.id)}
+                      onApply={handleApply}
+                    />
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
             </div>
 
-            <div className="xl:sticky xl:top-28">
+            <FadeUp as="div" className="xl:sticky xl:top-28" delay={0.08}>
               <CareerApplicationForm
                 formRef={formRef}
                 positionRef={positionRef}
@@ -207,7 +218,7 @@ export default function Careers() {
                 highlightPosition={highlightPosition}
                 onApplicationSubmitted={handleApplicationSubmitted}
               />
-            </div>
+            </FadeUp>
           </div>
         </div>
       </section>

@@ -11,7 +11,7 @@ export default function ScrollToTop() {
       const targetId = decodeURIComponent(hash.slice(1))
       const frame = window.requestAnimationFrame(() => {
         document.getElementById(targetId)?.scrollIntoView({
-          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
           block: 'start',
         })
       })

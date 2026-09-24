@@ -116,3 +116,46 @@
     font-size: var(--fs-md);
   }
 }
+
+/* Quiet connected-system motion for the PeopleLabs hero illustration. */
+.hero-visual__signals path {
+  animation: hero-signal-flow 5.5s linear infinite;
+}
+.hero-visual__node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-node-pulse 3.8s ease-in-out infinite;
+}
+.hero-visual__module {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-module-drift 8s ease-in-out infinite;
+}
+.hero-visual__hub {
+  animation: hero-hub-glow 5s ease-in-out infinite;
+}
+
+@keyframes hero-signal-flow {
+  to { stroke-dashoffset: -60; }
+}
+@keyframes hero-node-pulse {
+  0%, 100% { opacity: 0.68; transform: scale(0.94); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+@keyframes hero-module-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@keyframes hero-hub-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.88; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual__signals path,
+  .hero-visual__node,
+  .hero-visual__module,
+  .hero-visual__hub {
+    animation: none !important;
+  }
+}

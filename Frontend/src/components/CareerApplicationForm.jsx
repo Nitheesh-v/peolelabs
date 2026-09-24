@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
 import { applicationPositions } from '../data/careers.js'
 
@@ -46,6 +47,7 @@ export default function CareerApplicationForm({
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
   const [dragging, setDragging] = useState(false)
+  const reduceMotion = useReducedMotion()
   const fileInputRef = useRef(null)
 
   function setFieldError(field, message) {
@@ -212,7 +214,7 @@ export default function CareerApplicationForm({
               name="position"
               value={selectedPosition}
               onChange={handlePositionChange}
-              className={`${fieldClass(Boolean(positionError))} ${highlightPosition ? 'ring-2 ring-sky-200 border-sky-500' : ''}`}
+              className={`${fieldClass(Boolean(positionError))} ${highlightPosition && !reduceMotion ? 'ring-2 ring-sky-200 border-sky-500' : ''}`}
               aria-invalid={positionError ? 'true' : undefined}
               aria-describedby={positionError ? 'application-error-position' : undefined}
               required

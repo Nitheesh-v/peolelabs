@@ -17,7 +17,7 @@ function LoginControl({ mobile = false }) {
       disabled
       aria-label="Login"
       title="Login is not available yet"
-      className={`inline-flex cursor-default items-center gap-2 text-white ${mobile ? 'w-full px-3 py-3 text-base font-semibold' : 'px-1 py-2 text-sm font-semibold'}`}
+      className={`inline-flex cursor-default items-center gap-2 rounded-md text-white transition-[background-color,transform] duration-200 hover:scale-105 hover:bg-white/10 active:scale-95 ${mobile ? 'w-full px-3 py-3 text-base font-semibold' : 'px-1 py-2 text-sm font-semibold'}`}
     >
       <Icon name="user" size={20} strokeWidth={1.8} />
       <span>Login</span>
@@ -37,7 +37,7 @@ export default function Navbar() {
   const contactHref = location.pathname === '/' ? '#contact' : '/#contact'
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
+    const onScroll = () => setScrolled(window.scrollY > 64)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -69,7 +69,7 @@ export default function Navbar() {
 
   return (
     <header className={`sticky top-0 z-50 border-b transition-[background-color,box-shadow,border-color] duration-300 ${barColor}`}>
-      <div className="mx-auto flex h-[78px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-24 lg:px-8">
+      <div className={`mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 transition-[height] duration-300 ease-out sm:px-6 lg:px-8 ${scrolled ? 'h-[72px] lg:h-[88px]' : 'h-[78px] lg:h-24'}`}>
         <Link to="/" onClick={handleHomeClick} aria-label="PeopleLabs Consulting home" className="shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
           <Logo decorative />
         </Link>
@@ -90,7 +90,7 @@ export default function Navbar() {
 
         <div className="hidden shrink-0 items-center gap-4 lg:flex">
           <LoginControl />
-          <a href={contactHref} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-5 py-2.5 text-base font-semibold text-sky-700 transition-colors hover:bg-sky-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+          <a href={contactHref} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-5 py-2.5 text-base font-semibold text-sky-700 transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-px hover:bg-sky-50 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
             Contact Us
           </a>
         </div>
@@ -123,7 +123,7 @@ export default function Navbar() {
           ))}
           <div className="mt-2 flex items-center justify-between border-t border-white/20 pt-3">
             <LoginControl mobile />
-            <a href={contactHref} onClick={() => setOpen(false)} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-4 text-sm font-semibold text-sky-700 transition-colors hover:bg-sky-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+            <a href={contactHref} onClick={() => setOpen(false)} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-4 text-sm font-semibold text-sky-700 transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-px hover:bg-sky-50 hover:shadow-sm active:scale-[.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
               Contact Us
             </a>
           </div>
