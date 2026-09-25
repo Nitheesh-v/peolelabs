@@ -10,6 +10,10 @@ export const company = {
   phoneHref: 'tel:+15874003360',
   email: 'kiran.rajan@peoplelabsconsulting.com',
   emailHref: 'mailto:kiran.rajan@peoplelabsconsulting.com',
+  whatsapp: '+1 587 400 3360',
+  whatsappHref:
+    'https://wa.me/15874003360?text=' +
+    encodeURIComponent('Hello PeopleLabs Consulting! I would like to discuss a requirement.'),
   hours: '9:00 a.m. – 5:00 p.m.',
 }
 
