@@ -4,10 +4,16 @@ require('dotenv').config()
 const express = require('express')
 const multer = require('multer')
 const nodemailer = require('nodemailer')
+const crypto = require('crypto')
+const fs = require('fs')
 const path = require('path')
 
 const app = express()
 const PORT = process.env.PORT || 5050
+// Applications are always stored on the server so submissions never get lost,
+// even when no SMTP mailbox is configured. This folder holds personal data and
+// is git-ignored; retrieve it from the host or configure email delivery below.
+const APPLICATIONS_DIR = path.join(__dirname, 'applications')
 const MAX_RESUME_BYTES = 5 * 1024 * 1024
 const allowedPositions = new Set([
   'Senior PeopleSoft FSCM Business Analyst',
@@ -97,6 +103,23 @@ function getCareersTransport() {
   return { transporter: nodemailer.createTransport(options), recipient, sender }
 }
 
+function safeFilenameFor(originalname) {
+  const cleaned = path.basename(originalname).replace(/[^a-zA-Z0-9._-]/g, '_').replace(/\.pdf$/i, '').slice(0, 110)
+  return `${cleaned || 'resume'}.pdf`
+}
+
+// Persists one application (details + resume PDF) under applications/<id>/.
+function storeApplication(record, file) {
+  const id = `${new Date().toISOString().slice(0, 10)}-${crypto.randomBytes(4).toString('hex')}`
+  const dir = path.join(APPLICATIONS_DIR, id)
+  fs.mkdirSync(dir, { recursive: true })
+  const resumeFile = safeFilenameFor(file.originalname)
+  fs.writeFileSync(path.join(dir, resumeFile), file.buffer)
+  fs.writeFileSync(path.join(dir, 'application.json'), `${JSON.stringify({ ...record, resumeFile }, null, 2)}\n`)
+  fs.appendFileSync(path.join(APPLICATIONS_DIR, 'index.jsonl'), `${JSON.stringify({ id, ...record, resumeFile })}\n`)
+  return { id, resumeFile }
+}
+
 function safeString(value) {
   return typeof value === 'string'
     ? value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim()
@@ -135,15 +158,27 @@ app.post('/api/careers/apply', resumeUpload.single('resume'), async (req, res) =
     return res.status(400).json({ ok: false, error: 'Resume must be a valid PDF file.' })
   }
 
-  const delivery = getCareersTransport()
-  if (!delivery) {
-    return res.status(503).json({
-      ok: false,
-      error: 'Career application email delivery is not configured on this server.',
-    })
+  const record = {
+    fullName,
+    email,
+    phone,
+    currentLocation,
+    experienceLevel,
+    position,
+    introduction,
+    receivedAt: new Date().toISOString(),
   }
 
-  const safeFilename = `${path.basename(req.file.originalname).replace(/[^a-zA-Z0-9._-]/g, '_').replace(/\.pdf$/i, '').slice(0, 110) || 'resume'}.pdf`
+  let stored = null
+  try {
+    stored = storeApplication(record, req.file)
+    console.log(`Careers application stored: ${stored.id}`)
+  } catch (error) {
+    console.error('Careers application storage failed:', error.message)
+  }
+
+  const delivery = getCareersTransport()
+  const safeFilename = stored?.resumeFile || safeFilenameFor(req.file.originalname)
   const text = [
     'PeopleLabs Consulting careers application',
     '',
@@ -158,25 +193,35 @@ app.post('/api/careers/apply', resumeUpload.single('resume'), async (req, res) =
     introduction || '(not provided)',
   ].join('\n')
 
-  try {
-    await delivery.transporter.sendMail({
-      from: delivery.sender,
-      to: delivery.recipient,
-      replyTo: email,
-      subject: `Careers application: ${position}`,
-      text,
-      attachments: [{
-        filename: safeFilename,
-        content: req.file.buffer,
-        contentType: 'application/pdf',
-      }],
-    })
-    console.log('Careers application delivered.')
-    return res.json({ ok: true })
-  } catch (error) {
-    console.error('Careers application email delivery failed:', error.message)
-    return res.status(502).json({ ok: false, error: 'Application submission is temporarily unavailable.' })
+  if (delivery) {
+    try {
+      await delivery.transporter.sendMail({
+        from: delivery.sender,
+        to: delivery.recipient,
+        replyTo: email,
+        subject: `Careers application: ${position}`,
+        text,
+        attachments: [{
+          filename: safeFilename,
+          content: req.file.buffer,
+          contentType: 'application/pdf',
+        }],
+      })
+      console.log('Careers application delivered by email.')
+      return res.json({ ok: true, reference: stored?.id || null, emailed: true })
+    } catch (error) {
+      console.error('Careers application email delivery failed:', error.message)
+      if (stored) {
+        return res.json({ ok: true, reference: stored.id, emailed: false })
+      }
+      return res.status(502).json({ ok: false, error: 'Application submission is temporarily unavailable.' })
+    }
   }
+
+  if (stored) {
+    return res.json({ ok: true, reference: stored.id, emailed: false })
+  }
+  return res.status(500).json({ ok: false, error: 'Application submission is temporarily unavailable.' })
 })
 
 app.use((error, req, res, next) => {

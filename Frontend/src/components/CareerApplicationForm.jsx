@@ -48,6 +48,7 @@ export default function CareerApplicationForm({
   const [resume, setResume] = useState(null)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
+  const [reference, setReference] = useState('')
   const [submissionMessage, setSubmissionMessage] = useState('')
   const [dragging, setDragging] = useState(false)
   const reduceMotion = useReducedMotion()
@@ -151,6 +152,7 @@ export default function CareerApplicationForm({
         return
       }
       setStatus('success')
+      setReference(typeof result?.reference === 'string' ? result.reference : '')
       celebrate()
       setSubmissionMessage('')
       setValues(initialValues)
@@ -314,7 +316,11 @@ export default function CareerApplicationForm({
         {status === 'success' && (
           <div className="mt-5 flex gap-3 rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-800" role="status">
             <Icon name="check-circle" size={19} className="mt-0.5 shrink-0" />
-            <p><span className="font-semibold">Application submitted successfully.</span><br />Thank you for your interest in PeopleLabs Consulting. Your application has been received.</p>
+            <p>
+              <span className="font-semibold">Application submitted successfully.</span><br />
+              Thank you for your interest in PeopleLabs Consulting. Your application and resume have been received
+              {reference ? <> (reference <span className="font-mono font-semibold">{reference}</span>)</> : null}. Our hiring team will review it and get back to you.
+            </p>
           </div>
         )}
         {status === 'error' && (
