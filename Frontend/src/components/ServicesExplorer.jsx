@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
 import TiltCard from './fx/TiltCard.jsx'
 import { serviceOfferings } from '../data/servicesPage.js'
+import Scroll3D from './fx/Scroll3D.jsx'
 
 const detailStagger = {
   hidden: {},
@@ -89,6 +90,7 @@ export default function ServicesExplorer() {
   return (
     <section className="ambient-bg bg-slate-50/70 py-12 sm:py-16 lg:py-20" aria-label="Explore PeopleSoft services">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Scroll3D tilt={14}>
         <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:grid-cols-[280px_minmax(0,1fr)]">
           <aside className="hidden border-r border-slate-200 bg-slate-50 p-5 lg:block xl:p-6">
             <h2 className="mb-5 px-1 text-lg font-bold tracking-tight text-slate-900">PeopleSoft Services</h2>
@@ -156,6 +158,7 @@ export default function ServicesExplorer() {
             </div>
           </div>
         </div>
+        </Scroll3D>
       </div>
     </section>
   )

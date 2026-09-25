@@ -7,6 +7,7 @@ import RevealWords from './fx/RevealWords.jsx'
 import Magnetic from './fx/Magnetic.jsx'
 import { useIntroDone } from './fx/intro.js'
 import Depth3D from './fx/Depth3D.jsx'
+import Hero3D from './fx/Hero3D.jsx'
 
 const ease = [0.16, 1, 0.3, 1]
 const rise = {
@@ -48,6 +49,7 @@ export default function Hero() {
       <div className="fx-grid" aria-hidden="true" />
       <ParticleField className="z-0 opacity-80" />
       <div className="fx-spotlight" aria-hidden="true" />
+      <Hero3D variant="home" start={state === 'visible'} className="z-[1]" />
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:py-24">
         <motion.div className="max-w-2xl" style={reduceMotion ? undefined : { y: copyY, opacity: copyOpacity }}>

@@ -18,6 +18,11 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    // The three.js hero scene is a lazy chunk (~140 kB gzip) loaded after idle;
+    // it never blocks first paint, so allow it without a warning.
+    chunkSizeWarningLimit: 600,
+  },
   preview: {
     host: '0.0.0.0',
     port: 4173,

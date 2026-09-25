@@ -4,17 +4,18 @@ import ContactForm from '../components/ContactForm.jsx'
 import { company } from '../data/content.js'
 import { FadeUp } from '../components/motion/MotionPrimitives.jsx'
 import Globe from '../components/fx/Globe.jsx'
+import Scroll3D from '../components/fx/Scroll3D.jsx'
 
 export default function Contact() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="Let’s talk">
+      <PageHero eyebrow="Contact" title="Let’s talk" scene="contact">
         Have a question about your Oracle or PeopleSoft environment? Drop us a
         line and we&apos;ll get back to you.
       </PageHero>
 
       <section className="section section--white ambient-bg">
-        <div className="container contact-layout">
+        <Scroll3D tilt={12}><div className="container contact-layout">
           <FadeUp as="div">
             <span className="eyebrow">Get in touch</span>
             <h2 className="mb-6">We&apos;d love to hear from you</h2>
@@ -85,7 +86,7 @@ export default function Contact() {
             <h2 className="mb-6">Send us a message</h2>
             <ContactForm />
           </FadeUp>
-        </div>
+        </div></Scroll3D>
       </section>
     </>
   )

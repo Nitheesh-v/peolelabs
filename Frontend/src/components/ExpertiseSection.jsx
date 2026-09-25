@@ -4,6 +4,7 @@ import { FadeUp, StaggerGroup, StaggerItem } from './motion/MotionPrimitives.jsx
 import { motion, useReducedMotion } from 'motion/react'
 import RevealWords from './fx/RevealWords.jsx'
 import TiltCard from './fx/TiltCard.jsx'
+import Scroll3D from './fx/Scroll3D.jsx'
 
 export default function ExpertiseSection() {
   const reduceMotion = useReducedMotion()
@@ -17,7 +18,7 @@ export default function ExpertiseSection() {
             PeopleLabs provides Oracle and PeopleSoft expertise across enterprise finance, human capital management, higher education, and reporting.
           </p>
         </FadeUp>
-        <StaggerGroup className="grid gap-5 lg:grid-cols-2 lg:gap-6" stagger={0.1}>
+        <Scroll3D><StaggerGroup className="grid gap-5 lg:grid-cols-2 lg:gap-6" stagger={0.1}>
           {expertiseGroups.map((group) => (
             <StaggerItem as="div" key={group.id} className="h-full">
               <TiltCard as="article" max={4} className="expertise-card group flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-300 ease-out hover:border-sky-100 hover:shadow-2xl hover:shadow-sky-500/10 sm:p-7">
@@ -50,7 +51,7 @@ export default function ExpertiseSection() {
               </TiltCard>
             </StaggerItem>
           ))}
-        </StaggerGroup>
+        </StaggerGroup></Scroll3D>
       </div>
     </section>
   )

@@ -6,6 +6,8 @@ import HeroBackdrop from '../components/fx/HeroBackdrop.jsx'
 import TiltCard from '../components/fx/TiltCard.jsx'
 import RevealWords from '../components/fx/RevealWords.jsx'
 import { useIntroDone } from '../components/fx/intro.js'
+import Hero3D from '../components/fx/Hero3D.jsx'
+import Scroll3D from '../components/fx/Scroll3D.jsx'
 
 const processSteps = [
   { title: 'Assess', description: 'Understand the current environment and requirements.', icon: 'search' },
@@ -20,7 +22,10 @@ export default function Services() {
     <>
       <section className="ambient-bg ambient-bg--duo relative overflow-hidden border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white py-10 sm:py-12 lg:py-14">
         <HeroBackdrop density={0.55} />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] md:block xl:right-[4%]" aria-hidden="true">
+          <Hero3D variant="services" start={introDone} />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <StaggerGroup animateOnMount stagger={0.08} delayChildren={0.02}>
             <StaggerItem as="nav" aria-label="Breadcrumb" className="mb-7">
               <ol className="flex items-center gap-2 text-sm">
@@ -52,7 +57,7 @@ export default function Services() {
               A Practical Approach to PeopleSoft Services
             </h2>
           </FadeUp>
-          <StaggerGroup as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
+          <Scroll3D><StaggerGroup as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
             {processSteps.map((step, index) => (
               <StaggerItem as="li" key={step.title} className="h-full">
                 <TiltCard max={9} className="group relative h-full rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-sky-100 hover:shadow-xl hover:shadow-sky-500/10">
@@ -71,7 +76,7 @@ export default function Services() {
                 </TiltCard>
               </StaggerItem>
             ))}
-          </StaggerGroup>
+          </StaggerGroup></Scroll3D>
         </div>
       </section>
 

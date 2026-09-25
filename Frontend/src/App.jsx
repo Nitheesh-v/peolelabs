@@ -38,9 +38,10 @@ export default function App() {
         <AnimatePresence initial={false}>
           <motion.div
             key={location.pathname}
-            initial={reduceMotion ? false : { opacity: 0, y: 24, filter: 'blur(6px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)', transitionEnd: { filter: 'none' } }}
-            transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: '50% 0%' }}
+            initial={reduceMotion ? false : { opacity: 0, y: 40, rotateX: 9, scale: 0.97, transformPerspective: 1600, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1, transformPerspective: 1600, filter: 'blur(0px)', transitionEnd: { filter: 'none', transform: 'none' } }}
+            transition={{ duration: reduceMotion ? 0 : 0.75, ease: [0.16, 1, 0.3, 1] }}
           >
             <Suspense fallback={<div className="min-h-[70vh]" aria-busy="true" />}>
             <Routes location={location}>

@@ -8,6 +8,7 @@ import { scrollToTop } from './fx/scroll.js'
 import RevealWords from './fx/RevealWords.jsx'
 import ParticleField from './fx/ParticleField.jsx'
 import Globe from './fx/Globe.jsx'
+import Scroll3D from './fx/Scroll3D.jsx'
 
 const quickLinks = [
   { to: '/', label: 'Home' },
@@ -67,7 +68,7 @@ export default function Footer() {
                 Connect with PeopleLabs Consulting to discuss your Oracle and PeopleSoft requirements.
               </StaggerItem>
             </StaggerGroup>
-            <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+            <Scroll3D tilt={12}><div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
               <FadeUp className="relative mx-auto w-full max-w-[300px] sm:max-w-[380px] lg:max-w-none" delay={0.1}>
                 <Globe />
                 <div className="pointer-events-none absolute inset-x-0 bottom-2 flex justify-center">
@@ -81,7 +82,7 @@ export default function Footer() {
               <FadeUp className="w-full" delay={0.2}>
                 <ContactForm />
               </FadeUp>
-            </div>
+            </div></Scroll3D>
           </div>
         </section>
       )}

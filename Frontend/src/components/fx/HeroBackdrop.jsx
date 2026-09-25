@@ -1,7 +1,8 @@
 import ParticleField from './ParticleField.jsx'
+import Hero3D from './Hero3D.jsx'
 
 // Shared animated backdrop for page heroes: aurora glow, fading grid and a live network.
-export default function HeroBackdrop({ density = 0.7 }) {
+export default function HeroBackdrop({ density = 0.7, scene, start = true }) {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <div className="aurora">
@@ -11,6 +12,7 @@ export default function HeroBackdrop({ density = 0.7 }) {
       </div>
       <div className="fx-grid" />
       <ParticleField className="opacity-70" density={density} />
+      {scene && <Hero3D variant={scene} start={start} />}
     </div>
   )
 }

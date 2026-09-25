@@ -9,6 +9,7 @@ import Depth3D from '../components/fx/Depth3D.jsx'
 import SectorCard from '../components/SectorCard.jsx'
 import TiltCard from '../components/fx/TiltCard.jsx'
 import { sectors } from '../data/content.js'
+import Scroll3D from '../components/fx/Scroll3D.jsx'
 
 const expertise = [
   {
@@ -157,8 +158,8 @@ export default function About() {
       <AboutMetadata />
 
       <section aria-labelledby="about-hero-title" className="ambient-bg ambient-bg--duo relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white">
-        <HeroBackdrop density={0.6} />
-        <div className="mx-auto grid min-h-[420px] max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-16">
+        <HeroBackdrop density={0.6} scene="about" start={introDone} />
+        <div className="relative z-10 mx-auto grid min-h-[420px] max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-16">
           <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
             <StaggerItem as="p" className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">About PeopleLabs</StaggerItem>
             <RevealWords
@@ -193,7 +194,7 @@ export default function About() {
       </section>
 
       <section aria-labelledby="get-to-know-title" className="bg-white py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-7xl items-center gap-9 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:px-8">
+        <Scroll3D tilt={14}><div className="mx-auto grid max-w-7xl items-center gap-9 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:px-8">
           <FadeSide as="div" direction="left">
             <Depth3D max={8}><CompanyVisual /></Depth3D>
           </FadeSide>
@@ -218,7 +219,7 @@ export default function About() {
               Edmonton, Alberta, Canada
             </p>
           </FadeSide>
-        </div>
+        </div></Scroll3D>
       </section>
 
       <section aria-labelledby="expertise-title" className="ambient-bg border-y border-sky-100 bg-sky-50 py-14 sm:py-16 lg:py-20">
@@ -232,7 +233,7 @@ export default function About() {
               Our experience spans key Oracle and PeopleSoft technologies, managed services, and training.
             </p>
           </FadeUp>
-          <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.09}>
+          <Scroll3D><StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.09}>
             {expertise.map((item) => (
               <StaggerItem as="div" key={item.title} className="h-full">
                 <TiltCard as="article" max={9} className="group h-full rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-sky-100 hover:shadow-xl hover:shadow-sky-500/10 sm:p-6">
@@ -244,7 +245,7 @@ export default function About() {
                 </TiltCard>
               </StaggerItem>
             ))}
-          </StaggerGroup>
+          </StaggerGroup></Scroll3D>
           <div className="mt-7 text-center">
             <Link to="/services" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-3 text-sm font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 transition-colors hover:text-sky-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600">
               View All Services

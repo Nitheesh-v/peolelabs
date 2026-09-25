@@ -11,6 +11,7 @@ import RevealWords from '../components/fx/RevealWords.jsx'
 import { useIntroDone } from '../components/fx/intro.js'
 import Depth3D from '../components/fx/Depth3D.jsx'
 import TiltCard from '../components/fx/TiltCard.jsx'
+import Scroll3D from '../components/fx/Scroll3D.jsx'
 
 const pageDescription = 'Explore PeopleSoft career opportunities with PeopleLabs Consulting in Edmonton, Alberta, including business analyst and technical support roles.'
 
@@ -136,8 +137,8 @@ export default function Careers() {
   return (
     <>
       <section className="ambient-bg ambient-bg--duo relative overflow-hidden border-b border-sky-100 bg-gradient-to-b from-sky-50 to-white">
-        <HeroBackdrop density={0.6} />
-        <div className="mx-auto grid max-w-7xl items-center gap-7 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:py-16">
+        <HeroBackdrop density={0.6} scene="careers" start={introDone} />
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-7 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:px-8 lg:py-16">
           <StaggerGroup className="max-w-2xl" animateOnMount stagger={0.1} delayChildren={0.04}>
             <StaggerItem as="p" className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-100 px-3.5 py-2 text-xs font-bold tracking-[0.1em] text-sky-800">
               <span aria-hidden="true" className="pulse-dot h-2 w-2 rounded-full bg-sky-500" />
@@ -216,7 +217,7 @@ export default function Careers() {
                   Explore current opportunities with PeopleLabs Consulting.
                 </p>
               </FadeUp>
-              <StaggerGroup className="grid gap-4" stagger={0.08}>
+              <Scroll3D tilt={12}><StaggerGroup className="grid gap-4" stagger={0.08}>
                 {careers.map((job) => (
                   <StaggerItem as="div" key={job.id}>
                     <JobOpening
@@ -227,7 +228,7 @@ export default function Careers() {
                     />
                   </StaggerItem>
                 ))}
-              </StaggerGroup>
+              </StaggerGroup></Scroll3D>
             </div>
 
             <FadeUp as="div" className="xl:sticky xl:top-28" delay={0.08}>
