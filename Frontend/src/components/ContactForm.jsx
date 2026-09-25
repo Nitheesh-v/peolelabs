@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
 import { company } from '../data/content.js'
 import { celebrate } from './fx/celebrate.js'
+import { API_BASE } from '../lib/api.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const initialValues = { name: '', email: '', message: '' }
@@ -59,7 +60,7 @@ export default function ContactForm() {
     setStatus('submitting')
     setSubmissionMessage('')
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${API_BASE}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

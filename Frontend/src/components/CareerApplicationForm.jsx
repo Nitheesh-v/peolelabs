@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
 import { applicationPositions } from '../data/careers.js'
 import { company } from '../data/content.js'
+import { API_BASE } from '../lib/api.js'
 import { celebrate } from './fx/celebrate.js'
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024
@@ -144,7 +145,7 @@ export default function CareerApplicationForm({
     payload.append('resume', resume, resume.name)
 
     try {
-      const response = await fetch('/api/careers/apply', { method: 'POST', body: payload })
+      const response = await fetch(`${API_BASE}/api/careers/apply`, { method: 'POST', body: payload })
       const result = await response.json().catch(() => null)
       if (!response.ok || !result?.ok) {
         setSubmissionMessage(result?.error || 'Your application could not be sent right now.')

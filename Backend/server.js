@@ -22,6 +22,27 @@ const allowedPositions = new Set([
 ])
 const allowedExperience = new Set(['0–2 years', '3–6 years', '7+ years'])
 
+// CORS: allow the deployed frontend (and local dev) to call the API directly.
+const CORS_ORIGINS = new Set(
+  (process.env.CORS_ORIGINS || 'https://peolelabs.vercel.app')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+    .concat(['http://localhost:5173', 'http://localhost:4173']),
+)
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin
+  if (origin && (CORS_ORIGINS.has(origin) || /^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(origin))) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+    res.setHeader('Vary', 'Origin')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+    if (req.method === 'OPTIONS') return res.sendStatus(204)
+  }
+  next()
+})
+
 app.use(express.json({ limit: '16kb' }))
 
 const submissions = []
