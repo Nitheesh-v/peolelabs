@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, ShieldCheck, Sparkles } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -8,17 +7,24 @@ export default function ContactSection() {
     email: '',
     phone: '',
     company: '',
-    subject: 'Executive Search & Headhunting',
     message: ''
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [responseMsg, setResponseMsg] = useState('');
   const [refId, setRefId] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg('');
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setErrorMsg('Please fill in all required fields (Name, Email, Message).');
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -34,215 +40,195 @@ export default function ContactSection() {
         setSubmitted(true);
         setResponseMsg(data.message);
         setRefId(data.referenceId);
-        confetti({
-          particleCount: 100,
-          spread: 80,
-          origin: { y: 0.6 }
-        });
       } else {
-        alert(data.error || 'Submission error. Please try again.');
+        setErrorMsg(data.error || 'Unable to process inquiry. Please verify your information.');
       }
     } catch (err) {
-      console.warn('API submission error, generating fallback success:', err);
+      console.warn('API connection error, fallback:', err);
       setSubmitted(true);
-      setResponseMsg(`Thank you ${formData.name}! Your inquiry has been received. An Arena Agents specialist will contact you within 2 business hours.`);
-      setRefId(`PL-${Math.floor(100000 + Math.random() * 900000)}`);
-      confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+      setResponseMsg(`Thank you ${formData.name}. Your message has been sent to our consulting team. We will respond within 1 business day.`);
+      setRefId(`PLC-${Math.floor(100000 + Math.random() * 900000)}`);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-950 relative overflow-hidden">
-      
-      {/* Background Lights */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-amber-500/5 rounded-full blur-[160px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Info Column */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 space-y-6">
             <div>
-              <span className="px-3.5 py-1 rounded-full bg-amber-400/10 text-amber-400 text-xs font-extrabold uppercase tracking-widest border border-amber-400/20 mb-3 inline-block">
-                Start The Mandate
+              <span className="text-xs font-bold uppercase tracking-wider text-sky-600 block mb-1">
+                CONTACT US
               </span>
-              <h2 className="text-4xl sm:text-5xl font-black uppercase font-['Oswald'] text-white tracking-tight leading-tight">
-                Connect With <br />
-                <span className="text-amber-400">Arena Agents</span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Let's Discuss Your Oracle & PeopleSoft Objectives
               </h2>
-              <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed">
-                Whether you need to secure top 1% executive talent or seek strategic HR & payroll transformation, our partner agents deliver speed and precision.
+              <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+                Send us a message to schedule a technical discovery call with our senior consultants or to request a proposal.
               </p>
             </div>
 
-            {/* Contact Info Cards */}
-            <div className="space-y-4">
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 shrink-0">
-                  <Mail size={20} />
-                </div>
+            {/* Direct Contact Cards */}
+            <div className="space-y-4 pt-2">
+              <div className="p-4 rounded-xl bg-sky-50/60 border border-sky-100 flex items-start space-x-3.5">
+                <MapPin size={20} className="text-sky-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-xs text-slate-400 uppercase font-bold block">Direct Inquiries</span>
-                  <span className="text-sm font-extrabold text-white">contact@peoplelabsconsulting.com</span>
+                  <span className="text-xs font-bold uppercase text-slate-900 block">Office Address</span>
+                  <span className="text-xs sm:text-sm text-slate-700 leading-snug block">
+                    PeopleLabs Consulting Inc.<br />
+                    3269 Cherry Crescent SW<br />
+                    Edmonton, Alberta T6X 1Y5, Canada
+                  </span>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shrink-0">
-                  <Phone size={20} />
-                </div>
+              <div className="p-4 rounded-xl bg-sky-50/60 border border-sky-100 flex items-start space-x-3.5">
+                <Phone size={20} className="text-sky-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-xs text-slate-400 uppercase font-bold block">Executive Desk Hotline</span>
-                  <span className="text-sm font-extrabold text-white">+1 (800) 555-PEOPLE / +1 (212) 890-7200</span>
+                  <span className="text-xs font-bold uppercase text-slate-900 block">Phone</span>
+                  <a href="tel:+15874003360" className="text-xs sm:text-sm font-medium text-sky-600 hover:text-sky-700 transition-colors">
+                    +1 587 400 3360
+                  </a>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
-                  <MapPin size={20} />
-                </div>
+              <div className="p-4 rounded-xl bg-sky-50/60 border border-sky-100 flex items-start space-x-3.5">
+                <Mail size={20} className="text-sky-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-xs text-slate-400 uppercase font-bold block">Headquarters</span>
-                  <span className="text-sm font-extrabold text-white">500 Financial Plaza, Suite 2400, New York, NY 10005</span>
+                  <span className="text-xs font-bold uppercase text-slate-900 block">Email Inquiries</span>
+                  <a href="mailto:kiran.rajan@peoplelabsconsulting.com" className="text-xs sm:text-sm font-medium text-sky-600 hover:text-sky-700 transition-colors">
+                    kiran.rajan@peoplelabsconsulting.com
+                  </a>
                 </div>
               </div>
-            </div>
 
-            {/* SLA Guarantee Box */}
-            <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start space-x-3 text-xs text-slate-300">
-              <Clock size={20} className="text-amber-400 shrink-0 mt-0.5" />
-              <div>
-                <span className="font-extrabold text-white uppercase block mb-0.5">2-Hour Executive Response Guarantee</span>
-                Inquiries submitted during market hours are assigned directly to a Senior Partner within 120 minutes.
+              <div className="p-4 rounded-xl bg-sky-50/60 border border-sky-100 flex items-start space-x-3.5">
+                <Clock size={20} className="text-sky-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-xs font-bold uppercase text-slate-900 block">Business Hours</span>
+                  <span className="text-xs sm:text-sm text-slate-700 block">
+                    9:00 a.m. – 5:00 p.m. (MST / EST)
+                  </span>
+                </div>
               </div>
             </div>
 
           </div>
 
           {/* Right Contact Form Column */}
-          <div className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative">
+          <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
             
             {submitted ? (
-              <div className="text-center py-12 space-y-4">
-                <div className="w-20 h-20 mx-auto rounded-full bg-emerald-500/10 border-2 border-emerald-500 flex items-center justify-center text-emerald-400">
-                  <CheckCircle2 size={40} />
-                </div>
-                <h3 className="text-3xl font-black font-['Oswald'] uppercase text-white">
-                  Mandate Received!
+              <div className="text-center py-10 space-y-4">
+                <CheckCircle2 size={48} className="mx-auto text-emerald-600" />
+                <h3 className="text-2xl font-extrabold text-slate-900">
+                  Message Transmitted
                 </h3>
-                <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
+                <p className="text-slate-600 text-sm max-w-md mx-auto leading-relaxed">
                   {responseMsg}
                 </p>
-                <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-amber-400 text-xs font-mono font-bold inline-block">
+                <div className="px-3 py-1.5 rounded-lg bg-sky-50 border border-sky-100 text-sky-700 text-xs font-mono font-semibold inline-block">
                   Reference ID: {refId}
                 </div>
                 <div>
                   <button
                     onClick={() => {
                       setSubmitted(false);
-                      setFormData({ name: '', email: '', phone: '', company: '', subject: 'Executive Search & Headhunting', message: '' });
+                      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
                     }}
-                    className="mt-6 px-6 py-2.5 rounded-xl bg-slate-800 text-white font-bold text-xs uppercase hover:bg-slate-700"
+                    className="mt-4 px-5 py-2 rounded-lg bg-sky-500 text-white font-semibold text-xs hover:bg-sky-600 transition-colors"
                   >
-                    Submit Another Inquiry
+                    Send Another Message
                   </button>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                  <h3 className="text-xl font-black font-['Oswald'] uppercase text-white flex items-center gap-2">
-                    <Sparkles size={20} className="text-amber-400" />
-                    Engage An Agent Specialist
-                  </h3>
-                  <span className="text-[11px] font-bold uppercase text-slate-500">100% Confidential</span>
-                </div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <h3 className="text-lg font-bold text-slate-900 pb-2 border-b border-slate-100">
+                  Send Us A Message
+                </h3>
+
+                {/* Validation Error Alert in #DC2626 */}
+                {errorMsg && (
+                  <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-center gap-2">
+                    <AlertCircle size={16} className="shrink-0 text-red-600" />
+                    <span>{errorMsg}</span>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-bold uppercase text-slate-400 block mb-1">Your Full Name *</label>
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">Full Name *</label>
                     <input
                       type="text"
                       required
                       placeholder="Alexander Wright"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-600 focus:outline-none focus:border-amber-400"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     />
                   </div>
+
                   <div>
-                    <label className="text-xs font-bold uppercase text-slate-400 block mb-1">Work Email *</label>
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">Email Address *</label>
                     <input
                       type="email"
                       required
-                      placeholder="alexander@enterprise.com"
+                      placeholder="alexander@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-600 focus:outline-none focus:border-amber-400"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-bold uppercase text-slate-400 block mb-1">Company / Enterprise</label>
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">Organization / Enterprise</label>
                     <input
                       type="text"
-                      placeholder="Acme Global Inc."
+                      placeholder="Acme Enterprise Inc."
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-600 focus:outline-none focus:border-amber-400"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     />
                   </div>
+
                   <div>
-                    <label className="text-xs font-bold uppercase text-slate-400 block mb-1">Phone Number</label>
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">Phone Number</label>
                     <input
                       type="tel"
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+1 (587) 000-0000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-600 focus:outline-none focus:border-amber-400"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold uppercase text-slate-400 block mb-1">Mandate / Primary Service Required</label>
-                  <select
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:border-amber-400"
-                  >
-                    <option value="Executive Search & Headhunting">Executive Search & Headhunting</option>
-                    <option value="Career Representation for High Performers">Career Representation for High Performers</option>
-                    <option value="Contract & Compensation Negotiation">Contract & Compensation Negotiation</option>
-                    <option value="HR Consulting & Policy Framework">HR Consulting & Policy Framework</option>
-                    <option value="Global Payroll Outsourcing">Global Payroll Outsourcing</option>
-                    <option value="Leadership Training & Skill Mapping">Leadership Training & Skill Mapping</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="text-xs font-bold uppercase text-slate-400 block mb-1">Project Details / Message *</label>
+                  <label className="text-xs font-semibold text-slate-700 block mb-1">Project Summary / Inquiry Details *</label>
                   <textarea
                     required
                     rows={4}
-                    placeholder="Briefly describe your hiring target, timeframe, or HR requirements..."
+                    placeholder="Tell us about your PeopleSoft FSCM, HCM, Campus Solutions, or Oracle Cloud requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-600 focus:outline-none focus:border-amber-400"
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-xl shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-[1.01] transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-lg text-sm font-semibold text-white bg-sky-500 hover:bg-sky-600 transition-colors shadow-sm flex items-center justify-center gap-2"
                 >
-                  {loading ? 'Transmitting Mandate...' : 'Submit Inquiries & Launch'}
+                  {loading ? 'Sending Message...' : 'Send Message'}
                   <Send size={16} />
                 </button>
               </form>

@@ -1,92 +1,100 @@
 export const servicesData = [
   {
     id: "srv-1",
-    number: "01",
-    title: "Talent Scouting & Executive Search",
-    subtitle: "Precision Headhunting for C-Suite & Niche Technical Leaders",
-    description: "Our proprietary 5-stage scouting methodology identifies, vets, and lands the top 1% of passive candidates in your industry before your competitors even know they are open to dynamic moves.",
+    code: "FSCM",
+    title: "PeopleSoft FSCM",
+    subtitle: "Financials & Supply Chain Management",
+    description: "End-to-end implementation, optimization, and upgrades for General Ledger, Accounts Payable, Billing, Asset Management, and eProcurement.",
     features: [
-      "Rigorous 360° Candidate Audits & Vetting",
-      "Executive Compensation Benchmarking",
-      "Confidential & Stealth Headhunting Capabilities",
-      "Guaranteed 98% 12-Month Retention Rate"
+      "General Ledger & Financial Reporting",
+      "Payables, Receivables & Billing",
+      "Asset Management & Treasury",
+      "Supply Chain & Strategic Sourcing"
     ],
-    highlight: "Average Placement Speed: 21 Days",
-    icon: "Target"
+    iconName: "CreditCard"
   },
   {
     id: "srv-2",
-    number: "02",
-    title: "Career Management & Placement",
-    subtitle: "Personalized Representation for World-Class High Performers",
-    description: "We act as personal talent agents for proven executives, negotiating maximum valuation, equity upside, and career elevation in market-leading enterprises.",
+    code: "HCM",
+    title: "PeopleSoft HCM",
+    subtitle: "Human Capital Management",
+    description: "Transform your workforce administration with tailored solutions for Global Payroll, Absence Management, Benefits, and Talent Acquisition.",
     features: [
-      "Dedicated Senior Agent Representation",
-      "Strategic Career Positioning & Portfolio Prep",
-      "Exclusive Access to Unlisted Board & Executive Roles",
-      "Post-Placement 90-Day Acceleration Coaching"
+      "North American & Global Payroll",
+      "Base Benefits & Benefit Administration",
+      "Time & Labor / Absence Management",
+      "ePerformance & Manager Self-Service"
     ],
-    highlight: "Average Salary Elevation: +38%",
-    icon: "Briefcase"
+    iconName: "Users"
   },
   {
     id: "srv-3",
-    number: "03",
-    title: "Contract & Salary Negotiation",
-    subtitle: "High-Stakes Offer Optimization & Equity Structuring",
-    description: "Eliminate friction during executive offers. Our experienced negotiation team structures win-win compensation packages covering equity grants, golden handcuffs, and bonus metrics.",
+    code: "CS",
+    title: "PeopleSoft Campus Solutions",
+    subtitle: "Student & Academic Administration",
+    description: "Modernizing university environments with seamless Student Financials, Financial Aid, Recruiting, and Academic Records management.",
     features: [
-      "BS-Free Compensation Modeling",
-      "RSU / Stock Option Evaluation",
-      "Non-Compete & Relocation Advisory",
-      "100% Offer Acceptance Rate to Date"
+      "Student Records & Enrollment",
+      "Financial Aid & Scholarship Rules",
+      "Student Financials & Cashiering",
+      "Faculty & Academic Advising Portals"
     ],
-    highlight: "Negotiated Value Added: $150M+",
-    icon: "ShieldCheck"
+    iconName: "GraduationCap"
   },
   {
     id: "srv-4",
-    number: "04",
-    title: "HR Consulting & Policy Framework",
-    subtitle: "Building Enterprise Infrastructure & Compliance Standards",
-    description: "Transform your People Operations into a strategic engine. We design robust HR frameworks, performance evaluation metrics, and bulletproof compliance policies.",
+    code: "RPT",
+    title: "PeopleSoft Reporting",
+    subtitle: "Analytics, nVision & BI Publisher",
+    description: "Unlocking executive visibility with custom PS/nVision financial reports, BI Publisher templates, and real-time Query dashboards.",
     features: [
-      "Global HR Audit & Compliance Alignment",
-      "Organisational Culture & DEI Frameworks",
-      "Scalable Compensation Tiering",
-      "Employee Lifecycle Redesign"
+      "PS/nVision Financial Matrix Reports",
+      "BI Publisher & XML Reporting",
+      "PeopleSoft Query & Pivot Grids",
+      "Kibana Analytics Dashboards"
     ],
-    highlight: "Deployed Across 50+ Enterprises",
-    icon: "Sliders"
+    iconName: "BarChart3"
   },
   {
     id: "srv-5",
-    number: "05",
-    title: "Payroll & Compensation Management",
-    subtitle: "End-to-End Global Payroll & Benefit Outsourcing",
-    description: "Seamless global payroll operations across multi-jurisdictional teams with automated tax withholdings, currency payouts, and executive benefit administration.",
+    code: "CLOUD",
+    title: "Oracle Cloud",
+    subtitle: "SaaS & Infrastructure Migration",
+    description: "Strategic cloud transition roadmaps, hybrid integrations, and Oracle Cloud Infrastructure (OCI) hosting for PeopleSoft environments.",
     features: [
-      "Multi-Currency Automated Disbursements",
-      "Tax & Cross-Border Legal Compliance",
-      "Executive Tiered Benefits Management",
-      "Real-Time Analytics & Cost Reports"
+      "PeopleSoft to OCI Cloud Migration",
+      "Oracle Fusion ERP & HCM Advisory",
+      "Hybrid Integration Architecture",
+      "Cloud Security & Compliance Audits"
     ],
-    highlight: "Zero-Downtime Payroll Execution",
-    icon: "DollarSign"
+    iconName: "Cloud"
   },
   {
     id: "srv-6",
-    number: "06",
-    title: "Leadership Training & Skill Mapping",
-    subtitle: "Empowering Next-Generation Directors & VP Cohorts",
-    description: "Accelerate your high-potential talent into confident executive leaders through customized leadership workshops, skill gap mapping, and executive coaching.",
+    code: "MS",
+    title: "Managed Services",
+    subtitle: "24/7 Production Support & PUM Updates",
+    description: "Comprehensive SLA-backed maintenance, PUM image updates, Selective Adoption, PUM maintenance, and continuous system monitoring.",
     features: [
-      "Targeted Leadership Skill Assessments",
-      "Custom Executive Coaching Frameworks",
-      "Succession Planning Strategy",
-      "Measurable Manager Performance KPIs"
+      "PeopleSoft Update Manager (PUM) Patches",
+      "24/7 Level 2 & Level 3 Production Support",
+      "Database & Application Server Tuning",
+      "Disaster Recovery & Backup Automation"
     ],
-    highlight: "94% Leadership Readiness Score",
-    icon: "Award"
+    iconName: "Headphones"
+  },
+  {
+    id: "srv-7",
+    code: "TRN",
+    title: "Training & Enablement",
+    subtitle: "User Workshops & Administrator Coaching",
+    description: "Customized training programs and functional/technical workshops to ensure high user adoption and internal team self-sufficiency.",
+    features: [
+      "Role-Based End User Training",
+      "Administrator & Developer Bootcamps",
+      "Up-to-Date Feature Rollout Guidance",
+      "Custom User Manuals & Documentation"
+    ],
+    iconName: "BookOpen"
   }
 ];

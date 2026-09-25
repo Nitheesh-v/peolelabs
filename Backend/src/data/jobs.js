@@ -1,74 +1,66 @@
-export const jobsData = [
+export let jobsData = [
   {
-    id: "job-101",
-    title: "Chief Artificial Intelligence Officer (CAIO)",
-    department: "Tech & AI",
-    location: "San Francisco, CA (Hybrid)",
-    type: "Full-Time Executive",
-    salary: "$450,000 - $600,000 + Equity",
-    experience: "12+ Years",
-    description: "Leading enterprise AI strategy, generative model deployments, and AI engineering org scaling for a Series-C Fintech Unicorn.",
-    requirements: ["PhD or MS in CS / Machine Learning", "Proven record scaling AI teams from 10 to 80+", "Track record with LLM foundation model training"],
-    postedDate: "2 days ago"
+    id: "job-sr-fscm-ba",
+    title: "Senior PeopleSoft FSCM Business Analyst",
+    type: "Full Time",
+    experience: "7+ years",
+    location: "Edmonton-based / Remote",
+    workModel: "Remote",
+    summary: "PeopleLabs Consulting is looking for multiple PeopleSoft Business Analyst resources for our growing and dynamic clients. Bring your PeopleSoft expertise to one of PeopleLabs Consulting Edmonton based remote full time job opportunities. We are dedicated to delivering innovative solutions to our clients and encourage new talent to apply for this position.",
+    qualificationsHeading: "About the Qualifications:",
+    qualifications: [
+      "Must be a able to work in Canada without sponsorship.",
+      "7+ years experience working as a PeopleSoft Business Analyst.",
+      "In-depth knowledge of PeopleSoft modules such as Financials/Supply Chain (FSCM).",
+      "Strong analytical, problem-solving, and communication skills.",
+      "Experience with PeopleTools, nVision, Kibana Reporting, and other PeopleSoft development tools.",
+      "Ability to work collaboratively in a team environment and lead discussions with business stakeholders.",
+      "PeopleSoft certifications are a plus."
+    ],
+    applyUrl: "https://peoplelabsconsulting.com/job-posting",
+    active: true,
+    createdAt: new Date().toISOString()
   },
   {
-    id: "job-102",
-    title: "Head of Quantitative Strategy",
-    department: "Finance",
-    location: "New York, NY (On-site)",
-    type: "Full-Time Executive",
-    salary: "$500,000 - $750,000 + Performance Bonus",
-    experience: "10+ Years",
-    description: "Spearheading high-frequency equity trading models and algorithmic risk management for a premier tier-1 global hedge fund.",
-    requirements: ["Degree in Mathematics, Physics or Financial Engineering", "Expertise in C++, Python, CUDA", "Demonstrated PnL track record of $20M+"],
-    postedDate: "1 day ago"
+    id: "job-fscm-ba-entry",
+    title: "PeopleSoft FSCM Business Analyst - Entry Level",
+    type: "Full Time",
+    experience: "2+ years",
+    location: "Edmonton-based / Remote",
+    workModel: "Remote",
+    summary: "PeopleLabs Consulting is looking for multiple PeopleSoft Business Analyst resources for our growing and dynamic clients. Bring your PeopleSoft expertise to one of PeopleLabs Consulting Edmonton based remote full time job opportunities. We are dedicated to delivering innovative solutions to our clients and encourage new talent to apply for this position.",
+    qualificationsHeading: "About the Qualifications:",
+    qualifications: [
+      "Must be a able to work in Canada without sponsorship.",
+      "2+ years experience working as a PeopleSoft Financials.",
+      "In-depth knowledge of PeopleSoft modules such as Accounts Payable, Accounts Receivable, Banking.",
+      "Strong analytical, problem-solving, and communication skills.",
+      "Knowledge of PeopleTools, nVision.",
+      "Ability to work collaboratively in a team environment and lead discussions with business stakeholders.",
+      "PeopleSoft certifications are a plus."
+    ],
+    applyUrl: "https://peoplelabsconsulting.com/job-posting",
+    active: true,
+    createdAt: new Date().toISOString()
   },
   {
-    id: "job-103",
-    title: "VP of Global Supply Operations",
-    department: "Logistics",
-    location: "Chicago, IL / Remote",
-    type: "Full-Time Executive",
-    salary: "$320,000 - $420,000",
-    experience: "15+ Years",
-    description: "Overseeing end-to-end supply chain logistics, vendor procurement, and warehouse automation systems across North America & Europe.",
-    requirements: ["10+ years leading multi-country supply networks", "Proven budget management $100M+", "Expertise in SAP S/4HANA & Logistics Automation"],
-    postedDate: "3 days ago"
-  },
-  {
-    id: "job-104",
-    title: "Chief Scientific Officer (CSO)",
-    department: "Healthcare",
-    location: "Boston, MA (On-site)",
-    type: "Full-Time Executive",
-    salary: "$480,000 - $620,000 + Equity",
-    experience: "14+ Years",
-    description: "Driving clinical pipeline candidates through FDA Phase II/III trials for a public oncology biotech pioneer.",
-    requirements: ["MD or PhD in Molecular Oncology / Immunology", "FDA approval track record", "Strong investor presentation skills"],
-    postedDate: "Just posted"
-  },
-  {
-    id: "job-105",
-    title: "VP of HR & Organizational Development",
-    department: "Executive HR",
-    location: "London, UK / Remote",
-    type: "Full-Time Executive",
-    salary: "£180,000 - £240,000",
-    experience: "10+ Years",
-    description: "Architecting global HR infrastructure, talent retention frameworks, and performance reward models for a fast-growing scaleup.",
-    requirements: ["CIPD Level 7 or Master's in HR Management", "Proven global expansion experience", "Strong talent analytics background"],
-    postedDate: "4 days ago"
-  },
-  {
-    id: "job-106",
-    title: "VP of Hardware & Manufacturing",
-    department: "Engineering",
-    location: "Austin, TX (On-site)",
-    type: "Full-Time Executive",
-    salary: "$380,000 - $480,000 + Options",
-    experience: "12+ Years",
-    description: "Directing high-speed automated robotics assembly facilities and hardware engineering teams.",
-    requirements: ["BS/MS in Mechanical / Electrical Engineering", "10+ years in automotive / robotics hardware", "Lean Six Sigma Black Belt"],
-    postedDate: "5 days ago"
+    id: "job-tech-support-analyst",
+    title: "Technical Support Analyst",
+    type: "Full Time",
+    experience: "3+ years",
+    location: "Edmonton-based / Remote",
+    workModel: "Technical Support",
+    summary: "PeopleLabs Consulting is looking for a Technical Support Analyst who specializes in PeopleSoft Technical Solutions to join our team on a full time basis. The successful candidate will find ways forward in the on-going configuration and maintenance of clients PeopleSoft Human Capital Management, Campus, and Finance systems.",
+    qualificationsHeading: "About the Qualifications:",
+    qualifications: [
+      "Must be a able to work in Canada without sponsorship.",
+      "A related post-secondary diploma, a related Bachelor’s degree is strongly preferred.",
+      "3+ years’ of experience in performing duties related to this position in a technical capacity.",
+      "Knowledge of PSQuery, PeopleTools PeopleCode, SQR, XML, SQL, web page development tools and productivity software products (Microsoft Office, 365, Adobe).",
+      "Experience in a post-secondary setting is an asset."
+    ],
+    applyUrl: "https://peoplelabsconsulting.com/job-posting",
+    active: true,
+    createdAt: new Date().toISOString()
   }
 ];
