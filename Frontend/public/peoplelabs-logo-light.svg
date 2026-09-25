@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="96 250 1408 328" role="img" aria-labelledby="title desc">
+  <title id="title">PeopleLab Consulting Inc. (light variant)</title>
+  <desc id="desc">PeopleLab Consulting Inc. logo: a cloud outline with connected dots around a P/L monogram, PEOPLE in navy and LAB in green with a red Canadian maple leaf, plus CONSULTING INC. and ORACLE CLOUD ERP CONSULTING taglines.</desc>
+  <defs>
+    <linearGradient id="rule" gradientUnits="userSpaceOnUse" x1="436" y1="0" x2="1420" y2="0">
+      <stop offset="0" stop-color="#b8e08c" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#b8e08c"/>
+      <stop offset=".94" stop-color="#b8e08c"/>
+      <stop offset="1" stop-color="#b8e08c" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Cloud mark with connected dots and PL monogram -->
+  <g transform="translate(271 400) scale(1.15) translate(-271 -400)">
+    <g fill="none" stroke-linecap="butt">
+      <path d="M204 350A67 67 0 0 1 338 350" stroke="#8fd06d" stroke-width="16"/>
+      <path d="M204 350A74 74 0 0 0 204 498" stroke="#ffffff" stroke-width="16"/>
+      <path d="M338 350A74 74 0 0 1 338 498" stroke="#ffffff" stroke-width="16"/>
+      <path d="M232 505V322H288A44 44 0 0 1 288 410H232" stroke="#ffffff" stroke-width="16"/>
+      <path d="M276 424V482H330V506" stroke="#ffffff" stroke-width="16"/>
+    </g>
+    <circle cx="271" cy="283" r="11" fill="#8fd06d"/>
+    <circle cx="130" cy="424" r="11" fill="#ffffff"/>
+    <circle cx="412" cy="424" r="11" fill="#ffffff"/>
+  </g>
+
+  <!-- PEOPLE -->
+  <g fill="none" stroke="#ffffff" stroke-width="20" stroke-linejoin="round">
+    <path id="letter-p" d="M436 423V321H505Q517 321 517 333V358Q517 370 505 370H444"/>
+    <path id="letter-e" d="M637 321H563Q551 321 551 333V403Q551 415 563 415H637M551 368H629"/>
+    <rect x="660" y="321" width="84" height="94" rx="14"/>
+    <use href="#letter-p" transform="translate(339 0)"/>
+    <path id="letter-l" d="M891 321V403Q891 415 903 415H968"/>
+    <use href="#letter-e" transform="translate(442 0)"/>
+  </g>
+
+  <!-- LAB -->
+  <g fill="none" stroke="#b8e08c" stroke-width="20" stroke-linejoin="round">
+    <use href="#letter-l" transform="translate(205 0)"/>
+    <path d="M1190 423 1234 326Q1241 312 1248 326L1292 423"/>
+    <path d="M1326 423V321H1386Q1398 321 1398 333V355Q1398 368 1386 368H1326M1386 368H1391Q1405 368 1405 381V403Q1405 415 1393 415H1326"/>
+  </g>
+  <circle cx="1241" cy="408" r="9.5" fill="#b8e08c"/>
+
+  <!-- Maple leaf -->
+  <g transform="translate(1457 384) scale(.86)" fill="#ff8a7a">
+    <path d="m0-43 9 20 17-12-5 20 20 1-14 16 14 13-21 3 3 20-17-12-6 19-7-19-16 12 3-20-21-3 14-13-14-16 20-1-5-20 17 12z"/>
+    <path d="M-2.5 34h5v28h-5z"/>
+  </g>
+
+  <path d="M436 461H1420" fill="none" stroke="url(#rule)" stroke-width="2.5"/>
+  <text x="662" y="517" textLength="758" lengthAdjust="spacing" fill="#ffffff" font-family="'DIN Alternate', 'Segoe UI', Arial, Helvetica, sans-serif" font-size="50" font-weight="500">CONSULTING INC.</text>
+  <text x="700" y="565" textLength="680" lengthAdjust="spacing" fill="#ffffff" font-family="'DIN Alternate', 'Segoe UI', Arial, Helvetica, sans-serif" font-size="33" font-weight="500">ORACLE CLOUD ERP CONSULTING</text>
+</svg>

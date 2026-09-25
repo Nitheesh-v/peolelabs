@@ -102,7 +102,7 @@ export default function Footer() {
           <StaggerGroup className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.7fr_1.15fr_1.15fr] lg:gap-8 xl:gap-12" stagger={0.07}>
             <StaggerItem as="div">
               <div>
-                <Logo size="footer" />
+                <Logo size="footer" tone="light" />
               </div>
               <p className="mt-5 max-w-sm text-sm leading-7 text-sky-50">
                 Founded in 2016, PeopleLabs Consulting provides high-quality IT consulting services specializing in Oracle and PeopleSoft technologies for organizations across a range of industries.

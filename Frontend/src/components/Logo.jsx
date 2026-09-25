@@ -1,15 +1,18 @@
-const logoUrl = '/peoplelabs-logo.svg'
+const logos = {
+  dark: '/peoplelabs-logo.svg',
+  light: '/peoplelabs-logo-light.svg',
+}
 
-// Brand artwork sits on its light-blue brand background, matching the supplied logo image.
-export default function Logo({ size = 'navigation', decorative = false }) {
+// Brand artwork is transparent; it sits directly on the page surface.
+export default function Logo({ size = 'navigation', decorative = false, tone = 'dark' }) {
   const dimensions = size === 'footer'
-    ? 'h-16 w-[272px] px-3 py-2 sm:h-[72px] sm:w-[306px]'
-    : 'h-12 w-[208px] px-2.5 py-1.5 sm:h-14 sm:w-[252px] sm:px-3'
+    ? 'h-16 w-[272px] sm:h-[72px] sm:w-[306px]'
+    : 'h-12 w-[208px] sm:h-14 sm:w-[252px]'
 
   return (
-    <span className={`inline-flex max-w-full shrink-0 items-center justify-center overflow-hidden rounded-lg bg-[#6ec3fa] shadow-sm ring-1 ring-white/40 ${dimensions}`}>
+    <span className={`inline-flex max-w-full shrink-0 items-center justify-center ${dimensions}`}>
       <img
-        src={logoUrl}
+        src={logos[tone] || logos.dark}
         alt={decorative ? '' : 'PeopleLab Consulting Inc.'}
         loading={size === 'footer' ? 'lazy' : 'eager'}
         decoding="async"
