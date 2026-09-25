@@ -382,6 +382,117 @@ html.lenis body {
   to { background-position: -200% 0; }
 }
 
+
+/* ---- Sector image cards ------------------------------------------------ */
+.sector-float {
+  animation: sector-float 7s ease-in-out infinite;
+}
+@keyframes sector-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -7px, 0); }
+}
+.sector-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, rgb(255 255 255 / 0.55) 50%, transparent 65%);
+  transform: translateX(-130%);
+}
+.group:hover .sector-shine {
+  transform: translateX(130%);
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---- Idle 3D float for illustrations ------------------------------------ */
+.float-3d {
+  transform-style: preserve-3d;
+  animation: float-3d 9s ease-in-out infinite;
+}
+@keyframes float-3d {
+  0%, 100% { transform: rotateX(4deg) rotateY(-6deg) translateY(0); }
+  50% { transform: rotateX(-3deg) rotateY(6deg) translateY(-8px); }
+}
+
+/* ---- Globe --------------------------------------------------------------- */
+.globe-wrap {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  container-type: inline-size;
+}
+.globe-wrap::before {
+  position: absolute;
+  inset: 8%;
+  border-radius: 9999px;
+  content: '';
+  background: radial-gradient(circle at 50% 50%, rgb(56 189 248 / 0.28), transparent 65%);
+  filter: blur(30px);
+}
+.globe-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  contain: layout paint size;
+}
+.globe-canvas[data-ready='true'] {
+  opacity: 1;
+}
+.globe-canvas {
+  filter: url(#globe-tint);
+}
+.globe-pin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.globe-pin__dot,
+.globe-pin__ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 9999px;
+}
+.globe-pin__dot {
+  background: #65a30d;
+  box-shadow: 0 0 0 3px #fff, 0 4px 12px rgb(14 38 86 / 0.35);
+}
+.globe-pin__ring {
+  border: 2px solid #65a30d;
+  animation: globe-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes globe-ping {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(3.6); opacity: 0; }
+}
+.globe-pin__label {
+  position: absolute;
+  left: 12px;
+  top: -30px;
+  white-space: nowrap;
+  border-radius: 9999px;
+  background: #0e2656;
+  padding: 3px 10px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 6px 16px rgb(14 38 86 / 0.3);
+}
+.globe-canvas:active {
+  cursor: grabbing;
+}
+
 @keyframes fx-spin {
   to { transform: rotate(360deg); }
 }
@@ -397,7 +508,10 @@ html.lenis body {
   .scroll-cue span,
   .eyebrow-line::before,
   .hero-visual__orbit,
-  .fx-shimmer-line {
+  .fx-shimmer-line,
+  .sector-float,
+  .float-3d,
+  .globe-pin__ring {
     animation: none !important;
   }
   .marquee__inner {

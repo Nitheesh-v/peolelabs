@@ -7,6 +7,7 @@ import { company } from '../data/content.js'
 import { scrollToTop } from './fx/scroll.js'
 import RevealWords from './fx/RevealWords.jsx'
 import ParticleField from './fx/ParticleField.jsx'
+import Globe from './fx/Globe.jsx'
 
 const quickLinks = [
   { to: '/', label: 'Home' },
@@ -66,9 +67,21 @@ export default function Footer() {
                 Connect with PeopleLabs Consulting to discuss your Oracle and PeopleSoft requirements.
               </StaggerItem>
             </StaggerGroup>
-            <FadeUp className="mx-auto max-w-3xl" delay={0.16}>
-              <ContactForm />
-            </FadeUp>
+            <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+              <FadeUp className="relative mx-auto w-full max-w-[300px] sm:max-w-[380px] lg:max-w-none" delay={0.1}>
+                <Globe />
+                <div className="pointer-events-none absolute inset-x-0 bottom-2 flex justify-center">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white bg-white/85 px-4 py-2 text-sm font-semibold text-slate-800 shadow-lg shadow-sky-900/10 backdrop-blur">
+                    <span className="pulse-dot h-2 w-2 rounded-full bg-lime-600" aria-hidden="true" />
+                    <Icon name="map-pin" size={16} className="text-sky-600" />
+                    Edmonton, Alberta, Canada
+                  </span>
+                </div>
+              </FadeUp>
+              <FadeUp className="w-full" delay={0.2}>
+                <ContactForm />
+              </FadeUp>
+            </div>
           </div>
         </section>
       )}

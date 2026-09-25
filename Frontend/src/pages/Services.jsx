@@ -3,6 +3,7 @@ import Icon from '../components/Icon.jsx'
 import { FadeUp, StaggerGroup, StaggerItem } from '../components/motion/MotionPrimitives.jsx'
 import ServicesExplorer from '../components/ServicesExplorer.jsx'
 import HeroBackdrop from '../components/fx/HeroBackdrop.jsx'
+import TiltCard from '../components/fx/TiltCard.jsx'
 import RevealWords from '../components/fx/RevealWords.jsx'
 import { useIntroDone } from '../components/fx/intro.js'
 
@@ -53,9 +54,10 @@ export default function Services() {
           </FadeUp>
           <StaggerGroup as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
             {processSteps.map((step, index) => (
-              <StaggerItem as="li" key={step.title} className="relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:border-sky-200 hover:shadow-md">
+              <StaggerItem as="li" key={step.title} className="h-full">
+                <TiltCard max={9} className="group relative h-full rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-sky-100 hover:shadow-xl hover:shadow-sky-500/10">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true">
+                  <span className="tilt-pop flex h-10 w-10 items-center justify-center rounded-lg bg-sky-100 text-sky-700 transition-colors duration-300 group-hover:bg-sky-500 group-hover:text-white" aria-hidden="true">
                     <Icon name={step.icon} size={21} strokeWidth={1.8} />
                   </span>
                   <h3 className="text-base font-semibold text-slate-900">{step.title}</h3>
@@ -66,6 +68,7 @@ export default function Services() {
                     <Icon name="arrow-right" size={16} />
                   </span>
                 )}
+                </TiltCard>
               </StaggerItem>
             ))}
           </StaggerGroup>

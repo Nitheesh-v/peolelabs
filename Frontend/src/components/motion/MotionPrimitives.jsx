@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'motion/react'
 // The polymorphic wrappers select only pre-created motion elements from a module-level map.
 /* eslint react-hooks/static-components: "off" */
 
-const easeOut = [0.22, 0.61, 0.36, 1]
+const easeOut = [0.16, 1, 0.3, 1]
 const motionElements = {
   article: motion.article,
   div: motion.div,
@@ -18,9 +18,10 @@ const motionElements = {
   ul: motion.ul,
 }
 
+// Reveals rise out of depth: a short 3D tilt (rotateX) that settles flat.
 const fadeUpVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.52, ease: easeOut } },
+  hidden: { opacity: 0, y: 34, rotateX: 16, transformPerspective: 1000 },
+  visible: { opacity: 1, y: 0, rotateX: 0, transformPerspective: 1000 },
 }
 
 function useRevealState(once = true) {
@@ -69,7 +70,7 @@ export function FadeUp({
   children,
   className,
   delay = 0,
-  duration = 0.52,
+  duration = 0.8,
   once = true,
   animateOnMount = false,
   ...props
@@ -106,10 +107,12 @@ export function FadeSide({ direction = 'left', ...props }) {
   const { as = 'div', children, className, delay = 0, once = true, animateOnMount = false, ...rest } = props
   const { ref, reduceMotion, animate } = useRevealState(once)
   const Component = getMotionComponent(as)
-  const axis = reduceMotion || isMobile ? { x: 0, y: 20 } : { x: direction === 'left' ? -18 : 18, y: 0 }
+  const axis = reduceMotion || isMobile
+    ? { x: 0, y: 24, rotateX: 12 }
+    : { x: direction === 'left' ? -40 : 40, y: 0, rotateY: direction === 'left' ? 16 : -16 }
   const variants = {
-    hidden: { opacity: 0, ...axis },
-    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.54, ease: easeOut } },
+    hidden: { opacity: 0, transformPerspective: 1100, ...axis },
+    visible: { opacity: 1, x: 0, y: 0, rotateX: 0, rotateY: 0, transformPerspective: 1100 },
   }
 
   return (
@@ -119,7 +122,7 @@ export function FadeSide({ direction = 'left', ...props }) {
       variants={variants}
       initial={animateOnMount && !reduceMotion ? 'hidden' : false}
       animate={animate}
-      transition={{ duration: reduceMotion ? 0 : 0.54, delay: reduceMotion ? 0 : delay, ease: easeOut }}
+      transition={{ duration: reduceMotion ? 0 : 0.9, delay: reduceMotion ? 0 : delay, ease: easeOut }}
       {...rest}
     >
       {children}
@@ -164,7 +167,7 @@ export function StaggerItem({ as = 'div', children, className, ...props }) {
     <Component
       className={className}
       variants={fadeUpVariants}
-      transition={{ duration: 0.52, ease: easeOut }}
+      transition={{ duration: 0.8, ease: easeOut }}
       {...props}
     >
       {children}

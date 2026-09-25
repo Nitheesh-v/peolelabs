@@ -3,6 +3,7 @@ import PageHero from '../components/PageHero.jsx'
 import ContactForm from '../components/ContactForm.jsx'
 import { company } from '../data/content.js'
 import { FadeUp } from '../components/motion/MotionPrimitives.jsx'
+import Globe from '../components/fx/Globe.jsx'
 
 export default function Contact() {
   return (
@@ -70,6 +71,13 @@ export default function Contact() {
                   <p>{company.hours}</p>
                 </div>
               </div>
+            </FadeUp>
+
+            <FadeUp as="div" className="relative mx-auto mt-6 w-full max-w-[340px]" delay={0.16}>
+              <Globe />
+              <p className="pointer-events-none absolute inset-x-0 bottom-1 text-center text-xs font-semibold uppercase tracking-[0.14em] text-sky-700">
+                Head office · Edmonton, AB
+              </p>
             </FadeUp>
           </FadeUp>
 

@@ -5,6 +5,10 @@ import { FadeSide, FadeUp, StaggerGroup, StaggerItem } from '../components/motio
 import HeroBackdrop from '../components/fx/HeroBackdrop.jsx'
 import RevealWords from '../components/fx/RevealWords.jsx'
 import { useIntroDone } from '../components/fx/intro.js'
+import Depth3D from '../components/fx/Depth3D.jsx'
+import SectorCard from '../components/SectorCard.jsx'
+import TiltCard from '../components/fx/TiltCard.jsx'
+import { sectors } from '../data/content.js'
 
 const expertise = [
   {
@@ -29,13 +33,6 @@ const expertise = [
   },
 ]
 
-const industries = [
-  { name: 'Banking', icon: 'bank' },
-  { name: 'Insurance', icon: 'shield-check' },
-  { name: 'Higher Education', icon: 'graduation-cap' },
-  { name: 'Retail', icon: 'shopping-bag' },
-  { name: 'Automobile', icon: 'car' },
-]
 
 function AboutMetadata() {
   useEffect(() => {
@@ -190,7 +187,7 @@ export default function About() {
             </StaggerItem>
           </StaggerGroup>
           <FadeUp className="w-full" delay={0.45} animateOnMount>
-            <EnterpriseVisual />
+            <Depth3D><EnterpriseVisual /></Depth3D>
           </FadeUp>
         </div>
       </section>
@@ -198,7 +195,7 @@ export default function About() {
       <section aria-labelledby="get-to-know-title" className="bg-white py-14 sm:py-16 lg:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-9 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 lg:px-8">
           <FadeSide as="div" direction="left">
-            <CompanyVisual />
+            <Depth3D max={8}><CompanyVisual /></Depth3D>
           </FadeSide>
           <FadeSide as="div" direction="right" className="max-w-2xl lg:py-4" delay={0.08}>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-sky-700">Get to Know Us</p>
@@ -237,12 +234,14 @@ export default function About() {
           </FadeUp>
           <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.09}>
             {expertise.map((item) => (
-              <StaggerItem as="article" key={item.title} className="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none sm:p-6">
-                <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700 transition-colors group-hover:bg-sky-500 group-hover:text-white motion-reduce:transition-none" aria-hidden="true">
+              <StaggerItem as="div" key={item.title} className="h-full">
+                <TiltCard as="article" max={9} className="group h-full rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-sky-100 hover:shadow-xl hover:shadow-sky-500/10 sm:p-6">
+                <span className="tilt-pop mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700 transition-colors group-hover:bg-sky-500 group-hover:text-white motion-reduce:transition-none" aria-hidden="true">
                   <Icon name={item.icon} size={22} strokeWidth={1.8} />
                 </span>
                 <h3 className="text-lg font-semibold tracking-tight text-slate-900">{item.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+                </TiltCard>
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -266,16 +265,19 @@ export default function About() {
               PeopleLabs Consulting&apos;s team has experience working across multiple sectors and industries.
             </p>
           </FadeUp>
-          <StaggerGroup as="ul" className="grid grid-cols-2 gap-3 max-[359px]:grid-cols-1 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5" stagger={0.07}>
-            {industries.map((industry) => (
-              <StaggerItem as="li" key={industry.name} className="flex min-h-[88px] items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 motion-reduce:transform-none hover:border-sky-200 hover:shadow-sm sm:flex-col sm:justify-center sm:gap-2 sm:text-center">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-700" aria-hidden="true">
-                  <Icon name={industry.icon} size={21} strokeWidth={1.8} />
-                </span>
-                <span className="text-sm font-semibold leading-5 text-slate-800">{industry.name}</span>
-              </StaggerItem>
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-5 [perspective:1400px]">
+            {sectors.map((sector, index) => (
+              <li key={sector.title} className={index === 4 ? 'col-span-2 sm:col-span-1' : undefined}>
+                <SectorCard
+                  sector={sector}
+                  index={index}
+                  compact
+                  imageClassName={index === 4 ? 'aspect-[16/9] sm:aspect-[4/3]' : 'aspect-[4/3]'}
+                  sizes="(min-width: 1024px) 240px, (min-width: 640px) 33vw, 50vw"
+                />
+              </li>
             ))}
-          </StaggerGroup>
+          </ul>
         </div>
       </section>
 

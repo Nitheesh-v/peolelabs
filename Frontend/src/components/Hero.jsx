@@ -6,6 +6,7 @@ import ParticleField from './fx/ParticleField.jsx'
 import RevealWords from './fx/RevealWords.jsx'
 import Magnetic from './fx/Magnetic.jsx'
 import { useIntroDone } from './fx/intro.js'
+import Depth3D from './fx/Depth3D.jsx'
 
 const ease = [0.16, 1, 0.3, 1]
 const rise = {
@@ -109,7 +110,9 @@ export default function Hero() {
             animate={state === 'visible' ? { opacity: 1, scale: 1, rotate: 0, filter: 'blur(0px)', transitionEnd: { filter: 'none' } } : undefined}
             transition={{ duration: 1.1, ease, delay: 0.35 }}
           >
-            <HeroVisual start={state === 'visible'} />
+            <Depth3D max={8}>
+              <HeroVisual start={state === 'visible'} />
+            </Depth3D>
           </motion.div>
         </motion.div>
       </div>

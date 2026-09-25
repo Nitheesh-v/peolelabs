@@ -9,6 +9,8 @@ import { scrollToElement } from '../components/fx/scroll.js'
 import HeroBackdrop from '../components/fx/HeroBackdrop.jsx'
 import RevealWords from '../components/fx/RevealWords.jsx'
 import { useIntroDone } from '../components/fx/intro.js'
+import Depth3D from '../components/fx/Depth3D.jsx'
+import TiltCard from '../components/fx/TiltCard.jsx'
 
 const pageDescription = 'Explore PeopleSoft career opportunities with PeopleLabs Consulting in Edmonton, Alberta, including business analyst and technical support roles.'
 
@@ -165,7 +167,7 @@ export default function Careers() {
             </StaggerItem>
           </StaggerGroup>
           <FadeUp className="mx-auto w-full max-w-[560px] lg:justify-self-end" delay={0.42} animateOnMount>
-            <CareersVisual />
+            <Depth3D><CareersVisual /></Depth3D>
           </FadeUp>
         </div>
       </section>
@@ -181,19 +183,21 @@ export default function Careers() {
               PeopleLabs Consulting is growing its PeopleSoft team and is looking for professionals who can contribute to client-focused enterprise technology engagements.
             </p>
           </FadeUp>
-          <FadeUp as="aside" delay={0.12} className="rounded-2xl border border-sky-100 bg-sky-50 p-5 sm:p-6" aria-label="Current role areas">
+          <FadeUp as="div" delay={0.12}>
+          <TiltCard as="aside" max={7} className="rounded-2xl border border-sky-100 bg-sky-50 p-5 shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-sky-500/10 sm:p-6" aria-label="Current role areas">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-sky-700">Current role areas</p>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              <li className="flex items-center gap-3 rounded-lg border border-sky-100 bg-white px-3.5 py-3 text-sm font-medium text-slate-800">
+              <li className="tilt-pop flex items-center gap-3 rounded-lg border border-sky-100 bg-white px-3.5 py-3 text-sm font-medium text-slate-800">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true"><Icon name="briefcase" size={18} /></span>
                 FSCM Business Analysis
               </li>
-              <li className="flex items-center gap-3 rounded-lg border border-sky-100 bg-white px-3.5 py-3 text-sm font-medium text-slate-800">
+              <li className="tilt-pop flex items-center gap-3 rounded-lg border border-sky-100 bg-white px-3.5 py-3 text-sm font-medium text-slate-800">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-700" aria-hidden="true"><Icon name="server" size={18} /></span>
                 PeopleSoft Technical Support
               </li>
             </ul>
             <p className="mt-4 text-xs leading-5 text-slate-600">Remote, full-time opportunities are available for the analyst roles.</p>
+          </TiltCard>
           </FadeUp>
         </div>
       </section>

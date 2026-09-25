@@ -17,26 +17,31 @@ export const sectors = [
   {
     icon: 'bank',
     title: 'Banking',
+    image: 'banking',
     text: 'Financials, treasury and supply-chain processes that stand up to regulatory and audit demands.',
   },
   {
     icon: 'shield-check',
     title: 'Insurance',
+    image: 'insurance',
     text: 'Policy, billing and claims workflows supported with stable, well-governed PeopleSoft environments.',
   },
   {
     icon: 'graduation-cap',
     title: 'Higher Education',
+    image: 'education',
     text: 'Campus Solutions across student financials, financial aid and academic advisement.',
   },
   {
     icon: 'shopping-bag',
     title: 'Retail',
+    image: 'retail',
     text: 'Order-to-cash and inventory operations tuned for high-volume, seasonal demand.',
   },
   {
     icon: 'car',
     title: 'Automobile',
+    image: 'automobile',
     text: 'Manufacturing and supply-chain integrations that keep production data accurate and timely.',
   },
 ]

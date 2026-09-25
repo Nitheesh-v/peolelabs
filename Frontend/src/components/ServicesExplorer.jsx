@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Icon from './Icon.jsx'
+import TiltCard from './fx/TiltCard.jsx'
 import { serviceOfferings } from '../data/servicesPage.js'
 
 const detailStagger = {
@@ -8,8 +9,8 @@ const detailStagger = {
   visible: { transition: { staggerChildren: 0.06, delayChildren: 0.03 } },
 }
 const detailItem = {
-  hidden: { opacity: 0, y: 8 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 0.61, 0.36, 1] } },
+  hidden: { opacity: 0, y: 24, rotateX: 20, transformPerspective: 900 },
+  visible: { opacity: 1, y: 0, rotateX: 0, transformPerspective: 900, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 }
 
 function ServiceTabs({ activeId, onSelect, layout }) {
@@ -111,10 +112,11 @@ export default function ServicesExplorer() {
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={activeService.id}
-                  initial={reduceMotion ? false : { opacity: 0, x: 15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -10, transition: { duration: 0.15, ease: 'easeIn' } }}
-                  transition={{ duration: reduceMotion ? 0 : 0.25, ease: 'easeOut' }}
+                  style={{ transformOrigin: '0% 50%' }}
+                  initial={reduceMotion ? false : { opacity: 0, rotateY: -18, x: 40, transformPerspective: 1400 }}
+                  animate={{ opacity: 1, rotateY: 0, x: 0, transformPerspective: 1400 }}
+                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, rotateY: 12, x: -24, transformPerspective: 1400, transition: { duration: 0.18, ease: 'easeIn' } }}
+                  transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <header className="rounded-xl bg-sky-600 p-5 text-white sm:p-7 lg:p-8">
                     <div className="flex items-start gap-4 sm:gap-5">
@@ -136,15 +138,17 @@ export default function ServicesExplorer() {
 
                   <motion.div className="mt-6 grid gap-4 sm:mt-7 sm:grid-cols-2 sm:gap-5" variants={detailStagger} initial={reduceMotion ? false : 'hidden'} animate="visible">
                     {activeService.details.map((detail) => (
-                      <motion.article key={detail.title} variants={reduceMotion ? undefined : detailItem} className="flex min-h-36 items-start gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow] duration-200 hover:border-sky-200 hover:shadow-sm sm:p-5">
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-700" aria-hidden="true">
+                      <motion.div key={detail.title} variants={reduceMotion ? undefined : detailItem} className="h-full">
+                      <TiltCard as="article" max={7} className="group flex h-full min-h-36 items-start gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-sky-100 hover:shadow-xl hover:shadow-sky-500/10 sm:p-5">
+                        <span className="tilt-pop flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-700 transition-colors duration-300 group-hover:bg-sky-500 group-hover:text-white" aria-hidden="true">
                           <Icon name={detail.icon} size={21} strokeWidth={1.8} />
                         </span>
                         <div>
                           <h3 className="text-base font-semibold text-slate-900">{detail.title}</h3>
                           <p className="mt-2 text-sm leading-6 text-slate-600">{detail.description}</p>
                         </div>
-                      </motion.article>
+                      </TiltCard>
+                      </motion.div>
                     ))}
                   </motion.div>
                 </motion.div>
