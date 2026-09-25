@@ -2,15 +2,19 @@
   <title id="title">PeopleLab Consulting Inc.</title>
   <desc id="desc">PeopleLab Consulting Inc. logo with a navy and green P mark, PEOPLE in navy, LAB in green, a red Canadian maple leaf, and CONSULTING INC. below.</desc>
   <defs>
-    <linearGradient id="mark-navy" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0e2a5e"/>
-      <stop offset=".55" stop-color="#0b3474"/>
-      <stop offset="1" stop-color="#0a3d86"/>
+    <linearGradient id="mark-navy" gradientUnits="userSpaceOnUse" x1="227" y1="285" x2="343" y2="401">
+      <stop offset="0" stop-color="#122f63"/>
+      <stop offset=".55" stop-color="#154a86"/>
+      <stop offset="1" stop-color="#2273b8"/>
     </linearGradient>
     <linearGradient id="mark-green-side" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#6fa83a"/>
-      <stop offset=".55" stop-color="#8ebd48"/>
+      <stop offset="0" stop-color="#8dc63f"/>
+      <stop offset=".55" stop-color="#7ab829"/>
       <stop offset="1" stop-color="#5e9a33"/>
+    </linearGradient>
+    <linearGradient id="mark-green-dark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f6a1d"/>
+      <stop offset="1" stop-color="#4d8a2a"/>
     </linearGradient>
     <linearGradient id="mark-green-base" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#2f6a1d"/>
@@ -25,12 +29,11 @@
     </linearGradient>
   </defs>
 
-  <!-- P mark -->
-  <path fill="#6fa83a" d="M148 308 213 368V440L148 510Z"/>
-  <path fill="url(#mark-green-side)" d="M148 308 213 368V440L152 500Z" opacity=".9"/>
-  <path fill="url(#mark-green-base)" d="M148 511 215 440 374 486 334 512H154C150 512 148 511 148 511Z"/>
-  <path fill="url(#mark-navy)" d="M156 247H285C334 247 374 288 374 339 374 385 346 410 306 438H216L296 368C314 352 319 335 313 322 307 311 297 306 285 306H187L152 268C145 260 147 247 156 247Z"/>
-  <path fill="none" stroke="#071d45" stroke-width="3" stroke-opacity=".55" d="M187 306H285C297 306 307 311 313 322 319 335 314 352 296 368L216 438"/>
+  <!-- P mark: open navy loop with a folded green ribbon stem -->
+  <path fill="none" stroke="url(#mark-navy)" stroke-width="50" d="M227.2 285.3A82 82 0 1 1 342.7 400.8"/>
+  <path fill="url(#mark-green-side)" d="M174 306 278 410 238 450 134 346Z"/>
+  <path fill="url(#mark-green-dark)" d="M238 450 278 410 318 436 278 476Z"/>
+  <path fill="url(#mark-green-side)" d="M278 476 318 436 392 456 352 496Z"/>
 
   <!-- PEOPLE -->
   <g fill="none" stroke="#0e2656" stroke-width="16" stroke-linejoin="round">
