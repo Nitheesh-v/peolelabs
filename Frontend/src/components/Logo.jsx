@@ -6,8 +6,8 @@ const logos = {
 // Brand artwork is transparent; it sits directly on the page surface.
 export default function Logo({ size = 'navigation', decorative = false, tone = 'dark' }) {
   const dimensions = size === 'footer'
-    ? 'h-16 w-[272px] sm:h-[72px] sm:w-[306px]'
-    : 'h-12 w-[208px] sm:h-14 sm:w-[252px]'
+    ? 'h-16 w-[260px] sm:h-[72px] sm:w-[293px]'
+    : 'h-12 w-[196px] sm:h-14 sm:w-[228px]'
 
   return (
     <span className={`inline-flex max-w-full shrink-0 items-center justify-center ${dimensions}`}>

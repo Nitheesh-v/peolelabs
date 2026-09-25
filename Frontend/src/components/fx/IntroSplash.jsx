@@ -38,7 +38,7 @@ export default function IntroSplash({ onDone }) {
             exit={{ y: -40, opacity: 0, transition: { duration: 0.45, ease } }}
             transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
-            <img src="/peoplelabs-logo.svg" alt="PeopleLab Consulting Inc." width="560" height="130" />
+            <img src="/peoplelabs-logo.svg" alt="PeopleLab Consulting Inc." width="560" height="138" />
           </motion.div>
           <div className="intro-splash__bar" aria-hidden="true">
             <motion.span
