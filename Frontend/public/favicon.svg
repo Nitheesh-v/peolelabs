@@ -1,16 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="PeopleLab Consulting Inc.">
-  <defs>
-    <linearGradient id="n" gradientUnits="userSpaceOnUse" x1="227" y1="285" x2="343" y2="401">
-      <stop offset="0" stop-color="#122f63"/>
-      <stop offset=".55" stop-color="#154a86"/>
-      <stop offset="1" stop-color="#2273b8"/>
-    </linearGradient>
-  </defs>
   <rect width="64" height="64" rx="14" fill="#6ec3fa"/>
-  <g transform="translate(-14.26 -31.1) scale(0.1736)">
-    <path fill="none" stroke="url(#n)" stroke-width="50" d="M227.2 285.3A82 82 0 1 1 342.7 400.8"/>
-    <path fill="#7ab829" d="M174 306 278 410 238 450 134 346Z"/>
-    <path fill="#3d7a1e" d="M238 450 278 410 318 436 278 476Z"/>
-    <path fill="#8dc63f" d="M278 476 318 436 392 456 352 496Z"/>
+  <g transform="translate(-3.66 -20.33) scale(0.1316)" fill="none" stroke-linecap="butt">
+    <path d="M204 350A67 67 0 0 1 338 350" stroke="#2e7d32" stroke-width="16"/>
+    <path d="M204 350A74 74 0 0 0 204 498" stroke="#0e2656" stroke-width="16"/>
+    <path d="M338 350A74 74 0 0 1 338 498" stroke="#0e2656" stroke-width="16"/>
+    <path d="M232 505V322H288A44 44 0 0 1 288 410H232" stroke="#0e2656" stroke-width="16"/>
+    <path d="M276 424V482H330V506" stroke="#0e2656" stroke-width="16"/>
+    <circle cx="271" cy="283" r="11" fill="#2e7d32" stroke="none"/>
+    <circle cx="130" cy="424" r="11" fill="#0e2656" stroke="none"/>
+    <circle cx="412" cy="424" r="11" fill="#0e2656" stroke="none"/>
   </g>
 </svg>
