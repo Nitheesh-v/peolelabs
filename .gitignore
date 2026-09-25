@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Careers applications (personal data) - never commit
+Backend/applications/
+
 # Environment variables
 .env
 **/.env

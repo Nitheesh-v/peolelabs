@@ -1,0 +1,336 @@
+/* ============================================================
+   COMPONENTS — buttons, cards, chips, lists, forms, icons
+   ============================================================ */
+
+/* Buttons -------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.72rem 1.35rem;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-accent);
+}
+.btn--primary:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  box-shadow: 0 12px 28px rgba(2, 132, 199, 0.24);
+}
+
+.btn--secondary {
+  background-color: var(--color-white);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary);
+}
+.btn--secondary:hover {
+  background-color: var(--color-primary-bg);
+  border-color: var(--color-primary-dark);
+  color: var(--color-primary-dark);
+}
+
+.btn--white {
+  background-color: var(--color-white);
+  color: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
+}
+.btn--white:hover {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary-dark);
+}
+
+.btn--ghost-light {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.btn--ghost-light:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+}
+
+.btn--lg {
+  padding: 0.9rem 1.7rem;
+  font-size: var(--fs-md);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn .icon {
+  transition: transform var(--transition);
+}
+.btn:hover .icon--arrow {
+  transform: translateX(3px);
+}
+
+/* Icon tile (sky-blue rounded square accent) ---------------------------- */
+.icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-bg-strong);
+  color: var(--color-primary-dark);
+  flex-shrink: 0;
+}
+.icon-tile--sm {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+}
+.icon-tile--solid {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Cards ---------------------------------------------------------------- */
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.card--hover:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-soft);
+}
+
+.card__title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: var(--space-3);
+}
+
+.card__text {
+  color: var(--color-text);
+  font-size: var(--fs-base);
+}
+
+.card .icon-tile {
+  margin-bottom: var(--space-5);
+}
+
+/* Sector card ---------------------------------------------------------- */
+.sector-card {
+  text-align: left;
+}
+.sector-card .icon-tile {
+  margin-bottom: var(--space-4);
+}
+
+/* Service card (with module list) -------------------------------------- */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background-color: var(--color-primary);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.service-card:hover::before {
+  opacity: 1;
+}
+.service-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.service-card__head h3 {
+  margin: 0;
+}
+
+/* Tag chips for module lists ------------------------------------------- */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--space-2);
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  background-color: var(--color-primary-bg);
+  border: 1px solid var(--color-primary-bg-strong);
+  border-radius: var(--radius-full);
+  padding: 0.28rem 0.7rem;
+  line-height: 1.4;
+}
+
+/* Checked feature list ------------------------------------------------- */
+.check-list {
+  display: grid;
+  gap: var(--space-3);
+}
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: var(--color-text);
+}
+.check-list .icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+/* Badge / credibility chip --------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-bg);
+  border: 1px solid var(--color-primary-bg-strong);
+  border-radius: var(--radius-full);
+  padding: 0.4rem 0.9rem;
+}
+.badge .icon {
+  color: var(--color-primary);
+}
+
+/* Forms ---------------------------------------------------------------- */
+.form-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.field {
+  margin-bottom: var(--space-5);
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+@media (max-width: 560px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-bottom: 0.4rem;
+}
+.label .req {
+  color: var(--color-error);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.85rem;
+  font-size: var(--fs-base);
+  color: var(--color-heading);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-muted);
+}
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-primary-ring);
+}
+.input[aria-invalid='true'],
+.textarea[aria-invalid='true'],
+.select[aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+.input[aria-invalid='true']:focus,
+.textarea[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.18);
+}
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  font-size: var(--fs-sm);
+  color: var(--color-error);
+}
+
+.form-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  font-size: var(--fs-base);
+  margin-bottom: var(--space-5);
+}
+.form-status--success {
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+  border: 1px solid rgba(22, 163, 74, 0.25);
+}
+.form-status--error {
+  color: var(--color-error);
+  background-color: var(--color-error-bg);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.form-note {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  margin-top: var(--space-4);
+}

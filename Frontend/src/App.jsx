@@ -1,109 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import StatsCounter from './components/StatsCounter';
-import AgentDirectory from './components/AgentDirectory';
-import SectorsGrid from './components/SectorsGrid';
-import PlaybookServices from './components/PlaybookServices';
-import JobBoard from './components/JobBoard';
-import ContactSection from './components/ContactSection';
-import ScrollToTop from './components/ScrollToTop';
-import Footer from './components/Footer';
+import { Suspense, lazy, useState } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import Navbar from './components/Navbar.jsx'
+import Footer from './components/Footer.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
+import BackToTop from './components/BackToTop.jsx'
+import SmoothScroll from './components/fx/SmoothScroll.jsx'
+import ScrollProgress from './components/fx/ScrollProgress.jsx'
+import IntroSplash from './components/fx/IntroSplash.jsx'
+import { IntroContext, shouldPlayIntro } from './components/fx/intro.js'
+import Home from './pages/Home.jsx'
+
+// Inner pages load on demand so the homepage ships less JavaScript up front.
+const About = lazy(() => import('./pages/About.jsx'))
+const Services = lazy(() => import('./pages/Services.jsx'))
+const Careers = lazy(() => import('./pages/Careers.jsx'))
+const Contact = lazy(() => import('./pages/Contact.jsx'))
+const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [theme, setTheme] = useState('dark');
-
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      setActiveSection(id);
-    }
-  };
-
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
-    if (nextTheme === 'light') {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
-  };
-
-  useEffect(() => {
-    const sections = ['hero', 'roster', 'sectors', 'services', 'careers', 'contact'];
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const location = useLocation()
+  const reduceMotion = useReducedMotion()
+  const [playIntro] = useState(shouldPlayIntro)
+  const [introDone, setIntroDone] = useState(() => !playIntro)
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${theme === 'dark' ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
-      
-      {/* Infolexus Style Navbar */}
-      <Navbar
-        activeSection={activeSection}
-        scrollTo={scrollToSection}
-        theme={theme}
-        toggleTheme={toggleTheme}
-      />
-
-      <main>
-        {/* The 'Arena' Hero Section */}
-        <Hero scrollTo={scrollToSection} />
-
-        {/* Stats Counter Section */}
-        <StatsCounter />
-
-        {/* Agent Roster Grid & Profiles Section */}
-        <AgentDirectory />
-
-        {/* Sectors Grid Section */}
-        <SectorsGrid scrollTo={scrollToSection} />
-
-        {/* The Playbook / Core Services Section */}
-        <PlaybookServices scrollTo={scrollToSection} />
-
-        {/* Job Board / Executive Careers Section */}
-        <JobBoard />
-
-        {/* Contact Section */}
-        <ContactSection />
-      </main>
-
-      {/* Footer */}
-      <Footer scrollTo={scrollToSection} />
-
-      {/* Scroll To Top Button */}
+    <IntroContext.Provider value={introDone}>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      {playIntro && !introDone && <IntroSplash onDone={() => setIntroDone(true)} />}
+      <SmoothScroll />
+      <ScrollProgress />
       <ScrollToTop />
-
-    </div>
-  );
+      <Navbar />
+      <main id="main">
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={location.pathname}
+            style={{ transformOrigin: '50% 0%' }}
+            initial={reduceMotion ? false : { opacity: 0, y: 40, rotateX: 9, scale: 0.97, transformPerspective: 1600, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1, transformPerspective: 1600, filter: 'blur(0px)', transitionEnd: { filter: 'none', transform: 'none' } }}
+            transition={{ duration: reduceMotion ? 0 : 0.75, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Suspense fallback={<div className="min-h-[70vh]" aria-busy="true" />}>
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            </Suspense>
+          </motion.div>
+        </AnimatePresence>
+      </main>
+      <Footer />
+      <BackToTop />
+    </IntroContext.Provider>
+  )
 }

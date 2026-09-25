@@ -1,0 +1,20 @@
+/* Small interactive accents shared by the card systems.
+   The card spotlight/border glow lives in fx.css (.spotlight-card). */
+.expertise-icon {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms ease, box-shadow 300ms ease;
+}
+
+.expertise-card:hover .expertise-icon,
+.expertise-card:focus-within .expertise-icon {
+  transform: translateZ(28px) scale(1.08) rotate(-4deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expertise-icon {
+    transition: none !important;
+  }
+  .expertise-card:hover .expertise-icon,
+  .expertise-card:focus-within .expertise-icon {
+    transform: none;
+  }
+}

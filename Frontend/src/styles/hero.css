@@ -1,0 +1,304 @@
+/* ============================================================
+   HERO — homepage + inner page headers
+   ============================================================ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    160deg,
+    var(--color-primary-bg) 0%,
+    var(--color-white) 58%
+  );
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: var(--space-16);
+  padding-block: var(--space-20);
+}
+
+.hero__content {
+  max-width: 620px;
+}
+
+.hero__title {
+  margin-bottom: var(--space-6);
+}
+
+.hero__lead {
+  font-size: var(--fs-lg);
+  color: var(--color-text);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+  max-width: 540px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.hero__cred {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hero__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__visual svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+}
+
+@media (max-width: 992px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    padding-block: var(--space-16);
+    text-align: center;
+  }
+  .hero__content {
+    max-width: 640px;
+    margin-inline: auto;
+  }
+  .hero__lead {
+    margin-inline: auto;
+  }
+  .hero__actions,
+  .hero__cred {
+    justify-content: center;
+  }
+  .hero__visual {
+    order: -1;
+  }
+  .hero__visual svg {
+    max-width: 460px;
+  }
+}
+
+/* Inner page header ---------------------------------------------------- */
+.page-hero {
+  background: linear-gradient(
+    160deg,
+    var(--color-primary-bg) 0%,
+    var(--color-white) 70%
+  );
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-16) var(--space-16);
+}
+.page-hero__inner {
+  max-width: 720px;
+}
+.page-hero h1 {
+  font-size: var(--fs-3xl);
+  margin-bottom: var(--space-4);
+}
+.page-hero p {
+  font-size: var(--fs-lg);
+  color: var(--color-text);
+}
+@media (max-width: 768px) {
+  .page-hero h1 {
+    font-size: var(--fs-2xl);
+  }
+  .page-hero p {
+    font-size: var(--fs-md);
+  }
+}
+
+/* Continuous, lightweight data motion in the PeopleSoft ecosystem illustration. */
+.hero-visual__connections {
+  animation: hero-line-breathe 4.8s ease-in-out infinite alternate;
+}
+.hero-visual__signals path {
+  animation-name: hero-signal-flow;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.hero-visual__node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-node-float 4.6s ease-in-out infinite;
+}
+.hero-visual__module {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-module-drift 5.2s ease-in-out infinite;
+}
+.hero-visual__hub {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-hub-glow 5s ease-in-out infinite;
+}
+.hero-visual__halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-halo-pulse 4.6s ease-in-out infinite;
+}
+.hero-visual__tech-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-dot-drift 7s ease-in-out infinite;
+}
+
+@keyframes hero-signal-flow {
+  to { stroke-dashoffset: -60; }
+}
+@keyframes hero-line-breathe {
+  from { opacity: 0.46; }
+  to { opacity: 0.82; }
+}
+@keyframes hero-node-float {
+  0%, 100% { opacity: 0.76; transform: translateY(0) scale(0.96); }
+  50% { opacity: 1; transform: translateY(-3px) scale(1.03); }
+}
+@keyframes hero-module-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes hero-hub-glow {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+@keyframes hero-halo-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.99); }
+  50% { opacity: 0.64; transform: scale(1.02); }
+}
+@keyframes hero-dot-drift {
+  0%, 100% { opacity: 0.32; transform: translateY(0); }
+  50% { opacity: 0.76; transform: translateY(-5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual__connections,
+  .hero-visual__signals path,
+  .hero-visual__node,
+  .hero-visual__module,
+  .hero-visual__hub,
+  .hero-visual__halo,
+  .hero-visual__tech-dot {
+    animation: none !important;
+    filter: none !important;
+  }
+}
+
+/* Arrow movement is reserved for meaningful call-to-action controls. */
+.cta-arrow {
+  transition: transform 180ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+a:hover .cta-arrow,
+button:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Continuous, restrained movement in About page enterprise illustrations. */
+.about-visual__ring--outer::after {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid transparent;
+  border-top-color: #7dd3fc;
+  border-right-color: #bae6fd;
+  border-radius: inherit;
+  content: '';
+  animation: about-ring-rotate 28s linear infinite;
+}
+.about-visual__ring--inner {
+  animation: about-ring-rotate 38s linear infinite reverse;
+}
+.about-visual__connector path {
+  animation: hero-signal-flow 5.2s linear infinite;
+}
+.about-visual__module {
+  animation: hero-module-drift 6.5s ease-in-out infinite;
+}
+.about-visual__hub {
+  animation: hero-hub-glow 5.5s ease-in-out infinite;
+}
+.about-visual__orb {
+  animation: ambient-drift 16s ease-in-out infinite alternate;
+}
+@keyframes about-ring-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-arrow,
+  a:hover .cta-arrow,
+  button:hover .cta-arrow {
+    transform: none !important;
+    transition: none !important;
+  }
+  .about-visual__ring--outer::after,
+  .about-visual__ring--inner,
+  .about-visual__connector path,
+  .about-visual__module,
+  .about-visual__hub,
+  .about-visual__orb {
+    animation: none !important;
+  }
+}
+
+/* Quiet ambient movement gives key page bands a little depth without shifting content. */
+.ambient-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.ambient-bg::before,
+.ambient-bg--duo::after {
+  position: absolute;
+  z-index: 0;
+  width: clamp(12rem, 32vw, 25rem);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  content: '';
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(125 211 252 / 0.17) 0%, rgb(125 211 252 / 0.07) 36%, transparent 72%);
+  animation: ambient-drift 19s ease-in-out infinite alternate;
+}
+
+.ambient-bg::before {
+  top: 0.75rem;
+  right: clamp(0.5rem, 4vw, 2.5rem);
+}
+
+.ambient-bg--duo::after {
+  bottom: 0.25rem;
+  left: clamp(0.5rem, 5vw, 3rem);
+  width: clamp(10rem, 25vw, 20rem);
+  animation-delay: -9s;
+  animation-direction: alternate-reverse;
+}
+
+.ambient-bg--footer::before,
+.ambient-bg--footer::after {
+  background: radial-gradient(circle, rgb(224 242 254 / 0.19) 0%, rgb(125 211 252 / 0.08) 38%, transparent 72%);
+}
+
+.ambient-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes ambient-drift {
+  from { transform: translate3d(-4px, -3px, 0) scale(0.985); }
+  to { transform: translate3d(7px, 6px, 0) scale(1.015); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-bg::before,
+  .ambient-bg--duo::after {
+    animation: none !important;
+  }
+}
