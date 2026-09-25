@@ -10,6 +10,7 @@ export default function SectorCard({
   sector,
   index = 0,
   compact = false,
+  small = false,
   className = '',
   imageClassName = 'aspect-[4/3]',
   sizes = '(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw',
@@ -62,7 +63,7 @@ export default function SectorCard({
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
         style={reduceMotion ? undefined : { rotateX, rotateY, transformPerspective: 1000 }}
-        className="spotlight-card group relative flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-2.5 shadow-sm transition-[box-shadow,border-color] duration-500 hover:border-sky-100 hover:shadow-[0_30px_60px_-20px_rgba(14,38,86,0.35)] sm:p-3"
+        className={`spotlight-card group relative flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-[box-shadow,border-color] duration-500 hover:border-sky-100 hover:shadow-[0_30px_60px_-20px_rgba(14,38,86,0.35)] ${small ? 'p-2 sm:p-2.5' : 'p-2.5 sm:p-3'}`}
       >
         <div className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-sky-100 to-sky-50 ${imageClassName}`}>
           <motion.div
@@ -92,23 +93,23 @@ export default function SectorCard({
         </div>
 
         <motion.span
-          className={`tilt-pop absolute flex items-center justify-center rounded-xl bg-white/90 text-sky-600 shadow-lg shadow-sky-900/15 ring-1 ring-white backdrop-blur transition-colors duration-300 group-hover:bg-sky-500 group-hover:text-white ${compact ? 'left-4 top-4 h-9 w-9 sm:left-5 sm:top-5 sm:h-10 sm:w-10' : 'left-5 top-5 h-11 w-11 sm:left-6 sm:top-6'}`}
+          className={`tilt-pop absolute flex items-center justify-center rounded-xl bg-white/90 text-sky-600 shadow-lg shadow-sky-900/15 ring-1 ring-white backdrop-blur transition-colors duration-300 group-hover:bg-sky-500 group-hover:text-white ${compact || small ? 'left-4 top-4 h-9 w-9 sm:left-5 sm:top-5 sm:h-10 sm:w-10' : 'left-5 top-5 h-11 w-11 sm:left-6 sm:top-6'}`}
           aria-hidden="true"
           initial={reduceMotion ? false : { scale: 0, rotate: -30 }}
           animate={shown ? { scale: 1, rotate: 0 } : undefined}
           transition={{ type: 'spring', stiffness: 260, damping: 16, delay: delay + 0.75 }}
         >
-          <Icon name={sector.icon} size={compact ? 18 : 22} strokeWidth={1.9} />
+          <Icon name={sector.icon} size={compact || small ? 18 : 22} strokeWidth={1.9} />
         </motion.span>
 
-        <div className={`tilt-pop flex flex-1 flex-col ${compact ? 'px-1.5 pb-1 pt-3.5 text-center' : 'px-2 pb-2 pt-4 sm:px-2.5'}`}>
-          <h3 className={`font-bold tracking-tight text-slate-900 ${compact ? 'text-base sm:text-lg' : 'text-lg sm:text-xl'}`}>
+        <div className={`tilt-pop flex flex-1 flex-col ${compact ? 'px-1.5 pb-1 pt-3.5 text-center' : small ? 'px-1.5 pb-1.5 pt-3' : 'px-2 pb-2 pt-4 sm:px-2.5'}`}>
+          <h3 className={`font-bold tracking-tight text-slate-900 ${compact ? 'text-base sm:text-lg' : small ? 'text-base sm:text-lg' : 'text-lg sm:text-xl'}`}>
             <span className="bg-gradient-to-r from-sky-500 to-lime-500 bg-[length:0%_2px] bg-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-500 group-hover:bg-[length:100%_2px]">
               {sector.title}
             </span>
           </h3>
           {!compact && sector.text && (
-            <p className="mt-2 text-sm leading-6 text-slate-600">{sector.text}</p>
+            <p className={`${small ? 'mt-1.5 text-xs leading-5' : 'mt-2 text-sm leading-6'} text-slate-600`}>{sector.text}</p>
           )}
         </div>
       </motion.article>
